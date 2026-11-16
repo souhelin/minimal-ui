@@ -151,3 +151,13 @@ Toda alteração deve respeitar três princípios:
 A IA não deve modificar o projeto apenas para demonstrar criatividade. Toda mudança precisa ter uma justificativa técnica, funcional ou de usabilidade.
 
 REGRA FINAL: Preserve o que funciona, melhore o que precisa melhorar e nunca comprometa a identidade do Minimal.
+
+
+13. ROADMAP E CONTROLE DE PENDÊNCIAS
+
+- Consulte `ROADMAP.md` antes de iniciar trabalhos de expansão do design system.
+- Use o roadmap como fonte oficial do que está pendente.
+- Não marque um item como concluído apenas porque existe um layout, mockup, exemplo estático ou implementação parcial.
+- Antes de concluir um item, implemente, integre e teste seu comportamento nas plataformas aplicáveis.
+- Atualize o `ROADMAP.md` no mesmo conjunto de alterações que concluir ou alterar o escopo de um item.
+- Preserve os itens ainda pendentes; não os remova para dar aparência de progresso.
