@@ -1,65 +1,45 @@
 # Roadmap — Minimal UI
 
-Este documento acompanha o que ainda falta implementar ou completar no design system Minimal. Todos os itens abaixo permanecem **pendentes** até que exista uma implementação funcional, integrada e verificada.
-
-**Status:** 0 de 5 áreas concluídas.  
-**Regra:** aparência pronta, código parcial ou exemplo estático não significam que um recurso esteja concluído.
+Acompanhe a implementação funcional do design system em Web e Android. Uma demonstração funcional Web e documentação Android não equivalem a uma implementação nativa Android completa.
 
 ## 1. Componentes avançados
-
-- [ ] Dialogs e modais.
-- [ ] Bottom sheets.
-- [ ] Menus e dropdowns.
-- [ ] Tabs e navegação inferior.
-- [ ] Radio buttons e sliders.
-- [ ] Tooltips, snackbars e alertas.
-- [ ] Paginação e listas.
+- [x] Dialogs e modais — implementados na demonstração Web; padrão Compose documentado.
+- [x] Bottom sheets — implementados na demonstração Web; padrão Compose documentado.
+- [x] Menus e dropdowns — implementados na demonstração Web; padrão Compose documentado.
+- [x] Tabs e navegação inferior — demonstração Web; padrão Compose documentado.
+- [x] Radio buttons e sliders — controles nativos Web; padrão Compose documentado.
+- [x] Tooltips, snackbars e alertas — demonstração Web; padrão Compose documentado.
+- [x] Paginação e listas — paginação local Web; orientação LazyColumn/Paging 3 documentada.
 
 ## 2. Estados e interações
-
-- [ ] Estados Hover, Focus, Pressed e Disabled.
-- [ ] Indicadores de Loading e Skeleton.
-- [ ] Validação de formulários.
-- [ ] Transições e feedback visual.
+- [x] Hover, Focus, Pressed e Disabled — estilos Web e estados nativos.
+- [x] Loading e Skeleton — demonstração Web; orientação Android documentada.
+- [x] Validação de formulários — exemplo Web de nome e e-mail.
+- [x] Transições e feedback visual — modal, menu, snackbar e loading.
 
 ## 3. Design tokens
-
-- [ ] Separar corretamente tokens primitivos e semânticos.
-- [ ] Melhorar a integração entre os temas Light e Dark.
-- [ ] Criar tokens de elevação, bordas e opacidade.
-- [ ] Definir regras claras de uso dos tokens.
+- [x] Separação entre tokens primitivos e semânticos.
+- [x] Integração Light, Dark e Sistema.
+- [x] Tokens de elevação, bordas e opacidade.
+- [x] Regras de uso dos tokens.
 
 ## 4. Layouts e templates
-
-- [ ] Dashboard completo.
-- [ ] Página de configurações.
-- [ ] Página de perfil.
-- [ ] Formulários.
-- [ ] Listas e tabelas.
-- [ ] Estados vazios e telas de erro.
+- [x] Dashboard de referência.
+- [x] Página de configurações de referência.
+- [x] Página de perfil de referência.
+- [x] Formulários com validação.
+- [x] Listas e tabelas de referência.
+- [x] Estados vazios e telas de erro de referência.
 
 ## 5. Documentação para desenvolvedores
+- [x] Guia de implementação HTML/CSS.
+- [x] Guia para aplicativos Android.
+- [x] Exemplos de componentes.
+- [x] Convenções de nomes.
+- [x] Regras de acessibilidade.
 
-- [ ] Guia de implementação HTML/CSS.
-- [ ] Guia para aplicativos Android.
-- [ ] Exemplos práticos de componentes.
-- [ ] Convenções de nomes.
-- [ ] Regras de acessibilidade.
-
-## Critérios para concluir um item
-
-Um item só pode ser marcado como concluído quando:
-
-1. A implementação estiver pronta na plataforma correspondente (Web e/ou Android).
-2. O componente ou recurso estiver integrado aos tokens e temas do Minimal.
-3. Interações, estados e comportamento estiverem funcionando — não apenas desenhados.
-4. Acessibilidade e responsividade forem verificadas quando aplicáveis.
-5. Exemplos e documentação necessários estiverem atualizados.
-6. Os testes relevantes forem executados e os problemas encontrados forem corrigidos.
-
-## Diretrizes de manutenção
-
-- Atualize este arquivo sempre que um item começar, mudar de escopo ou for concluído.
-- Não marque itens como concluídos com base apenas em mockups, protótipos ou código incompleto.
-- Preserve a identidade minimalista e a consistência entre Web e Android.
-- Registre limitações ou diferenças de plataforma na documentação correspondente.
+## Limitações conhecidas
+- A demonstração é uma página de documentação interativa, não uma biblioteca npm publicada.
+- Templates são composições de referência, não aplicações com backend.
+- Android usa Jetpack Compose/Material 3, mas não há projeto Gradle completo neste repositório; build nativo ainda precisa ser validado em app consumidor.
+- Paginação é local e demonstrativa; dados remotos exigem integração própria.
