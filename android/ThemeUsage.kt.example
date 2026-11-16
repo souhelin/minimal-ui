@@ -1,0 +1,8 @@
+// Exemplo de integração no Activity:
+val dark = androidx.compose.foundation.isSystemInDarkTheme()
+
+setContent {
+    MinimalTheme(darkTheme = dark) {
+        // Conteúdo do aplicativo
+    }
+}

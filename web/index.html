@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <title>Minimal Open Source UI</title>
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="components.css">
+  <script defer src="theme.js"></script>
+</head>
+<body>
+  <header class="topbar container">
+    <div class="brand">Minimal UI</div>
+    <label class="row" for="theme">
+      <span class="material-symbols-rounded" aria-hidden="true">contrast</span>
+      <select class="input" id="theme" data-theme-picker aria-label="Tema" style="width:auto;min-height:44px">
+        <option value="system">Sistema</option><option value="light">Claro</option><option value="dark">Escuro</option>
+      </select>
+    </label>
+  </header>
+  <main class="container">
+    <section class="section">
+      <p>DESIGN SYSTEM · OPEN SOURCE</p>
+      <h1>Simplicidade que funciona.</h1>
+      <p>Uma base monocromática, acessível e responsiva para interfaces web e Android.</p>
+      <div class="row">
+        <button class="button button-filled" type="button"><span class="material-symbols-rounded" aria-hidden="true">code</span> Começar</button>
+        <button class="button button-outlined" type="button">Ver componentes</button>
+      </div>
+    </section>
+    <section class="section">
+      <h2>Componentes</h2>
+      <div class="grid">
+        <article class="card stack">
+          <h2>Botões</h2>
+          <div class="row">
+            <button class="button button-filled">Principal</button>
+            <button class="button button-tonal">Tonal</button>
+          </div>
+          <button class="button button-outlined">Contornado</button>
+        </article>
+        <article class="card stack">
+          <h2>Campo de texto</h2>
+          <div class="field">
+            <label for="sample">Nome do projeto</label>
+            <input class="input" id="sample" placeholder="Digite um nome">
+            <span class="helper">Texto auxiliar para orientar o preenchimento.</span>
+          </div>
+        </article>
+        <article class="card stack">
+          <h2>Preferências</h2>
+          <div class="switch-row">
+            <span>Notificações</span>
+            <input type="checkbox" role="switch" aria-label="Ativar notificações" checked>
+          </div>
+          <div class="switch-row">
+            <span>Atualizações automáticas</span>
+            <input type="checkbox" role="switch" aria-label="Ativar atualizações automáticas">
+          </div>
+        </article>
+      </div>
+    </section>
+    <section class="section">
+      <h2>Lista</h2>
+      <ul class="list">
+        <li><span class="material-symbols-rounded" aria-hidden="true">palette</span><span>Fundamentos visuais</span></li>
+        <li><span class="material-symbols-rounded" aria-hidden="true">widgets</span><span>Componentes reutilizáveis</span></li>
+        <li><span class="material-symbols-rounded" aria-hidden="true">accessibility_new</span><span>Acessibilidade</span></li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>
