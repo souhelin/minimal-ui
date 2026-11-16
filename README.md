@@ -13,7 +13,12 @@ A demonstração usa a implementação real em `web/`, com seletor de tema claro
 - `web/`: demonstração web em HTML, CSS e JavaScript, sem framework.
 - `android/`: tema e componentes de exemplo para Jetpack Compose / Material 3.
 - `TOKENS.md`: cores, espaçamentos, formas, movimento e regras de acessibilidade.
+- `ROADMAP.md`: funcionalidades e documentação que ainda faltam implementar.
 - `.github/workflows/pages.yml`: publicação automática da pasta `web/` no GitHub Pages.
+
+## Roadmap
+
+Consulte **[ROADMAP.md](ROADMAP.md)** para acompanhar os componentes, estados, tokens, layouts e guias ainda pendentes. Os itens só devem ser marcados como concluídos depois de implementados e verificados.
 
 ## Executar localmente
 
