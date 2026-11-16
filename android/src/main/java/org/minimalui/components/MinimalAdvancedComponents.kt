@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Button
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -121,7 +122,7 @@ fun MinimalNavigationBar(
             NavigationBarItem(
                 selected = selectedIndex == index,
                 onClick = { onSelected(index) },
-                icon = { Text(label.take(1), modifier = Modifier.semantics { contentDescription = label }) },
+                icon = { Text(label.take(1), modifier = Modifier.semantics { contentDescription = listOf(label) }) },
                 label = { Text(label) }
             )
         }
@@ -161,6 +162,7 @@ fun MinimalSlider(
     )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MinimalTooltip(
     message: String,
