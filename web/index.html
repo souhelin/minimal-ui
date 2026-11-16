@@ -1,74 +1,31 @@
 <!doctype html>
-<html lang="pt-BR">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#000000">
-  <title>Minimal Open Source UI</title>
-  <link rel="stylesheet" href="tokens.css">
-  <link rel="stylesheet" href="components.css">
-  <script defer src="theme.js"></script>
-</head>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Minimal UI — design system monocromático para Web e Android."><title>Minimal UI — Design System</title><link rel="stylesheet" href="tokens.css"><link rel="stylesheet" href="components.css"><script defer src="theme.js"></script><script defer src="components.js"></script></head>
 <body>
-  <header class="topbar container">
-    <div class="brand">Minimal UI</div>
-    <label class="row" for="theme">
-      <span class="material-symbols-rounded" aria-hidden="true">contrast</span>
-      <select class="input" id="theme" data-theme-picker aria-label="Tema" style="width:auto;min-height:44px">
-        <option value="system">Sistema</option><option value="light">Claro</option><option value="dark">Escuro</option>
-      </select>
-    </label>
-  </header>
-  <main class="container">
-    <section class="section">
-      <p>DESIGN SYSTEM · OPEN SOURCE</p>
-      <h1>Simplicidade que funciona.</h1>
-      <p>Uma base monocromática, acessível e responsiva para interfaces web e Android.</p>
-      <div class="row">
-        <button class="button button-filled" type="button"><span class="material-symbols-rounded" aria-hidden="true">code</span> Começar</button>
-        <button class="button button-outlined" type="button">Ver componentes</button>
-      </div>
-    </section>
-    <section class="section">
-      <h2>Componentes</h2>
-      <div class="grid">
-        <article class="card stack">
-          <h2>Botões</h2>
-          <div class="row">
-            <button class="button button-filled">Principal</button>
-            <button class="button button-tonal">Tonal</button>
-          </div>
-          <button class="button button-outlined">Contornado</button>
-        </article>
-        <article class="card stack">
-          <h2>Campo de texto</h2>
-          <div class="field">
-            <label for="sample">Nome do projeto</label>
-            <input class="input" id="sample" placeholder="Digite um nome">
-            <span class="helper">Texto auxiliar para orientar o preenchimento.</span>
-          </div>
-        </article>
-        <article class="card stack">
-          <h2>Preferências</h2>
-          <div class="switch-row">
-            <span>Notificações</span>
-            <input type="checkbox" role="switch" aria-label="Ativar notificações" checked>
-          </div>
-          <div class="switch-row">
-            <span>Atualizações automáticas</span>
-            <input type="checkbox" role="switch" aria-label="Ativar atualizações automáticas">
-          </div>
-        </article>
-      </div>
-    </section>
-    <section class="section">
-      <h2>Lista</h2>
-      <ul class="list">
-        <li><span class="material-symbols-rounded" aria-hidden="true">palette</span><span>Fundamentos visuais</span></li>
-        <li><span class="material-symbols-rounded" aria-hidden="true">widgets</span><span>Componentes reutilizáveis</span></li>
-        <li><span class="material-symbols-rounded" aria-hidden="true">accessibility_new</span><span>Acessibilidade</span></li>
-      </ul>
-    </section>
-  </main>
-</body>
-</html>
+<header class="topbar"><a class="brand" href="#inicio"><span class="brand-mark">M</span>Minimal UI</a><nav class="desktop-nav" aria-label="Navegação"><a href="#componentes">Componentes</a><a href="#templates">Templates</a><a href="#tokens">Tokens</a><a href="#documentacao">Docs</a></nav><div class="top-actions"><label class="sr-only" for="theme">Tema</label><select class="input theme-select" id="theme" data-theme-picker><option value="system">Sistema</option><option value="light">Claro</option><option value="dark">Escuro</option></select><a class="button button-filled compact" href="https://github.com/souhelin/minimal-ui">GitHub ↗</a></div></header>
+<main id="inicio">
+<section class="hero container"><div class="eyebrow"><span class="status-dot"></span>DESIGN SYSTEM · OPEN SOURCE</div><h1>Menos ruído.<br><span>Mais intenção.</span></h1><p class="hero-copy">Uma base de interface monocromática, acessível e responsiva para produtos Web e Android. Explore os componentes e teste suas interações.</p><div class="row"><a class="button button-filled" href="#componentes">Explorar componentes ↓</a><a class="button button-outlined" href="https://github.com/souhelin/minimal-ui">Ver código-fonte</a></div><div class="hero-meta">WEB + ANDROID　•　LIGHT / DARK　•　ACESSIBILIDADE</div></section>
+<section class="container section" id="componentes"><div class="section-heading"><div><div class="eyebrow">01 / BIBLIOTECA</div><h2>Componentes</h2></div><p>Controles funcionais, com estados e feedback.</p></div><div class="demo-grid">
+<article class="card demo-card span-2"><div class="card-heading"><div><h3>Botões</h3><p>Hierarquia de ações e estados interativos.</p></div><span class="component-tag">BUTTON</span></div><div class="row"><button class="button button-filled" id="primary-action">Principal</button><button class="button button-tonal">Tonal</button><button class="button button-outlined">Contornado</button><button class="button button-text">Texto</button><button class="button button-filled" disabled>Desabilitado</button></div><div class="row"><button class="icon-button" aria-label="Adicionar">＋</button><span class="helper">Use mouse, Tab e teclado para testar os estados.</span></div></article>
+<article class="card demo-card"><div class="card-heading"><div><h3>Campos e validação</h3><p>Feedback associado ao campo.</p></div><span class="component-tag">FORM</span></div><form id="demo-form" novalidate class="stack"><div class="field"><label for="project-name">Nome do projeto</label><input class="input" id="project-name" required minlength="3" placeholder="Ex.: Minimal"><span class="helper" id="project-error" aria-live="polite">Mínimo de 3 caracteres.</span></div><div class="field"><label for="project-email">E-mail</label><input class="input" id="project-email" type="email" required placeholder="voce@exemplo.com"><span class="helper" id="email-error" aria-live="polite"></span></div><button class="button button-filled">Validar formulário</button></form></article>
+<article class="card demo-card"><div class="card-heading"><div><h3>Seleção</h3><p>Radio buttons, checkbox e slider.</p></div><span class="component-tag">INPUT</span></div><fieldset class="choice-group"><legend>Modo de exibição</legend><label class="choice"><input type="radio" name="view" checked><span>Confortável</span></label><label class="choice"><input type="radio" name="view"><span>Compacto</span></label></fieldset><label class="switch-row"><span>Ativar notificações</span><input type="checkbox" role="switch" checked></label><div class="field"><label for="density">Densidade <output id="density-value">50%</output></label><input id="density" class="slider" type="range" min="0" max="100" value="50"></div></article>
+<article class="card demo-card"><div class="card-heading"><div><h3>Menus e tooltip</h3><p>Ações contextuais e ajuda breve.</p></div><span class="component-tag">OVERLAY</span></div><div class="row"><div class="menu-wrap"><button class="button button-outlined" id="menu-trigger" aria-haspopup="true" aria-expanded="false">Abrir menu ⌄</button><div class="menu" id="demo-menu" role="menu" hidden><button role="menuitem" data-menu-action="Editar">Editar</button><button role="menuitem" data-menu-action="Duplicar">Duplicar</button><button role="menuitem" data-menu-action="Excluir">Excluir</button></div></div><button class="icon-button tooltip-trigger" aria-label="Ajuda" data-tooltip="Informações adicionais sobre este controle.">i</button></div></article>
+<article class="card demo-card"><div class="card-heading"><div><h3>Dialogs e bottom sheet</h3><p>Camadas modais acessíveis.</p></div><span class="component-tag">MODAL</span></div><div class="row"><button class="button button-filled" id="dialog-open">Abrir dialog</button><button class="button button-outlined" id="sheet-open">Bottom sheet</button></div></article>
+<article class="card demo-card"><div class="card-heading"><div><h3>Tabs</h3><p>Navegação entre painéis.</p></div><span class="component-tag">NAVIGATION</span></div><div class="tabs" role="tablist" aria-label="Exemplo de abas"><button role="tab" aria-selected="true" aria-controls="tab-panel" id="tab-one">Visão geral</button><button role="tab" aria-selected="false" aria-controls="tab-panel" id="tab-two" tabindex="-1">Atividade</button><button role="tab" aria-selected="false" aria-controls="tab-panel" id="tab-three" tabindex="-1">Arquivos</button></div><div class="tab-panel" role="tabpanel" id="tab-panel" aria-labelledby="tab-one">Resumo do projeto e informações principais.</div></article>
+<article class="card demo-card"><div class="card-heading"><div><h3>Loading e skeleton</h3><p>Estados de carregamento.</p></div><span class="component-tag">FEEDBACK</span></div><div class="skeleton-stack" id="skeleton-demo"><div class="skeleton skeleton-title"></div><div class="skeleton"></div><div class="skeleton skeleton-short"></div></div><div class="row"><button class="button button-outlined" id="loading-toggle">Alternar skeleton</button><button class="button button-tonal" id="spinner-toggle"><span class="spinner"></span> Carregando</button></div></article>
+<article class="card demo-card"><div class="card-heading"><div><h3>Alertas e snackbar</h3><p>Mensagens de status e confirmação.</p></div><span class="component-tag">FEEDBACK</span></div><div class="alert" role="status"><strong>Informação</strong><span>As alterações desta demonstração são locais.</span></div><div class="row"><button class="button button-filled" id="snackbar-show">Mostrar snackbar</button><button class="button button-outlined" id="alert-show">Mostrar alerta</button></div></article>
+<article class="card demo-card span-2"><div class="card-heading"><div><h3>Listas e paginação</h3><p>Conteúdo organizado em páginas navegáveis.</p></div><span class="component-tag">DATA</span></div><ul class="data-list" id="paginated-list"></ul><div class="pagination"><span id="page-status" aria-live="polite"></span><div class="row"><button class="icon-button" id="page-prev" aria-label="Página anterior">←</button><button class="page-number" aria-current="page">1</button><button class="icon-button" id="page-next" aria-label="Próxima página">→</button></div></div></article></div>
+<div class="mobile-nav-demo card"><h3>Navegação inferior</h3><p>Padrão para telas compactas.</p><nav class="bottom-nav" aria-label="Navegação inferior"><a href="#inicio" aria-current="page"><span>⌂</span><small>Início</small></a><a href="#componentes"><span>▦</span><small>Explorar</small></a><a href="#templates"><span>♡</span><small>Salvos</small></a><a href="#documentacao"><span>⚙</span><small>Ajustes</small></a></nav></div></section>
+<section class="container section" id="templates"><div class="section-heading"><div><div class="eyebrow">02 / COMPOSIÇÕES</div><h2>Layouts e templates</h2></div><p>Estruturas de tela para iniciar novos produtos.</p></div><div class="template-grid">
+<article class="card template-card"><span class="component-tag">DASHBOARD</span><h3>Dashboard</h3><p>Visão geral com métricas, atividade recente e navegação.</p><div class="mini-stats"><div><strong>24</strong><small>Projetos</small></div><div><strong>08</strong><small>Ativos</small></div><div><strong>96%</strong><small>Saúde</small></div></div></article>
+<article class="card template-card"><span class="component-tag">SETTINGS</span><h3>Configurações</h3><p>Preferências de conta, aparência, notificações e privacidade.</p><div class="settings-preview"><span>Aparência</span><span class="preview-pill">Sistema</span></div><div class="settings-preview"><span>Notificações</span><span class="preview-toggle"></span></div></article>
+<article class="card template-card"><span class="component-tag">PROFILE</span><h3>Perfil</h3><p>Identidade, informações pessoais e ações da conta.</p><div class="profile-preview"><span class="avatar avatar-large">H</span><span><strong>Seu perfil</strong><small>usuario@exemplo.com</small></span></div></article>
+<article class="card template-card"><span class="component-tag">FORMS</span><h3>Formulários</h3><p>Campos agrupados, instruções claras e validação contextual.</p><div class="skeleton skeleton-title"></div><div class="skeleton"></div><div class="skeleton"></div></article>
+<article class="card template-card"><span class="component-tag">TABLES</span><h3>Listas e tabelas</h3><p>Dados tabulares com cabeçalhos e divisores.</p><div class="table-preview"><span>Nome</span><span>Status</span><span>Data</span><b>Projeto A</b><span>Ativo</span><span>Hoje</span></div></article>
+<article class="card template-card"><span class="component-tag">EMPTY / ERROR</span><h3>Estados vazios e erro</h3><p>Mensagens úteis, explicação objetiva e próxima ação.</p><div class="empty-preview"><span>◇</span><strong>Nenhum item por aqui</strong><small>Quando houver conteúdo, ele aparecerá aqui.</small></div></article></div></section>
+<section class="container section" id="tokens"><div class="section-heading"><div><div class="eyebrow">03 / FUNDAMENTOS</div><h2>Design tokens</h2></div><p>Valores consistentes, semânticos e adaptáveis ao tema.</p></div><div class="card token-card"><div><h3>Cores semânticas</h3><p>As mesmas funções se adaptam automaticamente ao tema.</p><div class="swatches"><div><i style="--swatch:var(--bg)"></i><small>Background</small></div><div><i style="--swatch:var(--surface)"></i><small>Surface</small></div><div><i style="--swatch:var(--surface-elevated)"></i><small>Elevated</small></div><div><i style="--swatch:var(--text)"></i><small>Text</small></div><div><i style="--swatch:var(--border)"></i><small>Border</small></div></div></div><div class="token-details"><div><span>Espaçamento</span><strong>4 — 64 px</strong></div><div><span>Formas</span><strong>8 — 999 px</strong></div><div><span>Elevação</span><strong>0 — 3</strong></div><div><span>Movimento</span><strong>100 — 300 ms</strong></div></div></div></section>
+<section class="container section" id="documentacao"><div class="section-heading"><div><div class="eyebrow">04 / DESENVOLVEDORES</div><h2>Documentação</h2></div><p>Guias e arquivos para implementar o Minimal.</p></div><div class="docs-grid"><a class="card doc-link" href="https://github.com/souhelin/minimal-ui/blob/main/README.md"><strong>Começando ↗</strong><small>Estrutura, execução e publicação</small></a><a class="card doc-link" href="https://github.com/souhelin/minimal-ui/blob/main/TOKENS.md"><strong>Design tokens ↗</strong><small>Primitivos, semânticos e regras</small></a><a class="card doc-link" href="https://github.com/souhelin/minimal-ui/blob/main/ANDROID.md"><strong>Guia Android ↗</strong><small>Jetpack Compose e Material 3</small></a><a class="card doc-link" href="https://github.com/souhelin/minimal-ui/blob/main/ROADMAP.md"><strong>Roadmap ↗</strong><small>Escopo e critérios de conclusão</small></a></div></section>
+</main><footer class="footer"><div class="container footer-inner"><strong>Minimal UI</strong><span>Feito para interfaces com intenção.</span><a href="https://github.com/souhelin/minimal-ui">Código aberto · MIT</a></div></footer>
+<dialog class="dialog" id="demo-dialog" aria-labelledby="dialog-title"><div class="dialog-content"><h2 id="dialog-title">Confirmar ação</h2><p>Janela modal acessível. Feche com Escape ou pelos botões.</p><div class="row dialog-actions"><button class="button button-outlined" data-dialog-close>Cancelar</button><button class="button button-filled" id="dialog-confirm">Confirmar</button></div></div></dialog>
+<dialog class="sheet" id="demo-sheet" aria-labelledby="sheet-title"><div class="sheet-content"><div class="dialog-handle"></div><h2 id="sheet-title">Opções adicionais</h2><p>O bottom sheet apresenta ações complementares pela parte inferior.</p><button class="button button-outlined button-full" data-sheet-close>Fechar</button></div></dialog>
+<div class="snackbar" id="snackbar" role="status" aria-live="polite"><span id="snackbar-message">Ação concluída.</span><button id="snackbar-close" aria-label="Fechar">×</button></div><div class="toast-alert" id="toast-alert" role="alert" hidden></div>
+</body></html>
