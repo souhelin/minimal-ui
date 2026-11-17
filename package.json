@@ -4,7 +4,7 @@
   "private": true,
   "description": "Minimal UI Web quality checks",
   "scripts": {
-    "check:web": "node --check web/components.js && node --check web/theme.js",
+    "check:web": "node --check web/components.js && node --check web/theme.js && node --check web/icons.js",
     "check:budget": "node scripts/check-web-budget.mjs",
     "test:web": "node --test tests/web/*.test.mjs"
   },
