@@ -127,7 +127,7 @@ function parseGeneratedColor(value) {
       : ((channel + 0.055) / 1.055) ** 2.4);
   }
   const hsl = value.match(/^hsl\(([\d.-]+) ([\d.-]+)% ([\d.-]+)%\)$/i);
-  assert.ok(hsl, \`Unsupported generated color: \${value}\`);
+  assert.ok(hsl, `Unsupported generated color: ${value}`);
   const [h, s, l] = [Number(hsl[1]) / 360, Number(hsl[2]) / 100, Number(hsl[3]) / 100];
   const hueToRgb = (p, q, t) => {
     let x = t;
