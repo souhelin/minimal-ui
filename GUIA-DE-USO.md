@@ -142,7 +142,7 @@ const icon = MinimalIcons.create("sparkles", {
 document.querySelector("#assistant-icon").replaceChildren(icon);
 ~~~
 
-Para usar as composições de IA e navegador, importe também patterns.css e copie o HTML de referência em web/index.html. O exemplo de chat é uma demonstração local: conecte seu próprio modelo, backend e tratamento de segurança. O padrão de navegador não fornece engine, histórico, gerenciador de abas ou navegação de rede.
+Para usar os padrões visuais de IA e navegador, importe também `patterns.css` e adapte a marcação de referência em `web/index.html`. Esses exemplos são somente apresentação: não enviam prompts, geram respostas, abrem URLs, criam abas nem mantêm histórico. O aplicativo consumidor implementa estado, callbacks, modelo de IA, backend, validação, segurança, engine de navegação, rede, abas, favoritos e histórico. Não inclua `components.js` da página demonstrativa esperando obter essas funcionalidades; ele não implementa lógica para esses padrões.
 
 ## 3. Como usar no seu aplicativo Android
 
@@ -207,8 +207,8 @@ Os componentes ficam no pacote `org.minimalui.components`:
 | `MinimalSkeleton` | Placeholder de carregamento |
 | `MinimalList` | Lista com LazyColumn |
 | `MinimalPagination` | Controles de paginação |
-| `MinimalAiComposer` | Campo para composição de prompt de IA |
-| `MinimalBrowserAddressBar` | Barra de endereço para navegador mobile |
+| `MinimalAiComposer` | Componente visual controlado para composição de prompt; `onSend` é callback do consumidor |
+| `MinimalBrowserAddressBar` | Componente visual controlado; `onSubmit` e `onReload` são callbacks do consumidor |
 | `MinimalIcon` | Renderização de qualquer ImageVector |
 
 Exemplo de uso:
