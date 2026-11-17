@@ -6,7 +6,7 @@ Um design system minimalista e responsivo, com base monocromática e paletas ada
 
 **[Abrir a interface publicada](https://souhelin.github.io/minimal-ui/)**
 
-A demonstração usa a implementação real em web/, com temas claro/escuro, detecção de preferência e cor de sistema quando disponível, paletas predefinidas e cor personalizada. Inclui uma biblioteca vetorial de ícones e exemplos de interface para assistentes de IA e navegadores mobile.
+A demonstração usa a implementação real em web/, com temas claro/escuro, detecção de preferência e cor de sistema quando disponível, paletas predefinidas e cor personalizada. Inclui uma biblioteca vetorial de ícones e referências visuais para interfaces de IA e navegadores mobile. Esses padrões fornecem apresentação e componentes de UI; não implementam modelos, backend, navegação, engine, abas ou histórico.
 
 ## Como usar no seu projeto
 
