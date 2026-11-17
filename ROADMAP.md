@@ -45,6 +45,14 @@ O roadmap distingue implementação de demonstração, biblioteca reutilizável 
 - [ ] Adicionar publicação versionada da biblioteca Android (Maven), caso haja demanda.
 - [ ] Preparar versão 1.0 após testes em dispositivos e revisão de acessibilidade.
 
+## 6. Performance Web
+- [x] Orçamento inicial de tamanho para CSS e JavaScript principais.
+- [x] Verificação do orçamento integrada ao workflow de qualidade.
+- [x] Configuração do Lighthouse CI com três execuções e relatórios como artefatos do workflow.
+- [x] Coletar e revisar a linha de base inicial do Lighthouse CI (3 execuções: performance 93/100, 100/100 e 100/100; acessibilidade 100/100 nas três; FCP/LCP de 906–908 ms; TBT de 333/0/2 ms; CLS 0). O pico isolado de TBT reforça manter as metas em modo de aviso até novas medições.
+- [ ] Ajustar metas de performance após observar resultados repetidos.
+- [ ] Avaliar Rust/WebAssembly somente se um perfil apontar processamento computacional relevante.
+
 ## Limites conhecidos
 - A página GitHub Pages é uma documentação interativa; não é um pacote npm.
 - O módulo Android é uma biblioteca de componentes, não um aplicativo ou APK.

@@ -21,9 +21,11 @@ Consulte o **[Guia de uso — Minimal UI](GUIA-DE-USO.md)** para aprender a copi
 - `GUIA-DE-USO.md`: instruções práticas para usuários aplicarem o Minimal em seus projetos.
 - `TOKENS.md`: tokens primitivos, semânticos, elevação, forma e movimento.
 - `ROADMAP.md`: escopo e estado de implementação.
+- `PERFORMANCE.md`: estratégia, orçamento de arquivos e auditoria Lighthouse.
 - `AGENTS.md`: regras obrigatórias para agentes e contribuidores.
 - `.github/workflows/pages.yml`: publicação automática da pasta `web/` no GitHub Pages.
-- `.github/workflows/quality.yml`: verificações e testes da implementação Web.
+- `.github/workflows/quality.yml`: verificações, testes e orçamento de arquivos Web.
+- `.github/workflows/performance.yml`: auditoria Lighthouse CI da demonstração Web.
 - `.github/workflows/android.yml`: build, lint e testes instrumentados da biblioteca Android.
 
 ## Executar a Web localmente
@@ -34,8 +36,11 @@ Para executar as verificações Web, use Node.js 22 ou superior:
 
 ~~~bash
 npm run check:web
+npm run check:budget
 npm run test:web
 ~~~
+
+Consulte [PERFORMANCE.md](PERFORMANCE.md) para executar o Lighthouse localmente e entender os limites de tamanho dos arquivos.
 
 ## Compilar e testar Android
 
