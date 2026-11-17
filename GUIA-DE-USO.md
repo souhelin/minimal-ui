@@ -184,6 +184,8 @@ fun SettingsScreen() {
                 onValueChange = { name = it },
                 label = "Nome"
             )
+
+O campo também aceita `enabled`, `isError` e `singleLine` para representar estados de carregamento, validação e campos multilinha. O estado e as regras de validação continuam pertencendo ao aplicativo consumidor.
             MinimalPrimaryButton(
                 text = "Salvar",
                 onClick = { /* conecte à ação do seu app */ },
