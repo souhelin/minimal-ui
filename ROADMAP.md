@@ -23,7 +23,7 @@ O roadmap distingue implementação de demonstração, biblioteca reutilizável 
 - [x] Skeleton com shimmer opcional e respeito à configuração de animações do sistema.
 - [x] Testes instrumentados Compose para rádio, campo de texto, tabs e navegação.
 - [x] Workflow de build, lint e testes instrumentados no GitHub Actions.
-- [ ] Confirmar build e testes verdes no CI antes de declarar release estável.
+- [x] Confirmar build e testes verdes no CI antes de declarar release estável (workflow Android aprovado no PR).
 - [ ] Testar TalkBack, teclado físico, tamanhos de fonte e dispositivos reais.
 
 ## 3. Design tokens e temas
