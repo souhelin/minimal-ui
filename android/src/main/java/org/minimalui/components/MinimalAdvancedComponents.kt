@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.verticalAlignment
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.selection.selectable
@@ -122,7 +121,7 @@ fun MinimalNavigationBar(
             NavigationBarItem(
                 selected = safeSelectedIndex == index,
                 onClick = { onSelected(index) },
-                icon = { Text(label.take(1), modifier = Modifier.semantics { contentDescription = label }) },
+                icon = { Text(label.take(1), modifier = Modifier.semantics { contentDescription = listOf(label) }) },
                 label = { Text(label) }
             )
         }
