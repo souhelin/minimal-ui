@@ -32,5 +32,22 @@ const rows=[["UI","Fundamentos visuais","Tokens, cores e tipografia","Base"],["C
 function render(){const size=3,start=(page-1)*size,total=Math.ceil(rows.length/size),list=$("#paginated-list");list.replaceChildren();rows.slice(start,start+size).forEach(r=>{const item=document.createElement("li"),avatar=document.createElement("span"),body=document.createElement("span"),title=document.createElement("strong"),description=document.createElement("small"),trailing=document.createElement("span");avatar.className="avatar";avatar.textContent=r[0];title.textContent=r[1];description.textContent=r[2];body.append(title,description);trailing.className="list-trailing";trailing.textContent=r[3];item.append(avatar,body,trailing);list.append(item)});$("#page-status").textContent="Página "+page+" de "+total;$("#page-prev").disabled=page===1;$("#page-next").disabled=page===total;$(".page-number").textContent=page}
 $("#page-prev").addEventListener("click",()=>{page=Math.max(1,page-1);render()});$("#page-next").addEventListener("click",()=>{page=Math.min(Math.ceil(rows.length/3),page+1);render()});
 const spin=$("#spinner-toggle");spin.addEventListener("click",()=>{spin.disabled=true;spin.textContent="Aguarde...";setTimeout(()=>{spin.disabled=false;spin.textContent="Carregamento concluído"},1200)});
+
+if (window.MinimalIcons) {
+  MinimalIcons.mountAll();
+  const gallery = $("#icon-gallery");
+  if (gallery) MinimalIcons.names.forEach(name => {
+    const tile = document.createElement("div");
+    const caption = document.createElement("span");
+    tile.className = "icon-tile";
+    tile.append(MinimalIcons.create(name, { size: 23 }));
+    caption.textContent = name;
+    tile.append(caption);
+    gallery.append(tile);
+  });
+}
+// Os padrões de IA e navegador são referências visuais. A lógica de produto
+// (envio, modelo, navegação, abas, histórico e rede) pertence ao app consumidor.
+
 render();
 })();

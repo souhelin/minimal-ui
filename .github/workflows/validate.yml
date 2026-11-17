@@ -23,12 +23,15 @@ jobs:
       - name: Check JavaScript syntax
         run: |
           node --check web/theme.js
+          node --check web/icons.js
           node --check web/components.js
       - name: Check required web files
         run: |
           test -s web/index.html
           test -s web/components.css
           test -s web/tokens.css
+          test -s web/icons.js
+          test -s web/patterns.css
           grep -q 'id="demo-dialog"' web/index.html
           grep -q 'id="demo-sheet"' web/index.html
           grep -q 'id="demo-form"' web/index.html

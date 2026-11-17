@@ -1,12 +1,12 @@
 # Minimal UI
 
-Um design system monocromático, minimalista e responsivo, inspirado nos princípios do Material Design 3 Expressive, com foco em simplicidade, consistência, acessibilidade e usabilidade.
+Um design system minimalista e responsivo, com base monocromática e paletas adaptativas, inspirado nos princípios do Material Design 3 Expressive. Mantém simplicidade, consistência, acessibilidade e usabilidade em Web e Android.
 
 ## Prévia
 
 **[Abrir a interface publicada](https://souhelin.github.io/minimal-ui/)**
 
-A demonstração usa a implementação real em web/, com seletor de tema claro, escuro e automático. Os controles, diálogos, menus, abas, validação, paginação e feedback possuem interações demonstrativas.
+A demonstração usa a implementação real em web/, com temas claro/escuro, detecção de preferência e cor de sistema quando disponível, paletas predefinidas e cor personalizada. Inclui uma biblioteca vetorial de ícones e referências visuais para interfaces de IA e navegadores mobile. Esses padrões fornecem apresentação e componentes de UI; não implementam modelos, backend, navegação, engine, abas ou histórico.
 
 ## Como usar no seu projeto
 
@@ -14,7 +14,7 @@ Consulte o **[Guia de uso — Minimal UI](GUIA-DE-USO.md)** para aprender a copi
 
 ## Estrutura
 
-- `web/`: demonstração Web em HTML, CSS e JavaScript, sem framework.
+- `web/`: demonstração Web em HTML, CSS e JavaScript, sem framework; inclui tokens dinâmicos, ícones vetoriais e padrões para IA/navegador.
 - `android/`: biblioteca Android Gradle com Kotlin, Jetpack Compose e Material 3.
 - `tests/web/`: testes de integridade estrutural e contraste dos tokens.
 - `ANDROID.md`: requisitos, compilação, testes e integração Android.
@@ -30,7 +30,7 @@ Consulte o **[Guia de uso — Minimal UI](GUIA-DE-USO.md)** para aprender a copi
 
 ## Executar a Web localmente
 
-Abra `web/index.html` em um navegador moderno. O tema acompanha a preferência do sistema por padrão; o seletor permite escolher Sistema, Claro ou Escuro.
+Abra `web/index.html` em um navegador moderno. O modo de aparência acompanha o sistema por padrão; o seletor de paleta permite usar a cor AccentColor quando exposta pelo navegador, paletas prontas ou uma cor personalizada.
 
 Para executar as verificações Web, use Node.js 22 ou superior:
 

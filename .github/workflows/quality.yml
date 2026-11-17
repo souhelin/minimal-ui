@@ -31,4 +31,6 @@ jobs:
           test -f web/tokens.css
           test -f web/components.css
           test -f web/theme.js
+          test -f web/icons.js
+          test -f web/patterns.css
           test -f web/components.js

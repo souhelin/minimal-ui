@@ -49,23 +49,46 @@ dependencies {
 
 Ajuste o caminho relativo conforme a localização do repositório no seu projeto. O módulo expõe o namespace `org.minimalui` e o pacote de componentes `org.minimalui.components`.
 
-## Tema claro e escuro
+## Temas automáticos, dinâmicos e personalizados
 
+O MinimalTheme detecta Light/Dark do sistema por padrão e usa cores dinâmicas do papel de parede no Android 12+ quando disponíveis.
+
+Tema automático com wallpaper:
 ~~~kotlin
 @Composable
 fun App() {
-    MinimalTheme(darkTheme = isSystemInDarkTheme()) {
+    MinimalTheme {
         AppContent()
     }
 }
 ~~~
 
-Para oferecer escolha manual, mantenha a preferência no estado do aplicativo e passe o valor correspondente a `darkTheme`.
+Paleta controlada pelo desenvolvedor (exemplo azul):
+~~~kotlin
+MinimalTheme(
+    seedColor = Color(0xFF3867D6),
+    dynamicColor = false
+) {
+    AppContent()
+}
+~~~
+
+Desativar cores dinâmicas e manter a paleta neutra:
+~~~kotlin
+MinimalTheme(dynamicColor = false) {
+    AppContent()
+}
+~~~
+
+Para controle completo, passe um ColorScheme próprio em colorScheme. A precedência é colorScheme, depois seedColor, depois cores dinâmicas do Android e, por fim, os tokens neutros do Minimal. A preferência manual claro/escuro pode ser passada por darkTheme.
+
+Adicione o import androidx.compose.ui.graphics.Color para os exemplos de paleta personalizada.
 
 ## Componentes
 
 - Básicos: `MinimalPrimaryButton`, `MinimalOutlinedButton`, `MinimalTextField` e `MinimalCard`.
 - Avançados: `MinimalDialog`, `MinimalBottomSheet`, `MinimalDropdownMenu`, `MinimalTabs`, `MinimalNavigationBar`, `MinimalRadioOption`, `MinimalSlider`, `MinimalTooltip`, `MinimalSnackbarHost`, `MinimalLoading`, `MinimalSkeleton`, `MinimalList` e `MinimalPagination`.
+- Padrões de produto: `MinimalAiComposer`, `MinimalBrowserAddressBar` e `MinimalIcon`.
 
 ### Campo de texto
 
@@ -98,6 +121,31 @@ O callback `onConfirm` não fecha o diálogo automaticamente. O chamador control
 ~~~kotlin
 MinimalSkeleton(lines = 3, shimmer = true)
 ~~~
+
+### Padrões de IA, navegador e ícones
+
+MinimalAiComposer é o campo de composição para uma tela de assistente. O aplicativo controla o texto e conecta onSend ao seu serviço de IA:
+
+~~~kotlin
+MinimalAiComposer(
+    value = prompt,
+    onValueChange = { prompt = it },
+    onSend = { sendPrompt(prompt) }
+)
+~~~
+
+MinimalBrowserAddressBar fornece o campo de endereço e callbacks para submissão e recarregamento. O aplicativo consumidor implementa validação de URL, histórico, abas e navegação:
+
+~~~kotlin
+MinimalBrowserAddressBar(
+    value = address,
+    onValueChange = { address = it },
+    onSubmit = { url -> navigateTo(url) },
+    onReload = { reloadPage() }
+)
+~~~
+
+MinimalIcon aceita qualquer ImageVector e herda a cor do conteúdo quando tint é omitido. Isso permite adotar um conjunto de ícones vetoriais escolhido pelo aplicativo sem adicionar uma dependência grande ao módulo Minimal.
 
 ## Acessibilidade
 

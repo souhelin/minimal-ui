@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
+import vm from "node:vm";
 
 const css = readFileSync(new URL("../../web/tokens.css", import.meta.url), "utf8");
 
@@ -64,7 +65,14 @@ for (const [theme, variables] of themes) {
       ["text-secondary", "surface", 4.5],
       ["inverse-text", "inverse-surface", 4.5],
       ["danger", "bg", 4.5],
-      ["focus", "bg", 3]
+      ["focus", "bg", 3],
+      ["on-primary", "primary", 4.5],
+      ["on-primary-container", "primary-container", 4.5],
+      ["on-secondary", "secondary", 4.5],
+      ["on-secondary-container", "secondary-container", 4.5],
+      ["on-tertiary", "tertiary", 4.5],
+      ["on-tertiary-container", "tertiary-container", 4.5],
+      ["outline", "bg", 3]
     ];
     for (const [foreground, background, minimum] of pairs) {
       const ratio = contrast(variables, foreground, background);
@@ -75,3 +83,105 @@ for (const [theme, variables] of themes) {
     }
   });
 }
+
+
+// Execute the real theme generator with a small DOM shim and verify generated colors,
+// rather than testing a second copy of its color algorithm.
+function createThemeRuntime() {
+  const values = {};
+  const root = {
+    dataset: {},
+    style: {
+      colorScheme: "light",
+      setProperty(name, value) { values[name] = value; }
+    },
+    removeAttribute(name) { delete this.dataset[name]; }
+  };
+  const document = {
+    documentElement: root,
+    addEventListener() {},
+    querySelectorAll() { return []; }
+  };
+  const window = {
+    matchMedia() { return { matches: false, addEventListener() {} }; }
+  };
+  const sandbox = {
+    document, window,
+    CSS: { supports() { return false; } },
+    localStorage: { getItem() { return null; }, setItem() {} },
+    getComputedStyle() { return { color: "rgb(0, 0, 0)" }; }
+  };
+  vm.runInNewContext(
+    readFileSync(new URL("../../web/theme.js", import.meta.url), "utf8"),
+    sandbox
+  );
+  return { api: window.MinimalUITheme, values };
+}
+
+function parseGeneratedColor(value) {
+  const hex = value.match(/^#([\da-f]{6})$/i);
+  if (hex) {
+    const channels = [0, 2, 4].map(i => parseInt(hex[1].slice(i, i + 2), 16) / 255);
+    return channels;
+  }
+  const hsl = value.match(/^hsl\(([\d.-]+) ([\d.-]+)% ([\d.-]+)%\)$/i);
+  assert.ok(hsl, `Unsupported generated color: ${value}`);
+  const [h, s, l] = [Number(hsl[1]) / 360, Number(hsl[2]) / 100, Number(hsl[3]) / 100];
+  const hueToRgb = (p, q, t) => {
+    let x = t;
+    if (x < 0) x += 1;
+    if (x > 1) x -= 1;
+    if (x < 1 / 6) return p + (q - p) * 6 * x;
+    if (x < 1 / 2) return q;
+    if (x < 2 / 3) return p + (q - p) * (2 / 3 - x) * 6;
+    return p;
+  };
+  let rgb;
+  if (s === 0) rgb = [l, l, l];
+  else {
+    const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+    const p = 2 * l - q;
+    rgb = [hueToRgb(p, q, h + 1 / 3), hueToRgb(p, q, h), hueToRgb(p, q, h - 1 / 3)];
+  }
+  return rgb;
+}
+
+function generatedContrast(values, foreground, background) {
+  const first = luminance(parseGeneratedColor(values[`--${foreground}`]));
+  const second = luminance(parseGeneratedColor(values[`--${background}`]));
+  return (Math.max(first, second) + 0.05) / (Math.min(first, second) + 0.05);
+}
+
+test("generated Web palettes meet WCAG AA for text roles in light and dark modes", () => {
+  const seeds = ["#000000", "#ffffff", "#3867D6", "#7257C8", "#267A59", "#B85D22", "#B34469", "#808080", "#00FFFF"];
+  const palettes = ["monochrome", "blue", "violet", "green", "orange", "rose", "custom"];
+  const pairs = [
+    ["on-primary", "primary", 4.5],
+    ["on-primary-container", "primary-container", 4.5],
+    ["on-secondary", "secondary", 4.5],
+    ["on-secondary-container", "secondary-container", 4.5],
+    ["on-tertiary", "tertiary", 4.5],
+    ["on-tertiary-container", "tertiary-container", 4.5],
+    ["text", "bg", 4.5],
+    ["text-secondary", "bg", 4.5],
+    ["text", "surface", 4.5],
+    ["text-secondary", "surface", 4.5],
+    ["outline", "bg", 3],
+    ["focus", "bg", 3]
+  ];
+  const runtime = createThemeRuntime();
+  for (const mode of ["light", "dark"]) {
+    for (const palette of palettes) {
+      for (const seedColor of (palette === "custom" ? seeds : ["#3867D6"])) {
+        runtime.api.setTheme({ mode, palette, seedColor });
+        for (const [foreground, background, minimum] of pairs) {
+          const ratio = generatedContrast(runtime.values, foreground, background);
+          assert.ok(
+            ratio >= minimum,
+            `${mode}/${palette}/${seedColor}: --${foreground} on --${background} is ${ratio.toFixed(2)}:1; expected ${minimum}:1`
+          );
+        }
+      }
+    }
+  }
+});

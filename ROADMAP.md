@@ -29,9 +29,20 @@ O roadmap distingue implementação de demonstração, biblioteca reutilizável 
 ## 3. Design tokens e temas
 - [x] Tokens primitivos e semânticos documentados.
 - [x] Tema Web Sistema, Claro e Escuro.
-- [x] Tema Android Material 3 claro e escuro alinhado aos tokens monocromáticos.
-- [x] Testes automatizados de contraste para texto, texto secundário, foco, erro e superfícies invertidas.
+- [x] Paletas Web monocromática, azul, violeta, verde, laranja, rosa e personalizada.
+- [x] Detecção de AccentColor do sistema na Web quando exposta pelo navegador, com fallback neutro.
+- [x] Tema Android Material 3 com paleta dinâmica do wallpaper no Android 12+, cor-semente do desenvolvedor e ColorScheme completo opcional.
+- [x] Testes automatizados de contraste para tokens semânticos estáticos claros e escuros.
+- [ ] Auditoria visual e contrastes automatizados das paletas dinâmicas geradas em navegador real.
+- [ ] Verificar atualização da paleta de wallpaper em dispositivos Android 12+ e versões posteriores.
 - [ ] Verificação visual completa dos estados e componentes em ambos os temas.
+- [ ] Auditoria manual com leitores de tela, TalkBack e tamanhos de fonte.
+- [x] Biblioteca Web de ícones vetoriais SVG com rótulos acessíveis e API de criação.
+- [x] Wrapper Android MinimalIcon para ImageVector fornecido pelo aplicativo consumidor.
+- [x] Padrão Web visual de chat IA e campo de composição (sem envio ou respostas simuladas).
+- [x] Padrão Web visual de navegador mobile com endereço, atalhos e controles ilustrativos (sem navegação ou gerenciamento de abas).
+- [x] Componentes Compose visuais MinimalAiComposer e MinimalBrowserAddressBar com callbacks controlados pelo aplicativo consumidor.
+- [ ] Testes de interação em navegador real e viewports; validação de componentes em aplicativos consumidores.
 
 ## 4. Layouts e exemplos
 - [x] Templates demonstrativos de dashboard, configurações, perfil, formulários e listas.
@@ -56,7 +67,7 @@ O roadmap distingue implementação de demonstração, biblioteca reutilizável 
 ## Limites conhecidos
 - A página GitHub Pages é uma documentação interativa; não é um pacote npm.
 - O módulo Android é uma biblioteca de componentes, não um aplicativo ou APK.
-- A demonstração Web usa dados locais e não inclui backend, autenticação ou persistência de produto.
+- A demonstração Web usa dados locais e não inclui backend, autenticação ou persistência de produto. Os padrões de IA e navegador são referências visuais; não enviam prompts nem executam navegação.
 - Os testes automatizados não substituem validação manual com tecnologias assistivas e dispositivos reais.
 
 ## Ordem recomendada
