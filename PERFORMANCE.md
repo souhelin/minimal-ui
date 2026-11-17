@@ -38,6 +38,18 @@ O workflow .github/workflows/performance.yml roda em pull requests, pushes para 
 
 Resultados de Lighthouse variam conforme runner, navegador e carga. Compare várias execuções e priorize tendências e métricas, não um único score.
 
+### Linha de base inicial (GitHub Actions, 17/11/2026)
+
+Foram concluídas três execuções da página `web/index.html`:
+
+| Execução | Performance | Acessibilidade | FCP | LCP | TBT | CLS |
+|---|---:|---:|---:|---:|---:|---:|
+| 1 | 93 | 100 | 906 ms | 906 ms | 333 ms | 0 |
+| 2 | 100 | 100 | 908 ms | 908 ms | 0 ms | 0 |
+| 3 | 100 | 100 | 907 ms | 907 ms | 2 ms | 0 |
+
+O TBT de 333 ms na primeira execução ultrapassou isoladamente o aviso de 300 ms; as duas execuções seguintes ficaram abaixo dele. Isso não comprova uma regressão consistente. Mantenha os limites em `warn` e colete novas amostras antes de transformar as metas em bloqueios. A pontuação do Lighthouse é sintética e não representa, por si só, a experiência em aparelhos reais.
+
 ## Quando considerar Rust/WebAssembly
 
 Só proponha WASM se um perfil real apontar uma tarefa computacional dominante (por exemplo, processamento em lote de dados grandes) e um protótipo mostrar ganho líquido depois de contabilizar download, compilação/inicialização e cópias entre JavaScript e WASM. Interações comuns de UI, eventos, formulários, temas e manipulação do DOM devem continuar em JavaScript e CSS.
@@ -46,4 +58,4 @@ Só proponha WASM se um perfil real apontar uma tarefa computacional dominante (
 
 - O orçamento mede bytes dos arquivos fonte, não bytes comprimidos servidos.
 - Lighthouse CI mede uma execução sintética em ambiente de CI; não substitui dados de usuários reais (RUM), testes em aparelhos modestos nem avaliação manual.
-- Nenhum resultado de performance é declarado como aprovado até o workflow efetivamente executar.
+- Os resultados registrados acima são uma linha de base sintética inicial; não substituem medições em dispositivos reais nem dados de usuários.
