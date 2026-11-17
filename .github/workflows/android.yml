@@ -47,7 +47,8 @@ jobs:
         with:
           api-level: 34
           arch: x86_64
-          target: google_apis
+          # AOSP ATD is optimized for instrumented tests and does not need Google APIs.
+          target: aosp_atd
           force-avd-creation: true
           emulator-boot-timeout: 600
           emulator-options: -no-window -no-audio -no-boot-anim -no-snapshot -gpu swiftshader_indirect
