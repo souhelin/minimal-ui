@@ -48,7 +48,7 @@ Regras:
 
 ### Android
 
-A parte Android contém componentes e tema baseados em Jetpack Compose e Material 3. Este repositório **não é um aplicativo Android completo nem uma biblioteca publicada** e não possui, conforme a documentação atual, configuração Gradle independente validada.
+A parte Android contém componentes e tema baseados em Jetpack Compose e Material 3. Este repositório contém uma biblioteca Android Gradle independente em `android/`. Ela é um módulo de componentes Compose, não um aplicativo Android final nem uma biblioteca publicada no Maven.
 
 - Consulte `ANDROID.md` e examine os arquivos Kotlin realmente existentes antes de editar.
 - Não invente caminhos, classes, APIs ou dependências.
