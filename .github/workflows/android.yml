@@ -53,4 +53,9 @@ jobs:
           emulator-boot-timeout: 600
           emulator-options: -no-window -no-audio -no-boot-anim -no-snapshot -gpu swiftshader_indirect
           disable-animations: true
-          script: gradle -p android connectedDebugAndroidTest
+          script: |
+            # This disposable CI emulator does not need APK install verification.
+            # Disable it to avoid flaky INSTALL_FAILED_VERIFICATION_FAILURE timeouts.
+            adb shell settings put global verifier_verify_adb_installs 0
+            adb shell settings put global package_verifier_enable 0
+            gradle -p android connectedDebugAndroidTest
