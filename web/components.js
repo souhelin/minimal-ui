@@ -32,5 +32,53 @@ const rows=[["UI","Fundamentos visuais","Tokens, cores e tipografia","Base"],["C
 function render(){const size=3,start=(page-1)*size,total=Math.ceil(rows.length/size),list=$("#paginated-list");list.replaceChildren();rows.slice(start,start+size).forEach(r=>{const item=document.createElement("li"),avatar=document.createElement("span"),body=document.createElement("span"),title=document.createElement("strong"),description=document.createElement("small"),trailing=document.createElement("span");avatar.className="avatar";avatar.textContent=r[0];title.textContent=r[1];description.textContent=r[2];body.append(title,description);trailing.className="list-trailing";trailing.textContent=r[3];item.append(avatar,body,trailing);list.append(item)});$("#page-status").textContent="Página "+page+" de "+total;$("#page-prev").disabled=page===1;$("#page-next").disabled=page===total;$(".page-number").textContent=page}
 $("#page-prev").addEventListener("click",()=>{page=Math.max(1,page-1);render()});$("#page-next").addEventListener("click",()=>{page=Math.min(Math.ceil(rows.length/3),page+1);render()});
 const spin=$("#spinner-toggle");spin.addEventListener("click",()=>{spin.disabled=true;spin.textContent="Aguarde...";setTimeout(()=>{spin.disabled=false;spin.textContent="Carregamento concluído"},1200)});
+
+if (window.MinimalIcons) {
+  MinimalIcons.mountAll();
+  const gallery = $("#icon-gallery");
+  if (gallery) MinimalIcons.names.forEach(name => {
+    const tile = document.createElement("div");
+    const caption = document.createElement("span");
+    tile.className = "icon-tile";
+    tile.append(MinimalIcons.create(name, { size: 23 }));
+    caption.textContent = name;
+    tile.append(caption);
+    gallery.append(tile);
+  });
+}
+const aiForm = $("#ai-demo-form");
+if (aiForm) aiForm.addEventListener("submit", event => {
+  event.preventDefault();
+  const prompt = $("#ai-prompt"), value = prompt.value.trim(), messages = $("#ai-messages");
+  if (!value) { prompt.focus(); return; }
+  const user = document.createElement("div"), userAvatar = document.createElement("span"), userBubble = document.createElement("div");
+  user.className = "ai-message user"; userAvatar.className = "ai-avatar"; userAvatar.append(MinimalIcons.create("user"));
+  userBubble.className = "ai-bubble"; userBubble.textContent = value; user.append(userAvatar, userBubble); messages.append(user);
+  const assistant = document.createElement("div"), avatar = document.createElement("span"), bubble = document.createElement("div"), heading = document.createElement("strong");
+  assistant.className = "ai-message"; avatar.className = "ai-avatar"; avatar.append(MinimalIcons.create("sparkles"));
+  bubble.className = "ai-bubble"; heading.textContent = "Assistente"; bubble.append(heading, document.createTextNode("Esta é uma resposta ilustrativa. Conecte seu próprio modelo e backend para gerar respostas reais."));
+  assistant.append(avatar, bubble); messages.append(assistant); prompt.value = ""; messages.scrollTop = messages.scrollHeight;
+});
+const browserForm = $("#browser-address-form");
+if (browserForm) browserForm.addEventListener("submit", event => {
+  event.preventDefault();
+  const value = $("#browser-url").value.trim();
+  $("#browser-page-title").textContent = value || "Nova página";
+  $("#browser-page-status").textContent = "Endereço atualizado apenas nesta demonstração.";
+});
+const newTab = $("#browser-new-tab");
+if (newTab) newTab.addEventListener("click", () => {
+  const count = $("#browser-tab-count");
+  count.textContent = String(Number(count.textContent) + 1);
+  $("#browser-page-title").textContent = "Nova aba";
+  $("#browser-page-status").textContent = "Nova aba demonstrativa criada.";
+});
+const browserHome = $("#browser-home");
+if (browserHome) browserHome.addEventListener("click", () => {
+  $("#browser-url").value = "minimal.local/inicio";
+  $("#browser-page-title").textContent = "Navegue com simplicidade";
+  $("#browser-page-status").textContent = "Página de demonstração local.";
+});
+
 render();
 })();
