@@ -89,6 +89,7 @@ Adicione o import androidx.compose.ui.graphics.Color para os exemplos de paleta 
 - Básicos: `MinimalPrimaryButton`, `MinimalOutlinedButton`, `MinimalTextField` e `MinimalCard`.
 - Avançados: `MinimalDialog`, `MinimalBottomSheet`, `MinimalDropdownMenu`, `MinimalTabs`, `MinimalNavigationBar`, `MinimalRadioOption`, `MinimalSlider`, `MinimalTooltip`, `MinimalSnackbarHost`, `MinimalLoading`, `MinimalSkeleton`, `MinimalList` e `MinimalPagination`.
 - Padrões de produto: `MinimalAiComposer`, `MinimalBrowserAddressBar` e `MinimalIcon`.
+- Navegador Android: 15 componentes visuais em `MinimalBrowserComponents.kt`, incluindo endereço, segurança, sugestões, atalhos, abas, histórico, favoritos, downloads, leitor, busca na página, compartilhamento e permissões.
 
 ### Campo de texto
 
@@ -144,6 +145,8 @@ MinimalBrowserAddressBar(
     onReload = { reloadPage() }
 )
 ~~~
+
+O kit de navegador expõe `MinimalBrowserStatusBar`, `MinimalBrowserAddressField`, `MinimalBrowserSecurityIndicator`, `MinimalBrowserSuggestion`, `MinimalBrowserShortcut`, `MinimalBrowserTabCounter`, `MinimalBrowserTabCard`, `MinimalBrowserNavigationBar`, `MinimalBrowserBookmarkItem`, `MinimalBrowserHistoryItem`, `MinimalBrowserDownloadItem`, `MinimalBrowserReaderControls`, `MinimalBrowserFindBar`, `MinimalBrowserShareActions` e `MinimalBrowserPermissionPrompt`. Todos recebem estado e callbacks do aplicativo consumidor; eles não executam navegação, rede ou permissões por conta própria.
 
 MinimalIcon aceita qualquer ImageVector e herda a cor do conteúdo quando tint é omitido. Isso permite adotar um conjunto de ícones vetoriais escolhido pelo aplicativo sem adicionar uma dependência grande ao módulo Minimal.
 
