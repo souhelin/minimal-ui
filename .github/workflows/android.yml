@@ -45,10 +45,11 @@ jobs:
       - name: Run Compose instrumentation tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 34
-          arch: x86_64
+          api-level: 30
+          arch: x86
           # AOSP ATD is optimized for instrumented tests and does not need Google APIs.
           target: aosp_atd
+          channel: canary
           force-avd-creation: true
           emulator-boot-timeout: 600
           emulator-options: -no-window -no-audio -no-boot-anim -no-snapshot -gpu swiftshader_indirect
