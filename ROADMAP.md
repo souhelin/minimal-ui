@@ -47,19 +47,29 @@ O roadmap distingue implementação de demonstração, biblioteca reutilizável 
 - [x] Componentes Compose visuais MinimalAiComposer e MinimalBrowserAddressBar com callbacks controlados pelo aplicativo consumidor.
 - [ ] Testes de interação em navegador real e viewports; validação de componentes em aplicativos consumidores.
 
-## 4. Layouts e exemplos
+## 4. Tipografia
+- [x] Definir direção híbrida e especificação de produção.
+- [x] Criar tokens tipográficos Web com fallbacks locais.
+- [x] Criar espécime Web e API de escala tipográfica Compose configurável.
+- [ ] Desenhar e revisar glifos originais de Minimal Sans.
+- [ ] Compilar e validar WOFF2 e TTF/OTF.
+- [ ] Validar cobertura Unicode, acentos, kerning, métricas e renderização multiplataforma.
+- [ ] Publicar fontes com licença tipográfica própria e metadados.
+- [ ] Desenvolver Display, Rounded e Mono após aprovação da Sans.
+
+## 5. Layouts e exemplos
 - [x] Templates demonstrativos de dashboard, configurações, perfil, formulários e listas.
 - [ ] Exemplos Android de integração por componente e aplicativo de showcase.
 - [ ] Exemplos Web independentes da estrutura de IDs da página demonstrativa.
 
-## 5. Distribuição e estabilidade
+## 6. Distribuição e estabilidade
 - [x] Documentação de uso, integração e compilação Android.
 - [x] Créditos, licença e regras para contribuidores.
 - [ ] Definir API pública estável e política de compatibilidade.
 - [ ] Adicionar publicação versionada da biblioteca Android (Maven), caso haja demanda.
 - [ ] Preparar versão 1.0 após testes em dispositivos e revisão de acessibilidade.
 
-## 6. Performance Web
+## 7. Performance Web
 - [x] Orçamento inicial de tamanho para CSS e JavaScript principais.
 - [x] Verificação do orçamento integrada ao workflow de qualidade.
 - [x] Configuração do Lighthouse CI com três execuções e relatórios como artefatos do workflow.
