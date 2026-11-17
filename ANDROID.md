@@ -88,6 +88,7 @@ Adicione o import androidx.compose.ui.graphics.Color para os exemplos de paleta 
 
 - Básicos: `MinimalPrimaryButton`, `MinimalOutlinedButton`, `MinimalTextField` e `MinimalCard`.
 - Avançados: `MinimalDialog`, `MinimalBottomSheet`, `MinimalDropdownMenu`, `MinimalTabs`, `MinimalNavigationBar`, `MinimalRadioOption`, `MinimalSlider`, `MinimalTooltip`, `MinimalSnackbarHost`, `MinimalLoading`, `MinimalSkeleton`, `MinimalList` e `MinimalPagination`.
+- Padrões de produto: `MinimalAiComposer`, `MinimalBrowserAddressBar` e `MinimalIcon`.
 
 ### Campo de texto
 
@@ -120,6 +121,31 @@ O callback `onConfirm` não fecha o diálogo automaticamente. O chamador control
 ~~~kotlin
 MinimalSkeleton(lines = 3, shimmer = true)
 ~~~
+
+### Padrões de IA, navegador e ícones
+
+MinimalAiComposer é o campo de composição para uma tela de assistente. O aplicativo controla o texto e conecta onSend ao seu serviço de IA:
+
+~~~kotlin
+MinimalAiComposer(
+    value = prompt,
+    onValueChange = { prompt = it },
+    onSend = { sendPrompt(prompt) }
+)
+~~~
+
+MinimalBrowserAddressBar fornece o campo de endereço e callbacks para submissão e recarregamento. O aplicativo consumidor implementa validação de URL, histórico, abas e navegação:
+
+~~~kotlin
+MinimalBrowserAddressBar(
+    value = address,
+    onValueChange = { address = it },
+    onSubmit = { url -> navigateTo(url) },
+    onReload = { reloadPage() }
+)
+~~~
+
+MinimalIcon aceita qualquer ImageVector e herda a cor do conteúdo quando tint é omitido. Isso permite adotar um conjunto de ícones vetoriais escolhido pelo aplicativo sem adicionar uma dependência grande ao módulo Minimal.
 
 ## Acessibilidade
 
