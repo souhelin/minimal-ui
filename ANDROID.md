@@ -29,26 +29,38 @@ fun App() {
 
 Para escolha manual, passe o valor do estado da aplicação ao tema em vez de sempre usar a preferência do sistema.
 
-## Mapeamento de componentes Material 3
+## Componentes disponíveis
 
-| Necessidade | Componente Compose |
-|---|---|
-| Dialog | AlertDialog ou Dialog |
-| Bottom sheet | ModalBottomSheet |
-| Menus | DropdownMenu / DropdownMenuItem |
-| Tabs | TabRow / Tab |
-| Navegação inferior | NavigationBar / NavigationBarItem |
-| Radio buttons | RadioButton |
-| Sliders | Slider |
-| Tooltips | TooltipBox / PlainTooltip |
-| Snackbars | SnackbarHost / SnackbarHostState |
-| Alertas | AlertDialog |
-| Listas | LazyColumn / LazyRow |
-| Paginação | Estado de página; Paging 3 para dados remotos |
-| Loading | CircularProgressIndicator |
-| Skeleton | Superfícies com shimmer e respeito à redução de movimento |
+- Básicos: `MinimalPrimaryButton`, `MinimalOutlinedButton`, `MinimalTextField` e `MinimalCard`.
+- Avançados: `MinimalDialog`, `MinimalBottomSheet`, `MinimalDropdownMenu`, `MinimalTabs`, `MinimalNavigationBar`, `MinimalRadioOption`, `MinimalSlider`, `MinimalTooltip`, `MinimalSnackbarHost`, `MinimalLoading`, `MinimalSkeleton`, `MinimalList` e `MinimalPagination`.
 
-MinimalComponents.kt contém botões primário e contornado, campo de texto e cartão. Use estado controlado (value + onValueChange) e mantenha estado de negócio fora dos componentes visuais.
+### Campo de texto
+
+`MinimalTextField` mantém o estado controlado pelo chamador e oferece configuração de disponibilidade, erro e linha única:
+
+~~~kotlin
+MinimalTextField(
+    value = name,
+    onValueChange = { name = it },
+    label = "Nome",
+    supportingText = if (hasError) "Confira o nome informado." else null,
+    isError = hasError,
+    enabled = !isSaving,
+    singleLine = true
+)
+~~~
+
+### Opção de rádio
+
+A linha completa de `MinimalRadioOption` é selecionável. Use-a dentro de um grupo de opções e mantenha a seleção no estado do chamador.
+
+### Dialog
+
+O callback `onConfirm` não fecha o diálogo automaticamente. O chamador deve atualizar o estado que controla a presença do composable, permitindo executar a ação e decidir quando dispensá-lo.
+
+### Skeleton
+
+`MinimalSkeleton` é atualmente um placeholder estático. Não anuncia que existe animação shimmer. O shimmer permanece pendente até ser implementado com respeito às preferências de redução de movimento.
 
 ## Acessibilidade
 
@@ -58,6 +70,7 @@ MinimalComponents.kt contém botões primário e contornado, campo de texto e ca
 - Não comunique erro apenas por cor.
 - Teste escalas de fonte e áreas de toque.
 - Prefira componentes Material 3, que já oferecem semântica e comportamento de interação.
+- Verifique se o foco e o estado selecionado são anunciados corretamente nos componentes personalizados.
 
 ## Convenções
 
@@ -68,4 +81,4 @@ MinimalComponents.kt contém botões primário e contornado, campo de texto e ca
 
 ## Limite de compilação
 
-Este repositório não contém settings.gradle, build.gradle ou wrapper Gradle. Portanto, não é possível declarar um build Android independente como validado aqui. A compilação deve ser verificada em um aplicativo consumidor com versões de dependências definidas.
+Este repositório ainda não contém `settings.gradle`, `build.gradle` ou wrapper Gradle. Portanto, a compilação Android não está validada neste repositório. A compilação deve ser verificada em um aplicativo consumidor com versões de dependências definidas. A criação de um módulo Gradle independente continua pendente no roadmap.
