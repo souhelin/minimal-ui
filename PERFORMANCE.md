@@ -18,7 +18,7 @@ npm run check:budget
 npx --yes @lhci/cli@0.16.x autorun
 ~~~
 
-O orçamento verifica o tamanho bruto dos arquivos de estilo e scripts principais. O Lighthouse executa três auditorias na pasta estática web/. Os relatórios ficam em .lighthouseci/.
+O orçamento verifica o tamanho bruto dos arquivos de estilo e scripts principais, incluindo o módulo de temas, a biblioteca SVG e os padrões de produto. O Lighthouse executa três auditorias na pasta estática web/. Os relatórios ficam em .lighthouseci/.
 
 ## Orçamentos iniciais
 
@@ -27,10 +27,12 @@ O orçamento verifica o tamanho bruto dos arquivos de estilo e scripts principai
 | web/components.css | 20 KiB |
 | web/tokens.css | 6 KiB |
 | web/components.js | 12 KiB |
-| web/theme.js | 2 KiB |
-| Total dos quatro arquivos | 40 KiB |
+| web/theme.js | 6 KiB |
+| web/icons.js | 8 KiB |
+| web/patterns.css | 8 KiB |
+| Total dos seis arquivos | 60 KiB |
 
-Os limites são guardrails para impedir crescimento acidental, não metas de minificação nem estimativas de transferência gzip/Brotli. Revise-os somente com justificativa e medição.
+Os limites são guardrails para impedir crescimento acidental, não metas de minificação nem estimativas de transferência gzip/Brotli. O orçamento foi ampliado para incluir a geração de paletas, a biblioteca vetorial local e os padrões de IA/navegador, sem dependências de runtime. A CI deve confirmar os tamanhos reais; reduza ou ajuste limites após medir bytes e Lighthouse, não por conveniência.
 
 ## Lighthouse CI
 
