@@ -20,6 +20,7 @@ Consulte o **[Guia de uso — Minimal UI](GUIA-DE-USO.md)** para aprender a copi
 - `ANDROID.md`: requisitos, compilação, testes e integração Android.
 - `GUIA-DE-USO.md`: instruções práticas para usuários aplicarem o Minimal em seus projetos.
 - `TOKENS.md`: tokens primitivos, semânticos, elevação, forma e movimento.
+- `ICONS.md`: biblioteca vetorial Web, categorias, API, uso Android e acessibilidade.
 - `ROADMAP.md`: escopo e estado de implementação.
 - `PERFORMANCE.md`: estratégia, orçamento de arquivos e auditoria Lighthouse.
 - `AGENTS.md`: regras obrigatórias para agentes e contribuidores.
