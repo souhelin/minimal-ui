@@ -9,7 +9,7 @@ O Minimal UI fornece duas bases de implementação:
 - **Web:** HTML, CSS e JavaScript sem framework, localizados em `web/`.
 - **Android:** componentes em Kotlin com Jetpack Compose e Material 3, localizados em `android/src/main/java/org/minimalui/`.
 
-A página publicada é uma demonstração/documentação interativa. Ela permite conhecer e testar os padrões, mas não é um pacote npm, CDN ou biblioteca pronta para instalar por um único comando.
+A página publicada é uma demonstração/documentação interativa. Ela permite conhecer e testar os padrões, mas não é um pacote npm ou CDN.
 
 Escolha a implementação correspondente à plataforma. Não misture classes CSS da Web com componentes Compose do Android.
 
@@ -107,15 +107,15 @@ Consulte [TOKENS.md](TOKENS.md) para ver as escalas e regras completas.
 
 ## 3. Como usar no seu aplicativo Android
 
-O código Android é feito para Jetpack Compose e Material 3. Ele é uma base de componentes para copiar e integrar a um aplicativo Android existente; não é um APK nem um projeto Gradle independente.
+O código Android é uma biblioteca Gradle independente baseada em Jetpack Compose e Material 3. Ela pode ser compilada e incluída como módulo em um aplicativo existente; não é um APK nem um aplicativo final. Consulte [ANDROID.md](ANDROID.md) para requisitos, comandos de build, testes e integração.
 
 ### Preparar o projeto
 
 1. Abra um projeto Android que já use Jetpack Compose.
 2. Configure as dependências compatíveis com o Compose BOM do seu aplicativo.
-3. Copie a pasta `android/src/main/java/org/minimalui/` para o código-fonte do módulo.
-4. Ajuste o `package` no Kotlin e os imports conforme o namespace do seu aplicativo.
-5. Implemente o tema e os componentes que realmente serão utilizados.
+3. Inclua a pasta `android/` como módulo Gradle no `settings.gradle.kts` do projeto consumidor.
+4. Adicione `implementation(project(":minimal-ui"))` ao módulo do aplicativo.
+5. Implemente o tema e os componentes que realmente serão utilizados. Se preferir copiar os fontes, mantenha as dependências Compose alinhadas ao BOM do aplicativo.
 
 Dependências de referência, a serem alinhadas com as versões do seu projeto:
 
