@@ -30,6 +30,16 @@
     return [((hue * 60) + 360) % 360, saturation * 100, light * 100];
   }
   function tone(h, s, l) { return "hsl(" + Math.round(h) + " " + Math.round(s) + "% " + Math.round(l) + "%)"; }
+  function ink(h, s, l) {
+    const a = s / 100 * Math.min(l / 100, 1 - l / 100);
+    const channel = n => {
+      const k = (n + h / 30) % 12;
+      const value = l / 100 - a * Math.max(-1, Math.min(k - 3, 9 - k, 1));
+      return value <= 0.04045 ? value / 12.92 : Math.pow((value + 0.055) / 1.055, 2.4);
+    };
+    const luminance = .2126 * channel(0) + .7152 * channel(8) + .0722 * channel(4);
+    return luminance > .42 ? "#17131b" : "#ffffff";
+  }
   function systemAccent() {
     if (!CSS.supports("color", "AccentColor")) return null;
     const probe = document.createElement("span");
@@ -44,19 +54,19 @@
     const seed = name === "custom" ? rgb(customSeed) :
       name === "system" ? (systemAccent() || rgb("#555555")) : rgb(presets[name] || presets.monochrome);
     const [h, rawS] = hsl(seed || rgb("#555555"));
-    const s = name === "monochrome" ? 0 : clamp(rawS, 34, 88);
+    const s = name === "monochrome" || rawS < 12 ? 0 : clamp(rawS, 34, 88);
     const surfaceS = Math.min(12, s * 0.13);
     const primary = tone(h, s, dark ? (s ? 78 : 92) : (s ? 42 : 16));
     const variables = {
-      "--primary": primary, "--on-primary": dark ? tone(h, 18, 18) : "#ffffff",
+      "--primary": primary, "--on-primary": dark ? tone(h, 18, 18) : ink(h, s, s ? 42 : 16),
       "--primary-container": tone(h, Math.max(8, s * .55), dark ? 30 : 91),
       "--on-primary-container": dark ? tone(h, 20, 94) : tone(h, Math.max(8, s * .7), 19),
       "--secondary": tone(h + 18, s * .65, dark ? 76 : 39),
-      "--on-secondary": dark ? "#111111" : "#ffffff",
+      "--on-secondary": dark ? "#111111" : ink(h + 18, s * .65, 39),
       "--secondary-container": tone(h + 18, s * .38, dark ? 27 : 92),
       "--on-secondary-container": dark ? "#f5f2fa" : "#201d28",
       "--tertiary": tone(h + 54, s * .75, dark ? 78 : 36),
-      "--on-tertiary": dark ? "#171018" : "#ffffff",
+      "--on-tertiary": dark ? "#171018" : ink(h + 54, s * .75, 36),
       "--tertiary-container": tone(h + 54, s * .42, dark ? 29 : 92),
       "--on-tertiary-container": dark ? "#fff0f8" : "#281321",
       "--bg": tone(h, surfaceS, dark ? 7 : 99),
