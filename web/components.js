@@ -73,6 +73,11 @@ if (newTab) newTab.addEventListener("click", () => {
   $("#browser-page-title").textContent = "Nova aba";
   $("#browser-page-status").textContent = "Nova aba demonstrativa criada.";
 });
+const browserTabs = $("#browser-tabs");
+if (browserTabs) browserTabs.addEventListener("click", () => {
+  const count = $("#browser-tab-count").textContent;
+  $("#browser-page-status").textContent = count + (count === "1" ? " aba demonstrativa aberta." : " abas demonstrativas abertas.");
+});
 const browserHome = $("#browser-home");
 if (browserHome) browserHome.addEventListener("click", () => {
   $("#browser-url").value = "minimal.local/inicio";
