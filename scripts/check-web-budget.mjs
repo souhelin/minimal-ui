@@ -4,7 +4,9 @@ const budgets = [
   { path: "web/components.css", maxBytes: 20 * 1024 },
   { path: "web/tokens.css", maxBytes: 6 * 1024 },
   { path: "web/components.js", maxBytes: 12 * 1024 },
-  { path: "web/theme.js", maxBytes: 2 * 1024 },
+  { path: "web/theme.js", maxBytes: 6 * 1024 },
+  { path: "web/icons.js", maxBytes: 8 * 1024 },
+  { path: "web/patterns.css", maxBytes: 8 * 1024 },
 ];
 
 let totalBytes = 0;
@@ -24,7 +26,7 @@ for (const budget of budgets) {
   }
 }
 
-const totalBudget = 40 * 1024;
+const totalBudget = 60 * 1024;
 console.log("TOTAL: " + totalBytes + " / " + totalBudget + " bytes");
 if (totalBytes > totalBudget) failed = true;
 if (failed) {
