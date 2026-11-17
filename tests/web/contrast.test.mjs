@@ -64,7 +64,14 @@ for (const [theme, variables] of themes) {
       ["text-secondary", "surface", 4.5],
       ["inverse-text", "inverse-surface", 4.5],
       ["danger", "bg", 4.5],
-      ["focus", "bg", 3]
+      ["focus", "bg", 3],
+      ["on-primary", "primary", 4.5],
+      ["on-primary-container", "primary-container", 4.5],
+      ["on-secondary", "secondary", 4.5],
+      ["on-secondary-container", "secondary-container", 4.5],
+      ["on-tertiary", "tertiary", 4.5],
+      ["on-tertiary-container", "tertiary-container", 4.5],
+      ["outline", "bg", 3]
     ];
     for (const [foreground, background, minimum] of pairs) {
       const ratio = contrast(variables, foreground, background);
