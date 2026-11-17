@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Sistema tipográfico e espécime do Minimal UI.">
+  <title>Minimal Typography — Minimal UI</title>
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="components.css">
+  <link rel="stylesheet" href="typography.css">
+</head>
+<body>
+  <main class="typography-page">
+    <p class="eyebrow">MINIMAL UI · TYPE SYSTEM</p>
+    <h1 class="mui-type-display-large">Minimal Typography</h1>
+    <p class="mui-type-body-large">Uma linguagem tipográfica híbrida: estrutura minimalista, curvas cuidadosas e personalidade sem excesso.</p>
+    <p class="type-meta">Espécime de tokens e fallbacks. A família original ainda está em desenvolvimento.</p>
+
+    <section aria-labelledby="families-title">
+      <h2 id="families-title" class="mui-type-headline-large">Famílias planejadas</h2>
+      <div class="demo-grid">
+        <article class="type-card">
+          <p class="type-meta">01 · INTERFACE</p>
+          <h3 class="mui-type-title-large">Minimal Sans</h3>
+          <p class="mui-type-body-medium type-sample">Aa Bb Cc Dd Ee Ff Gg 0123456789</p>
+          <p class="type-meta">Texto, formulários, navegação e controles.</p>
+        </article>
+        <article class="type-card">
+          <p class="type-meta">02 · DISPLAY</p>
+          <h3 class="mui-type-display-medium">Create with clarity.</h3>
+          <p class="type-meta">Títulos e chamadas.</p>
+        </article>
+        <article class="type-card">
+          <p class="type-meta">03 · ROUNDED</p>
+          <h3 class="mui-type-title-large" style="font-family:var(--mui-font-rounded)">Friendly by design.</h3>
+          <p class="type-meta">Contextos expressivos e amigáveis.</p>
+        </article>
+        <article class="type-card">
+          <p class="type-meta">04 · MONO</p>
+          <p class="mui-type-code type-sample">const minimal = true;</p>
+          <p class="type-meta">Código, dados e identificadores.</p>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="scale-title">
+      <h2 id="scale-title" class="mui-type-headline-large">Escala tipográfica</h2>
+      <div class="weight-list">
+        <div class="weight-row"><span class="mui-type-display-medium">Display Large</span><span>clamp(44–80px) · 700</span></div>
+        <div class="weight-row"><span class="mui-type-headline-large">Headline Large</span><span>clamp(32–44px) · 650</span></div>
+        <div class="weight-row"><span class="mui-type-title-large">Title Large</span><span>22px · 600</span></div>
+        <div class="weight-row"><span class="mui-type-body-large">Body Large</span><span>18px · 400</span></div>
+        <div class="weight-row"><span class="mui-type-body-medium">Body Medium — Legibilidade em interfaces.</span><span>16px · 400</span></div>
+        <div class="weight-row"><span class="mui-type-body-small">Body Small — Texto auxiliar e descrições.</span><span>14px · 400</span></div>
+        <div class="weight-row"><span class="mui-type-label-small">LABEL SMALL</span><span>12px · 600</span></div>
+      </div>
+    </section>
+
+    <section aria-labelledby="characters-title">
+      <h2 id="characters-title" class="mui-type-headline-large">Caracteres de referência</h2>
+      <p class="mui-type-body-large type-sample">Á É Í Ó Ú Â Ê Ô Ã Õ Ç à á â ã ç</p>
+      <p class="mui-type-body-medium type-sample">Il1 · O0 · rn m · € £ $ ¥ · @ # &amp; % + − × ÷</p>
+      <p class="type-meta">A presença desses caracteres no espécime não significa que os glifos originais já estejam desenhados.</p>
+    </section>
+
+    <section aria-labelledby="implementation-title">
+      <h2 id="implementation-title" class="mui-type-headline-large">Integração</h2>
+      <p class="mui-type-body-medium">Os nomes de família já estão preparados como tokens. Enquanto os arquivos originais não forem publicados, o navegador usa fallbacks locais do sistema.</p>
+      <pre class="type-card"><code>font-family: var(--mui-font-family);
+font-family: var(--mui-font-display-family);
+font-family: var(--mui-font-mono-family);</code></pre>
+      <p><a class="button button-outlined" href="https://github.com/souhelin/minimal-ui/blob/main/TYPOGRAPHY.md">Ler especificação</a></p>
+      <p><a href="index.html">Voltar ao Minimal UI</a></p>
+    </section>
+  </main>
+</body>
+</html>
