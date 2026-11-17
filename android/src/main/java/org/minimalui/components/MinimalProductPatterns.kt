@@ -11,6 +11,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 
 /**
  * UI building block for an AI chat composer. Model/network integration stays in the app.
@@ -61,6 +63,7 @@ fun MinimalBrowserAddressBar(
     modifier: Modifier = Modifier,
     label: String = "Endereço",
     submitLabel: String = "Ir",
+    reloadLabel: String = "Recarregar",
     enabled: Boolean = true
 ) {
     Row(
@@ -76,7 +79,11 @@ fun MinimalBrowserAddressBar(
             singleLine = true,
             label = { Text(label) }
         )
-        TextButton(onClick = onReload, enabled = enabled) {
+        TextButton(
+            onClick = onReload,
+            enabled = enabled,
+            modifier = Modifier.semantics { contentDescription = reloadLabel }
+        ) {
             Text("↻")
         }
         Button(
