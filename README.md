@@ -38,6 +38,10 @@ Abra web/index.html em um navegador moderno. O tema acompanha a preferência do 
 
 Consulte ANDROID.md para dependências, tema, componentes Compose, acessibilidade e convenções. Copie android/src/main/java/org/minimalui para o módulo Android consumidor e ajuste o package. Este repositório não é um aplicativo Android completo nem uma biblioteca publicada no Maven.
 
+## Créditos
+
+Consulte [CREDITOS.md](CREDITOS.md) para ver as referências de design, tecnologias utilizadas e atribuições de terceiros.
+
 ## Licença
 
 MIT. Consulte LICENSE.
