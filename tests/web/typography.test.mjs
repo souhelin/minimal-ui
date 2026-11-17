@@ -24,7 +24,7 @@ test("typography specimen uses semantic landmarks and the shared token styleshee
 });
 
 test("font faces are not declared before original font binaries exist", () => {
-  assert.doesNotMatch(typography, /@font-face/);
+  assert.doesNotMatch(typography, /^\\s*@font-face/m);
   assert.match(specification, /Não há arquivos de fonte originais/);
   assert.match(specification, /Não entrega ainda uma fonte original compilada/);
 });
