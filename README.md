@@ -19,7 +19,8 @@ Consulte o **[Guia de uso — Minimal UI](GUIA-DE-USO.md)** para aprender a copi
 - `tests/web/`: testes de integridade estrutural e contraste dos tokens.
 - `ANDROID.md`: requisitos, compilação, testes e integração Android.
 - `GUIA-DE-USO.md`: instruções práticas para usuários aplicarem o Minimal em seus projetos.
-- `TOKENS.md`: tokens primitivos, semânticos, elevação, forma e movimento.
+- `TOKENS.md`: tokens primitivos, semânticos, tipografia, elevação, forma e movimento.
+- `TYPOGRAPHY.md`: direção, famílias planejadas e processo de produção da fonte original.
 - `ICONS.md`: biblioteca vetorial Web, categorias, API, uso Android e acessibilidade.
 - `ROADMAP.md`: escopo e estado de implementação.
 - `PERFORMANCE.md`: estratégia, orçamento de arquivos e auditoria Lighthouse.
@@ -28,6 +29,10 @@ Consulte o **[Guia de uso — Minimal UI](GUIA-DE-USO.md)** para aprender a copi
 - `.github/workflows/quality.yml`: verificações, testes e orçamento de arquivos Web.
 - `.github/workflows/performance.yml`: auditoria Lighthouse CI da demonstração Web.
 - `.github/workflows/android.yml`: build, lint e testes instrumentados da biblioteca Android.
+
+## Sistema tipográfico
+
+Abra `web/typography.html` para visualizar o espécime e os tokens tipográficos. A página usa fallbacks locais: os arquivos da família original ainda estão em desenvolvimento. Consulte [TYPOGRAPHY.md](TYPOGRAPHY.md) para o processo de criação.
 
 ## Executar a Web localmente
 
