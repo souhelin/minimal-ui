@@ -122,9 +122,7 @@ function parseGeneratedColor(value) {
   const hex = value.match(/^#([\da-f]{6})$/i);
   if (hex) {
     const channels = [0, 2, 4].map(i => parseInt(hex[1].slice(i, i + 2), 16) / 255);
-    return channels.map(channel => channel <= 0.04045
-      ? channel / 12.92
-      : ((channel + 0.055) / 1.055) ** 2.4);
+    return channels;
   }
   const hsl = value.match(/^hsl\(([\d.-]+) ([\d.-]+)% ([\d.-]+)%\)$/i);
   assert.ok(hsl, `Unsupported generated color: ${value}`);
@@ -145,9 +143,7 @@ function parseGeneratedColor(value) {
     const p = 2 * l - q;
     rgb = [hueToRgb(p, q, h + 1 / 3), hueToRgb(p, q, h), hueToRgb(p, q, h - 1 / 3)];
   }
-  return rgb.map(channel => channel <= 0.04045
-    ? channel / 12.92
-    : ((channel + 0.055) / 1.055) ** 2.4);
+  return rgb;
 }
 
 function generatedContrast(values, foreground, background) {
