@@ -39,9 +39,9 @@ O roadmap distingue implementação de demonstração, biblioteca reutilizável 
 - [ ] Auditoria manual com leitores de tela, TalkBack e tamanhos de fonte.
 - [x] Biblioteca Web de ícones vetoriais SVG com rótulos acessíveis e API de criação.
 - [x] Wrapper Android MinimalIcon para ImageVector fornecido pelo aplicativo consumidor.
-- [x] Padrão Web demonstrativo de chat IA e campo de composição.
-- [x] Padrão Web mobile de navegador com endereço, atalhos, abas demonstrativas e navegação.
-- [x] Componentes Compose MinimalAiComposer e MinimalBrowserAddressBar para integração do aplicativo.
+- [x] Padrão Web visual de chat IA e campo de composição (sem envio ou respostas simuladas).
+- [x] Padrão Web visual de navegador mobile com endereço, atalhos e controles ilustrativos (sem navegação ou gerenciamento de abas).
+- [x] Componentes Compose visuais MinimalAiComposer e MinimalBrowserAddressBar com callbacks controlados pelo aplicativo consumidor.
 - [ ] Testes de interação em navegador real e viewports; validação de componentes em aplicativos consumidores.
 
 ## 4. Layouts e exemplos
@@ -67,7 +67,7 @@ O roadmap distingue implementação de demonstração, biblioteca reutilizável 
 ## Limites conhecidos
 - A página GitHub Pages é uma documentação interativa; não é um pacote npm.
 - O módulo Android é uma biblioteca de componentes, não um aplicativo ou APK.
-- A demonstração Web usa dados locais e não inclui backend, autenticação ou persistência de produto.
+- A demonstração Web usa dados locais e não inclui backend, autenticação ou persistência de produto. Os padrões de IA e navegador são referências visuais; não enviam prompts nem executam navegação.
 - Os testes automatizados não substituem validação manual com tecnologias assistivas e dispositivos reais.
 
 ## Ordem recomendada
