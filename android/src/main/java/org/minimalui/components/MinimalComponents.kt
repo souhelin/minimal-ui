@@ -13,7 +13,6 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -60,16 +59,21 @@ fun MinimalTextField(
     onValueChange: (String) -> Unit,
     label: String,
     modifier: Modifier = Modifier,
-    supportingText: String? = null
+    supportingText: String? = null,
+    enabled: Boolean = true,
+    isError: Boolean = false,
+    singleLine: Boolean = true
 ) {
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
+        enabled = enabled,
+        isError = isError,
         label = { Text(label) },
         supportingText = supportingText?.let { { Text(it) } },
         modifier = modifier.fillMaxWidth(),
         shape = RoundedCornerShape(12.dp),
-        singleLine = true
+        singleLine = singleLine
     )
 }
 
