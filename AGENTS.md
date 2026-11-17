@@ -134,6 +134,16 @@ A Web deve funcionar em smartphones, tablets, notebooks e desktops.
 - Não execute comandos destrutivos nem apague arquivos sem necessidade e autorização.
 - Não atualize dependências ou configurações sem avaliar compatibilidade e impacto.
 
+## 9.1. Performance e orçamento Web
+
+- Preserve HTML, CSS e JavaScript nativos como caminho principal da interface.
+- Não adicione Rust/WebAssembly, frameworks ou dependências de runtime sem perfil de desempenho que demonstre gargalo e ganho líquido.
+- Execute `npm run check:budget` ao alterar CSS ou JavaScript da demonstração.
+- Mantenha os limites e critérios documentados em `PERFORMANCE.md`; mudanças de orçamento exigem justificativa baseada em medição.
+- Use Lighthouse CI para acompanhar performance e Core Web Vitals. Não trate um score isolado como prova de desempenho real.
+- Não declare ganhos de performance sem comparar medições equivalentes antes/depois.
+- Não envie relatórios de auditoria para armazenamento público temporário; mantenha-os nos artefatos do workflow.
+
 ## 10. Processo obrigatório antes de editar
 
 1. Leia estas regras e os documentos relevantes.
