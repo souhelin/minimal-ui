@@ -13,6 +13,19 @@ O sistema oferece três modos de aparência (Sistema, Claro e Escuro) e paletas 
 
 Uma página Web não recebe acesso universal às cores extraídas do papel de parede Android. Quando o navegador não expõe AccentColor, a paleta Sistema recua para uma base neutra. Para obter a paleta dinâmica do papel de parede, use a implementação Android.
 
+## Tipografia
+
+A tipografia é independente dos temas de cor. Os tokens de família são:
+
+| Token CSS | Papel | Fallback |
+|---|---|---|
+| `--mui-font-sans` | Texto e controles | Sans-serif do sistema |
+| `--mui-font-display` | Títulos e chamadas | Minimal Sans / sans-serif |
+| `--mui-font-rounded` | Tratamento expressivo | Minimal Sans / sans-serif |
+| `--mui-font-mono` | Código e dados | Monospace do sistema |
+
+Os nomes Minimal Sans, Display, Rounded e Mono são famílias planejadas. Até que os arquivos originais sejam desenhados, compilados e validados, o sistema usa fallbacks locais. Não declare nem distribua uma fonte original inexistente. Consulte [TYPOGRAPHY.md](TYPOGRAPHY.md) para o escopo, cobertura, autoria, licenciamento e critérios de aceite.
+
 ## Tokens primitivos
 
 | Token | Light | Dark |
