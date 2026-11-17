@@ -37,6 +37,7 @@ import androidx.compose.material3.TooltipBox
 import androidx.compose.material3.PlainTooltip
 import androidx.compose.material3.rememberTooltipState
 import androidx.compose.runtime.Composable
+import androidx.compose.animation.core.animateFloat
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import android.animation.ValueAnimator
@@ -212,7 +213,7 @@ fun MinimalLoading(
     label: String = "Carregando"
 ) {
     Column(
-        modifier = modifier.semantics(mergeDescendants = true) { contentDescription = listOf(label) },
+        modifier = modifier.semantics(mergeDescendants = true) { contentDescription = label },
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         if (progress == null) {
