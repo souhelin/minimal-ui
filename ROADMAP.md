@@ -1,57 +1,59 @@
 # Roadmap — Minimal UI
 
-Acompanhe o estado real da implementação. A demonstração Web, os componentes Compose e uma biblioteca pronta para distribuição são entregas diferentes; não marque uma plataforma como concluída apenas porque existe um exemplo visual.
+O roadmap distingue implementação de demonstração, biblioteca reutilizável e validação automatizada. Um item só deve ser marcado como concluído quando houver implementação verificável.
 
-## 1. Componentes Web
-- [x] Botões, campos, cartões e controles demonstrativos.
-- [x] Dialogs, bottom sheet, menus, tabs e navegação demonstrativa.
-- [x] Snackbar, alertas, loading, skeleton e paginação local.
-- [x] Validação demonstrativa de formulário.
-- [x] Navegação por teclado nas tabs e no menu (setas, Home, End e Escape).
-- [ ] Testes automatizados de comportamento em navegador real.
-- [ ] Verificação de acessibilidade com leitor de tela e auditoria automatizada.
+## 1. Web
+- [x] Demonstração responsiva em HTML, CSS e JavaScript sem framework.
+- [x] Botões, campos, seleção, menus, tabs, dialogs e bottom sheet.
+- [x] Snackbar, alertas, loading, skeleton e paginação demonstrativa.
+- [x] Validação de formulário e estados disabled.
+- [x] Navegação por teclado no menu e nas tabs.
+- [x] Renderização segura dos itens dinâmicos com APIs DOM e textContent.
+- [x] Testes automatizados de integridade HTML, referências, IDs e contraste dos tokens.
+- [ ] Testes automatizados de interação em navegador real e diferentes viewports.
+- [ ] Auditoria manual com leitores de tela.
 
-## 2. Componentes Android (Jetpack Compose)
-- [x] Botões, campo de texto e cartão.
-- [x] Dialog, bottom sheet, dropdown, tabs e navegação inferior.
-- [x] Radio option, slider, tooltip, snackbar, loading, skeleton estático, lista e paginação.
-- [x] Estado enabled e erro configurável no campo de texto.
-- [x] Linha inteira da opção de rádio selecionável e estados de índice protegidos.
-- [ ] Criar projeto Gradle independente ou módulo Android de biblioteca.
-- [ ] Definir versões compatíveis e validar compilação em CI.
-- [ ] Adicionar testes Compose e testes de acessibilidade/TalkBack.
-- [ ] Implementar shimmer opcional no skeleton respeitando redução de movimento.
+## 2. Android — Jetpack Compose
+- [x] Módulo Gradle independente com namespace e manifesto Android.
+- [x] Botões, campo de texto, cartão, dialog, bottom sheet e dropdown.
+- [x] Tabs, navegação inferior, rádio, slider, tooltip, snackbar, loading, lista e paginação.
+- [x] Estados enabled e erro no campo de texto.
+- [x] Validação dos índices selecionados e do intervalo do slider.
+- [x] Opção de rádio selecionável pela linha inteira.
+- [x] Skeleton com shimmer opcional e respeito à configuração de animações do sistema.
+- [x] Testes instrumentados Compose para rádio, campo de texto, tabs e navegação.
+- [x] Workflow de build, lint e testes instrumentados no GitHub Actions.
+- [ ] Confirmar build e testes verdes no CI antes de declarar release estável.
+- [ ] Testar TalkBack, teclado físico, tamanhos de fonte e dispositivos reais.
 
 ## 3. Design tokens e temas
 - [x] Tokens primitivos e semânticos documentados.
-- [x] Tema Web claro, escuro e sistema.
-- [x] Tema Android claro e escuro com Material 3.
-- [ ] Unificar e validar formalmente todos os valores Web/Android.
-- [ ] Automatizar testes de contraste WCAG AA para os pares de cores relevantes.
-- [ ] Verificar visualmente os estados de foco, erro e desabilitado em ambos os temas.
+- [x] Tema Web Sistema, Claro e Escuro.
+- [x] Tema Android Material 3 claro e escuro alinhado aos tokens monocromáticos.
+- [x] Testes automatizados de contraste para texto, texto secundário, foco, erro e superfícies invertidas.
+- [ ] Verificação visual completa dos estados e componentes em ambos os temas.
 
-## 4. Layouts e templates
-- [x] Dashboard, configurações, perfil, formulários, listas e estados de referência.
-- [ ] Exemplos de integração isolados por componente e sem dependência dos IDs da demonstração.
+## 4. Layouts e exemplos
+- [x] Templates demonstrativos de dashboard, configurações, perfil, formulários e listas.
+- [ ] Exemplos Android de integração por componente e aplicativo de showcase.
+- [ ] Exemplos Web independentes da estrutura de IDs da página demonstrativa.
 
-## 5. Documentação e distribuição
-- [x] Guia de uso Web e Android.
-- [x] Convenções e regras para agentes/contribuidores.
-- [x] Créditos e licença.
+## 5. Distribuição e estabilidade
+- [x] Documentação de uso, integração e compilação Android.
+- [x] Créditos, licença e regras para contribuidores.
 - [ ] Definir API pública estável e política de compatibilidade.
-- [ ] Preparar versionamento e publicação de pacote, se houver demanda real.
-- [ ] Documentar testes executados e versões usadas em cada release.
+- [ ] Adicionar publicação versionada da biblioteca Android (Maven), caso haja demanda.
+- [ ] Preparar versão 1.0 após testes em dispositivos e revisão de acessibilidade.
 
-## Limitações atuais
-- A página GitHub Pages é uma documentação interativa, não uma biblioteca npm.
-- O Android ainda é código-fonte Compose para integração em um app consumidor; não há build Gradle independente neste repositório.
-- O skeleton Android atual é estático, sem shimmer.
-- A paginação e os dados Web são demonstrativos e locais.
-- A checagem de sintaxe JavaScript não substitui testes de interface, acessibilidade ou compilação Android.
+## Limites conhecidos
+- A página GitHub Pages é uma documentação interativa; não é um pacote npm.
+- O módulo Android é uma biblioteca de componentes, não um aplicativo ou APK.
+- A demonstração Web usa dados locais e não inclui backend, autenticação ou persistência de produto.
+- Os testes automatizados não substituem validação manual com tecnologias assistivas e dispositivos reais.
 
 ## Ordem recomendada
-1. Manter os componentes e estados consistentes entre plataformas.
-2. Criar e validar o módulo Gradle Android.
-3. Automatizar testes Web e Compose.
-4. Auditar acessibilidade e contraste.
-5. Só então estabilizar uma versão 1.0 e considerar distribuição como pacote.
+1. Confirmar os workflows Web e Android aprovados.
+2. Corrigir qualquer falha de compilação ou teste encontrada pelo CI.
+3. Fazer auditoria manual de acessibilidade e responsividade.
+4. Criar exemplos independentes de integração.
+5. Estabilizar a API e preparar uma versão 1.0.
