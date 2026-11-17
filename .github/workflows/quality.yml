@@ -33,4 +33,6 @@ jobs:
           test -f web/theme.js
           test -f web/icons.js
           test -f web/patterns.css
+          test -f web/typography.css
+          test -f web/typography.html
           test -f web/components.js

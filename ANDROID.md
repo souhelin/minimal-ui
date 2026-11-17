@@ -84,6 +84,21 @@ Para controle completo, passe um ColorScheme próprio em colorScheme. A precedê
 
 Adicione o import androidx.compose.ui.graphics.Color para os exemplos de paleta personalizada.
 
+## Tipografia
+
+A biblioteca oferece `minimalTypography()` e `MinimalFontFamilies` em `org.minimalui.theme`. O `MinimalTheme` aplica essa escala por padrão; até a publicação das fontes originais, os papéis usam famílias nativas do Android.
+
+```kotlin
+MinimalTheme {
+    Text(
+        text = "Interface clara",
+        style = MaterialTheme.typography.headlineMedium
+    )
+}
+```
+
+Para estilos específicos, o aplicativo pode fornecer `FontFamily` próprias por meio de `MinimalFontFamilies` e usá-las em `TextStyle`. Os arquivos originais ainda não estão incluídos; quando aprovados, serão adicionados em `android/src/main/res/font/`. Não há dependência de fonte de terceiros no runtime.
+
 ## Componentes
 
 - Básicos: `MinimalPrimaryButton`, `MinimalOutlinedButton`, `MinimalTextField` e `MinimalCard`.
