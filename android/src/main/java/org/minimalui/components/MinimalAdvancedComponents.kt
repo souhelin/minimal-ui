@@ -67,6 +67,7 @@ fun MinimalDialog(
     )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MinimalBottomSheet(
     onDismiss: () -> Unit,
@@ -242,16 +243,12 @@ fun MinimalSkeleton(
     val progress = transition.animateFloat(
         initialValue = 0f,
         targetValue = if (shouldShimmer) 1f else 0f,
-        animationSpec = if (shouldShimmer) {
-            androidx.compose.animation.core.infiniteRepeatable(
-                animation = androidx.compose.animation.core.tween(
-                    durationMillis = 1200,
-                    easing = androidx.compose.animation.core.LinearEasing
-                )
+        animationSpec = androidx.compose.animation.core.infiniteRepeatable(
+            animation = androidx.compose.animation.core.tween(
+                durationMillis = 1200,
+                easing = androidx.compose.animation.core.LinearEasing
             )
-        } else {
-            androidx.compose.animation.core.tween(durationMillis = 0)
-        },
+        ),
         label = "minimal-skeleton-shimmer"
     ).value
     val lineCount = lines.coerceAtLeast(1)
