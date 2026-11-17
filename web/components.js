@@ -46,44 +46,8 @@ if (window.MinimalIcons) {
     gallery.append(tile);
   });
 }
-const aiForm = $("#ai-demo-form");
-if (aiForm) aiForm.addEventListener("submit", event => {
-  event.preventDefault();
-  const prompt = $("#ai-prompt"), value = prompt.value.trim(), messages = $("#ai-messages");
-  if (!value) { prompt.focus(); return; }
-  const user = document.createElement("div"), userAvatar = document.createElement("span"), userBubble = document.createElement("div");
-  user.className = "ai-message user"; userAvatar.className = "ai-avatar"; userAvatar.append(MinimalIcons.create("user"));
-  userBubble.className = "ai-bubble"; userBubble.textContent = value; user.append(userAvatar, userBubble); messages.append(user);
-  const assistant = document.createElement("div"), avatar = document.createElement("span"), bubble = document.createElement("div"), heading = document.createElement("strong");
-  assistant.className = "ai-message"; avatar.className = "ai-avatar"; avatar.append(MinimalIcons.create("sparkles"));
-  bubble.className = "ai-bubble"; heading.textContent = "Assistente"; bubble.append(heading, document.createTextNode("Esta é uma resposta ilustrativa. Conecte seu próprio modelo e backend para gerar respostas reais."));
-  assistant.append(avatar, bubble); messages.append(assistant); prompt.value = ""; messages.scrollTop = messages.scrollHeight;
-});
-const browserForm = $("#browser-address-form");
-if (browserForm) browserForm.addEventListener("submit", event => {
-  event.preventDefault();
-  const value = $("#browser-url").value.trim();
-  $("#browser-page-title").textContent = value || "Nova página";
-  $("#browser-page-status").textContent = "Endereço atualizado apenas nesta demonstração.";
-});
-const newTab = $("#browser-new-tab");
-if (newTab) newTab.addEventListener("click", () => {
-  const count = $("#browser-tab-count");
-  count.textContent = String(Number(count.textContent) + 1);
-  $("#browser-page-title").textContent = "Nova aba";
-  $("#browser-page-status").textContent = "Nova aba demonstrativa criada.";
-});
-const browserTabs = $("#browser-tabs");
-if (browserTabs) browserTabs.addEventListener("click", () => {
-  const count = $("#browser-tab-count").textContent;
-  $("#browser-page-status").textContent = count + (count === "1" ? " aba demonstrativa aberta." : " abas demonstrativas abertas.");
-});
-const browserHome = $("#browser-home");
-if (browserHome) browserHome.addEventListener("click", () => {
-  $("#browser-url").value = "minimal.local/inicio";
-  $("#browser-page-title").textContent = "Navegue com simplicidade";
-  $("#browser-page-status").textContent = "Página de demonstração local.";
-});
+// Os padrões de IA e navegador são referências visuais. A lógica de produto
+// (envio, modelo, navegação, abas, histórico e rede) pertence ao app consumidor.
 
 render();
 })();
