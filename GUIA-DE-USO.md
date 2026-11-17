@@ -32,7 +32,9 @@ web/
 ├── index.html
 ├── tokens.css
 ├── components.css
+├── patterns.css
 ├── theme.js
+├── icons.js
 └── components.js
 ~~~
 
@@ -54,7 +56,9 @@ Exemplo mínimo de carregamento:
 ~~~html
 <link rel="stylesheet" href="./styles/tokens.css">
 <link rel="stylesheet" href="./styles/components.css">
+<link rel="stylesheet" href="./styles/patterns.css">
 <script defer src="./scripts/theme.js"></script>
+<script defer src="./scripts/icons.js"></script>
 <script defer src="./scripts/components.js"></script>
 ~~~
 
@@ -93,7 +97,29 @@ Para habilitar o seletor, use um controle com o atributo `data-theme-picker`:
 </select>
 ~~~
 
-O arquivo `theme.js` aplica o atributo `data-theme` no elemento raiz e salva a escolha em `localStorage`, usando a chave `minimal-ui-theme`. Se você já tem um sistema de preferências, integre a lógica em vez de manter dois seletores de tema concorrentes.
+O arquivo `theme.js` aplica o atributo data-theme e salva as preferências localmente. A escolha de modo (system, light, dark) é independente da paleta (system, monochrome, blue, violet, green, orange, rose ou custom).
+
+Para definir a identidade antes do carregamento do tema:
+~~~html
+<script>
+  window.MinimalUIThemeConfig = {
+    mode: "system",
+    palette: "custom",
+    seedColor: "#3867D6"
+  };
+</script>
+<script defer src="./scripts/theme.js"></script>
+~~~
+
+Para alterar depois de carregar:
+~~~js
+MinimalUITheme.setTheme({
+  mode: "dark",
+  palette: "blue"
+});
+~~~
+
+A Web usa AccentColor se o navegador disponibilizar essa cor do sistema. Navegadores não expõem universalmente os tons extraídos do papel de parede Android; para wallpaper dinâmico, use o módulo Android. A cor personalizada é um fallback explícito para a identidade do produto.
 
 ### Como personalizar sem descaracterizar
 
@@ -104,6 +130,19 @@ O arquivo `theme.js` aplica o atributo `data-theme` no elemento raiz e salva a e
 - Verifique os temas claro e escuro depois de cada personalização.
 
 Consulte [TOKENS.md](TOKENS.md) para ver as escalas e regras completas.
+
+### Como usar os ícones e padrões Web
+
+Carregue icons.js antes do script da página. O conjunto disponibiliza SVGs com traço arredondado e sem fonte ou dependência externa:
+~~~js
+const icon = MinimalIcons.create("sparkles", {
+  size: 24,
+  label: "Assistente"
+});
+document.querySelector("#assistant-icon").replaceChildren(icon);
+~~~
+
+Para usar as composições de IA e navegador, importe também patterns.css e copie o HTML de referência em web/index.html. O exemplo de chat é uma demonstração local: conecte seu próprio modelo, backend e tratamento de segurança. O padrão de navegador não fornece engine, histórico, gerenciador de abas ou navegação de rede.
 
 ## 3. Como usar no seu aplicativo Android
 
@@ -143,7 +182,7 @@ fun App() {
 }
 ~~~
 
-Adicione o import de `androidx.compose.foundation.isSystemInDarkTheme`. Se o aplicativo tiver uma preferência própria de aparência, use o estado dessa preferência no parâmetro `darkTheme`, em vez de sempre seguir o sistema.
+Adicione o import de `androidx.compose.foundation.isSystemInDarkTheme`. Se o aplicativo tiver uma preferência própria de aparência, use o estado dessa preferência no parâmetro darkTheme. Para ativar cores do papel de parede no Android 12+, deixe dynamicColor = true (padrão); para definir uma cor própria use MinimalTheme(seedColor = Color(0xFF3867D6), dynamicColor = false). Para controle total, passe um ColorScheme próprio em colorScheme.
 
 ### Componentes disponíveis no código Android
 
@@ -168,6 +207,9 @@ Os componentes ficam no pacote `org.minimalui.components`:
 | `MinimalSkeleton` | Placeholder de carregamento |
 | `MinimalList` | Lista com LazyColumn |
 | `MinimalPagination` | Controles de paginação |
+| `MinimalAiComposer` | Campo para composição de prompt de IA |
+| `MinimalBrowserAddressBar` | Barra de endereço para navegador mobile |
+| `MinimalIcon` | Renderização de qualquer ImageVector |
 
 Exemplo de uso:
 
