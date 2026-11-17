@@ -23,6 +23,7 @@ jobs:
       - name: Check JavaScript syntax
         run: |
           node --check web/theme.js
+          node --check web/icons.js
           node --check web/components.js
       - name: Check required web files
         run: |
