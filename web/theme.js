@@ -66,7 +66,7 @@
       "--secondary-container": tone(h + 18, s * .38, dark ? 27 : 92),
       "--on-secondary-container": dark ? "#f5f2fa" : "#201d28",
       "--tertiary": tone(h + 54, s * .75, dark ? 78 : 36),
-      "--on-tertiary": dark ? "#171018" : ink(h + 54, s * .75, 36),
+      "--on-tertiary": ink(h + 54, s * .75, dark ? 78 : 36),
       "--tertiary-container": tone(h + 54, s * .42, dark ? 29 : 92),
       "--on-tertiary-container": dark ? "#fff0f8" : "#281321",
       "--bg": tone(h, surfaceS, dark ? 7 : 99),
