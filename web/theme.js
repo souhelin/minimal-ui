@@ -38,7 +38,7 @@
       return value <= 0.04045 ? value / 12.92 : Math.pow((value + 0.055) / 1.055, 2.4);
     };
     const luminance = .2126 * channel(0) + .7152 * channel(8) + .0722 * channel(4);
-    return luminance > .42 ? "#17131b" : "#ffffff";
+    return luminance > .179 ? "#000000" : "#ffffff";
   }
   function systemAccent() {
     if (!CSS.supports("color", "AccentColor")) return null;
