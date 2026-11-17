@@ -22,7 +22,7 @@ Consulte o **[Guia de uso — Minimal UI](GUIA-DE-USO.md)** para aprender a copi
 - TOKENS.md: tokens primitivos, semânticos, elevação, forma e movimento.
 - ROADMAP.md: escopo e estado de implementação.
 - AGENTS.md: regras obrigatórias para agentes e contribuidores.
-- .github/workflows/pages.yml: publicação automática da pasta web/ no GitHub Pages.
+- .github/workflows/pages.yml: publicação automática da pasta web/ no GitHub Pages.\n- .github/workflows/quality.yml: verificação de sintaxe JavaScript e arquivos essenciais da Web.
 
 ## Executar localmente
 
