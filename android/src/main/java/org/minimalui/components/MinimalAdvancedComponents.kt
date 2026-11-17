@@ -1,12 +1,19 @@
 package org.minimalui.components
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.selection.selectable
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawWithCache
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Button
@@ -29,14 +36,14 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.TooltipBox
 import androidx.compose.material3.PlainTooltip
 import androidx.compose.material3.rememberTooltipState
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import android.animation.ValueAnimator
+import android.os.Build
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
@@ -60,6 +67,7 @@ fun MinimalDialog(
     )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MinimalBottomSheet(
     onDismiss: () -> Unit,
@@ -98,10 +106,11 @@ fun MinimalTabs(
     modifier: Modifier = Modifier
 ) {
     require(labels.isNotEmpty()) { "MinimalTabs requires at least one tab." }
-    TabRow(selectedTabIndex = selectedIndex.coerceIn(labels.indices), modifier = modifier) {
+    val safeSelectedIndex = selectedIndex.coerceIn(labels.indices)
+    TabRow(selectedTabIndex = safeSelectedIndex, modifier = modifier) {
         labels.forEachIndexed { index, label ->
             Tab(
-                selected = selectedIndex == index,
+                selected = safeSelectedIndex == index,
                 onClick = { onSelected(index) },
                 text = { Text(label) }
             )
@@ -117,12 +126,13 @@ fun MinimalNavigationBar(
     modifier: Modifier = Modifier
 ) {
     require(labels.isNotEmpty()) { "MinimalNavigationBar requires at least one item." }
+    val safeSelectedIndex = selectedIndex.coerceIn(labels.indices)
     NavigationBar(modifier = modifier) {
         labels.forEachIndexed { index, label ->
             NavigationBarItem(
-                selected = selectedIndex == index,
+                selected = safeSelectedIndex == index,
                 onClick = { onSelected(index) },
-                icon = { Text(label.take(1), modifier = Modifier.semantics { contentDescription = listOf(label) }) },
+                icon = { Text(label.take(1), modifier = Modifier.clearAndSetSemantics { }) },
                 label = { Text(label) }
             )
         }
@@ -134,14 +144,24 @@ fun MinimalRadioOption(
     label: String,
     selected: Boolean,
     onSelect: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true
 ) {
     Row(
-        modifier = modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
+        modifier = modifier
+            .fillMaxWidth()
+            .selectable(
+                selected = selected,
+                onClick = onSelect,
+                enabled = enabled,
+                role = Role.RadioButton
+            )
+            .padding(vertical = 4.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        verticalAlignment = Alignment.CenterVertically
     ) {
-        RadioButton(selected = selected, onClick = onSelect)
-        Text(label, modifier = Modifier.padding(top = 12.dp))
+        RadioButton(selected = selected, onClick = null, enabled = enabled)
+        Text(label)
     }
 }
 
@@ -153,6 +173,13 @@ fun MinimalSlider(
     modifier: Modifier = Modifier,
     enabled: Boolean = true
 ) {
+    require(valueRange.start.isFinite() && valueRange.endInclusive.isFinite()) {
+        "MinimalSlider requires finite range endpoints."
+    }
+    require(value.isFinite()) { "MinimalSlider requires a finite value." }
+    require(valueRange.start < valueRange.endInclusive) {
+        "MinimalSlider requires a valueRange with start smaller than endInclusive."
+    }
     Slider(
         value = value.coerceIn(valueRange),
         onValueChange = onValueChange,
@@ -187,7 +214,7 @@ fun MinimalLoading(
     label: String = "Carregando"
 ) {
     Column(
-        modifier = modifier.semantics { contentDescription = label },
+        modifier = modifier.semantics(mergeDescendants = true) { contentDescription = label },
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         if (progress == null) {
@@ -202,23 +229,53 @@ fun MinimalLoading(
     }
 }
 
+@Suppress("NewApi")
 @Composable
 fun MinimalSkeleton(
     modifier: Modifier = Modifier,
-    lines: Int = 3
+    lines: Int = 3,
+    shimmer: Boolean = true
 ) {
+    val animationsEnabled = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O &&
+        ValueAnimator.areAnimatorsEnabled()
+    val shouldShimmer = shimmer && animationsEnabled
+    val transition = androidx.compose.animation.core.rememberInfiniteTransition(label = "minimal-skeleton")
+    val progress = transition.animateFloat(
+        initialValue = 0f,
+        targetValue = if (shouldShimmer) 1f else 0f,
+        animationSpec = androidx.compose.animation.core.infiniteRepeatable(
+            animation = androidx.compose.animation.core.tween(
+                durationMillis = 1200,
+                easing = androidx.compose.animation.core.LinearEasing
+            )
+        ),
+        label = "minimal-skeleton-shimmer"
+    ).value
+    val lineCount = lines.coerceAtLeast(1)
+    val base = MaterialTheme.colorScheme.surfaceVariant
+    val highlight = MaterialTheme.colorScheme.surface
+    val shape = MaterialTheme.shapes.small
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
-        repeat(lines.coerceAtLeast(1)) { index ->
-            androidx.compose.material3.Surface(
-                modifier = Modifier.fillMaxWidth(if (index == lines - 1) 0.68f else 1f),
-                color = MaterialTheme.colorScheme.surfaceVariant,
-                shape = MaterialTheme.shapes.small
-            ) {
-                Text(" ", modifier = Modifier.padding(vertical = 7.dp))
-            }
+        repeat(lineCount) { index ->
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth(if (index == lineCount - 1) 0.68f else 1f)
+                    .height(14.dp)
+                    .clip(shape)
+                    .drawWithCache {
+                        val width = size.width
+                        val offset = width * 2f * progress
+                        val brush = Brush.linearGradient(
+                            colors = listOf(base, if (shouldShimmer) highlight else base, base),
+                            start = Offset(-width + offset, 0f),
+                            end = Offset(width + offset, 0f)
+                        )
+                        onDrawBehind { drawRect(brush) }
+                    }
+            )
         }
     }
 }

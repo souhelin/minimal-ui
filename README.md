@@ -14,29 +14,47 @@ Consulte o **[Guia de uso — Minimal UI](GUIA-DE-USO.md)** para aprender a copi
 
 ## Estrutura
 
-- web/: demonstração web em HTML, CSS e JavaScript, sem framework.
-- web/components.js: interações da demonstração.
-- android/: tema e componentes Jetpack Compose / Material 3.
-- ANDROID.md: guia de integração Android.
-- GUIA-DE-USO.md: instruções práticas para usuários aplicarem o Minimal em seus projetos.
-- TOKENS.md: tokens primitivos, semânticos, elevação, forma e movimento.
-- ROADMAP.md: escopo e estado de implementação.
-- AGENTS.md: regras obrigatórias para agentes e contribuidores.
-- .github/workflows/pages.yml: publicação automática da pasta web/ no GitHub Pages.
+- `web/`: demonstração Web em HTML, CSS e JavaScript, sem framework.
+- `android/`: biblioteca Android Gradle com Kotlin, Jetpack Compose e Material 3.
+- `tests/web/`: testes de integridade estrutural e contraste dos tokens.
+- `ANDROID.md`: requisitos, compilação, testes e integração Android.
+- `GUIA-DE-USO.md`: instruções práticas para usuários aplicarem o Minimal em seus projetos.
+- `TOKENS.md`: tokens primitivos, semânticos, elevação, forma e movimento.
+- `ROADMAP.md`: escopo e estado de implementação.
+- `AGENTS.md`: regras obrigatórias para agentes e contribuidores.
+- `.github/workflows/pages.yml`: publicação automática da pasta `web/` no GitHub Pages.
+- `.github/workflows/quality.yml`: verificações e testes da implementação Web.
+- `.github/workflows/android.yml`: build, lint e testes instrumentados da biblioteca Android.
 
-## Executar localmente
+## Executar a Web localmente
 
-Abra web/index.html em um navegador moderno. O tema acompanha a preferência do sistema por padrão; o seletor permite escolher Sistema, Claro ou Escuro.
+Abra `web/index.html` em um navegador moderno. O tema acompanha a preferência do sistema por padrão; o seletor permite escolher Sistema, Claro ou Escuro.
+
+Para executar as verificações Web, use Node.js 22 ou superior:
+
+~~~bash
+npm run check:web
+npm run test:web
+~~~
+
+## Compilar e testar Android
+
+Requisitos: JDK 17, Android SDK Platform 35 e Gradle 8.9.
+
+~~~bash
+gradle -p android assembleDebug
+gradle -p android lintDebug
+gradle -p android testDebugUnitTest
+gradle -p android compileDebugAndroidTestKotlin
+~~~
+
+Para testes instrumentados, conecte um emulador e execute `gradle -p android connectedDebugAndroidTest`. Consulte [ANDROID.md](ANDROID.md) para integrar a biblioteca a outro projeto.
 
 ## Publicar no GitHub Pages
 
 1. Abra Settings → Pages no repositório.
 2. Em Build and deployment → Source, selecione GitHub Actions.
-3. O workflow publica automaticamente o conteúdo de web/ sempre que houver push para main.
-
-## Android
-
-Consulte ANDROID.md para dependências, tema, componentes Compose, acessibilidade e convenções. Copie android/src/main/java/org/minimalui para o módulo Android consumidor e ajuste o package. Este repositório não é um aplicativo Android completo nem uma biblioteca publicada no Maven.
+3. O workflow publica automaticamente o conteúdo de `web/` sempre que houver push para `main`.
 
 ## Créditos
 
@@ -44,4 +62,4 @@ Consulte [CREDITOS.md](CREDITOS.md) para ver as referências de design, tecnolog
 
 ## Licença
 
-MIT. Consulte LICENSE.
+MIT. Consulte [LICENSE](LICENSE).

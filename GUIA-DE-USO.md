@@ -9,7 +9,7 @@ O Minimal UI fornece duas bases de implementação:
 - **Web:** HTML, CSS e JavaScript sem framework, localizados em `web/`.
 - **Android:** componentes em Kotlin com Jetpack Compose e Material 3, localizados em `android/src/main/java/org/minimalui/`.
 
-A página publicada é uma demonstração/documentação interativa. Ela permite conhecer e testar os padrões, mas não é um pacote npm, CDN ou biblioteca pronta para instalar por um único comando.
+A página publicada é uma demonstração/documentação interativa. Ela permite conhecer e testar os padrões, mas não é um pacote npm ou CDN.
 
 Escolha a implementação correspondente à plataforma. Não misture classes CSS da Web com componentes Compose do Android.
 
@@ -107,15 +107,15 @@ Consulte [TOKENS.md](TOKENS.md) para ver as escalas e regras completas.
 
 ## 3. Como usar no seu aplicativo Android
 
-O código Android é feito para Jetpack Compose e Material 3. Ele é uma base de componentes para copiar e integrar a um aplicativo Android existente; não é um APK nem um projeto Gradle independente.
+O código Android é uma biblioteca Gradle independente baseada em Jetpack Compose e Material 3. Ela pode ser compilada e incluída como módulo em um aplicativo existente; não é um APK nem um aplicativo final. Consulte [ANDROID.md](ANDROID.md) para requisitos, comandos de build, testes e integração.
 
 ### Preparar o projeto
 
 1. Abra um projeto Android que já use Jetpack Compose.
-2. Configure as dependências compatíveis com o Compose BOM do seu aplicativo.
-3. Copie a pasta `android/src/main/java/org/minimalui/` para o código-fonte do módulo.
-4. Ajuste o `package` no Kotlin e os imports conforme o namespace do seu aplicativo.
-5. Implemente o tema e os componentes que realmente serão utilizados.
+2. Inclua a pasta `android/` como módulo Gradle no `settings.gradle.kts` do projeto consumidor.
+3. Adicione `implementation(project(":minimal-ui"))` ao bloco `dependencies` do módulo do aplicativo.
+4. Sincronize o Gradle e utilize os componentes do pacote `org.minimalui.components`.
+5. Implemente no aplicativo consumidor o estado, a navegação e as ações de negócio. Se optar por copiar os fontes em vez de incluir o módulo, alinhe as dependências Compose ao BOM do aplicativo.
 
 Dependências de referência, a serem alinhadas com as versões do seu projeto:
 
@@ -171,6 +171,8 @@ Os componentes ficam no pacote `org.minimalui.components`:
 
 Exemplo de uso:
 
+O campo também aceita `enabled`, `isError` e `singleLine` para representar estados de carregamento, validação e campos multilinha. O estado e as regras de validação continuam pertencendo ao aplicativo consumidor.
+
 ~~~kotlin
 @Composable
 fun SettingsScreen() {
@@ -182,7 +184,10 @@ fun SettingsScreen() {
             MinimalTextField(
                 value = name,
                 onValueChange = { name = it },
-                label = "Nome"
+                label = "Nome",
+                enabled = true,
+                isError = false,
+                singleLine = true
             )
             MinimalPrimaryButton(
                 text = "Salvar",
@@ -211,7 +216,7 @@ Para os componentes avançados, confira os parâmetros diretamente em `MinimalAd
 9. **Teste telas diferentes.** Verifique celular, tablet e desktop na Web; verifique tamanhos de tela e escalas de fonte no Android.
 10. **Não copie arquivos sem entender dependências.** Um componente pode depender de tokens, estilos, IDs, scripts ou estado.
 11. **Não trate exemplos como backend.** Listas e paginação da demonstração usam dados locais; dados remotos precisam da integração da sua aplicação.
-12. **Valide no projeto real.** A compilação Android precisa ser confirmada no app consumidor, pois este repositório não inclui configuração Gradle completa.
+12. **Valide no projeto real.** O módulo Android deste repositório possui configuração Gradle própria e é validado pelo workflow de CI. Ainda assim, teste a integração no aplicativo consumidor, pois compatibilidade de versões, tema e comportamento final dependem dele.
 
 ## 5. Onde encontrar cada informação
 

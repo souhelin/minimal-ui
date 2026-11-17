@@ -1,0 +1,32 @@
+name: Quality checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  web-syntax:
+    name: Web JavaScript syntax
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check JavaScript syntax
+        run: npm run check:web
+      - name: Run Web integrity and contrast tests
+        run: npm run test:web
+      - name: Check required Web entry files
+        run: |
+          test -f web/index.html
+          test -f web/tokens.css
+          test -f web/components.css
+          test -f web/theme.js
+          test -f web/components.js

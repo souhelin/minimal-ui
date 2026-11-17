@@ -42,6 +42,10 @@ Movimento: 100, 200 e 300 ms; curva cubic-bezier(.2, 0, 0, 1).
 - Disabled: opacidade 0.42; overlay modal: 0.48.
 - Estados hover e pressed devem preservar contraste e legibilidade.
 
+## Correspondência entre Web e Android
+
+O tema Compose usa os mesmos valores semânticos da escala monocromática: primary usa neutral-900 no claro e neutral-0 no escuro; secondary usa neutral-600 no claro e neutral-300 no escuro; surface, surfaceVariant, outline e onSurfaceVariant correspondem às escalas neutral documentadas. Os estados de erro usam danger (light #A32626, dark #FF9A9A). Não introduza cores independentes nos componentes.
+
 ## Light, Dark e Sistema
 
 - Light e Dark usam os mesmos nomes semânticos; apenas os valores mudam.

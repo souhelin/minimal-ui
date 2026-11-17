@@ -1,45 +1,59 @@
 # Roadmap — Minimal UI
 
-Acompanhe a implementação funcional do design system em Web e Android. Uma demonstração funcional Web e documentação Android não equivalem a uma implementação nativa Android completa.
+O roadmap distingue implementação de demonstração, biblioteca reutilizável e validação automatizada. Um item só deve ser marcado como concluído quando houver implementação verificável.
 
-## 1. Componentes avançados
-- [x] Dialogs e modais — implementados na demonstração Web; padrão Compose documentado.
-- [x] Bottom sheets — implementados na demonstração Web; padrão Compose documentado.
-- [x] Menus e dropdowns — implementados na demonstração Web; padrão Compose documentado.
-- [x] Tabs e navegação inferior — demonstração Web; padrão Compose documentado.
-- [x] Radio buttons e sliders — controles nativos Web; padrão Compose documentado.
-- [x] Tooltips, snackbars e alertas — demonstração Web; padrão Compose documentado.
-- [x] Paginação e listas — paginação local Web; orientação LazyColumn/Paging 3 documentada.
+## 1. Web
+- [x] Demonstração responsiva em HTML, CSS e JavaScript sem framework.
+- [x] Botões, campos, seleção, menus, tabs, dialogs e bottom sheet.
+- [x] Snackbar, alertas, loading, skeleton e paginação demonstrativa.
+- [x] Validação de formulário e estados disabled.
+- [x] Navegação por teclado no menu e nas tabs.
+- [x] Renderização segura dos itens dinâmicos com APIs DOM e textContent.
+- [x] Testes automatizados de integridade HTML, referências, IDs e contraste dos tokens.
+- [ ] Testes automatizados de interação em navegador real e diferentes viewports.
+- [ ] Auditoria manual com leitores de tela.
 
-## 2. Estados e interações
-- [x] Hover, Focus, Pressed e Disabled — estilos Web e estados nativos.
-- [x] Loading e Skeleton — demonstração Web; orientação Android documentada.
-- [x] Validação de formulários — exemplo Web de nome e e-mail.
-- [x] Transições e feedback visual — modal, menu, snackbar e loading.
+## 2. Android — Jetpack Compose
+- [x] Módulo Gradle independente com namespace e manifesto Android.
+- [x] Botões, campo de texto, cartão, dialog, bottom sheet e dropdown.
+- [x] Tabs, navegação inferior, rádio, slider, tooltip, snackbar, loading, lista e paginação.
+- [x] Estados enabled e erro no campo de texto.
+- [x] Validação dos índices selecionados e do intervalo do slider.
+- [x] Opção de rádio selecionável pela linha inteira.
+- [x] Skeleton com shimmer opcional e respeito à configuração de animações do sistema.
+- [x] Testes instrumentados Compose para rádio, campo de texto, tabs e navegação.
+- [x] Workflow de build, lint e testes instrumentados no GitHub Actions.
+- [x] Confirmar build e testes verdes no CI antes de declarar release estável (workflow Android aprovado no PR).
+- [ ] Testar TalkBack, teclado físico, tamanhos de fonte e dispositivos reais.
 
-## 3. Design tokens
-- [x] Separação entre tokens primitivos e semânticos.
-- [x] Integração Light, Dark e Sistema.
-- [x] Tokens de elevação, bordas e opacidade.
-- [x] Regras de uso dos tokens.
+## 3. Design tokens e temas
+- [x] Tokens primitivos e semânticos documentados.
+- [x] Tema Web Sistema, Claro e Escuro.
+- [x] Tema Android Material 3 claro e escuro alinhado aos tokens monocromáticos.
+- [x] Testes automatizados de contraste para texto, texto secundário, foco, erro e superfícies invertidas.
+- [ ] Verificação visual completa dos estados e componentes em ambos os temas.
 
-## 4. Layouts e templates
-- [x] Dashboard de referência.
-- [x] Página de configurações de referência.
-- [x] Página de perfil de referência.
-- [x] Formulários com validação.
-- [x] Listas e tabelas de referência.
-- [x] Estados vazios e telas de erro de referência.
+## 4. Layouts e exemplos
+- [x] Templates demonstrativos de dashboard, configurações, perfil, formulários e listas.
+- [ ] Exemplos Android de integração por componente e aplicativo de showcase.
+- [ ] Exemplos Web independentes da estrutura de IDs da página demonstrativa.
 
-## 5. Documentação para desenvolvedores
-- [x] Guia de implementação HTML/CSS.
-- [x] Guia para aplicativos Android.
-- [x] Exemplos de componentes.
-- [x] Convenções de nomes.
-- [x] Regras de acessibilidade.
+## 5. Distribuição e estabilidade
+- [x] Documentação de uso, integração e compilação Android.
+- [x] Créditos, licença e regras para contribuidores.
+- [ ] Definir API pública estável e política de compatibilidade.
+- [ ] Adicionar publicação versionada da biblioteca Android (Maven), caso haja demanda.
+- [ ] Preparar versão 1.0 após testes em dispositivos e revisão de acessibilidade.
 
-## Limitações conhecidas
-- A demonstração é uma página de documentação interativa, não uma biblioteca npm publicada.
-- Templates são composições de referência, não aplicações com backend.
-- Android usa Jetpack Compose/Material 3, mas não há projeto Gradle completo neste repositório; build nativo ainda precisa ser validado em app consumidor.
-- Paginação é local e demonstrativa; dados remotos exigem integração própria.
+## Limites conhecidos
+- A página GitHub Pages é uma documentação interativa; não é um pacote npm.
+- O módulo Android é uma biblioteca de componentes, não um aplicativo ou APK.
+- A demonstração Web usa dados locais e não inclui backend, autenticação ou persistência de produto.
+- Os testes automatizados não substituem validação manual com tecnologias assistivas e dispositivos reais.
+
+## Ordem recomendada
+1. Confirmar os workflows Web e Android aprovados.
+2. Corrigir qualquer falha de compilação ou teste encontrada pelo CI.
+3. Fazer auditoria manual de acessibilidade e responsividade.
+4. Criar exemplos independentes de integração.
+5. Estabilizar a API e preparar uma versão 1.0.

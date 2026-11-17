@@ -1,71 +1,113 @@
-# Guia Android — Minimal UI
+# Biblioteca Android — Minimal UI
 
-O pacote Android é uma base de componentes para Jetpack Compose + Material 3, não um aplicativo completo nem uma biblioteca publicada.
+O Minimal UI possui uma biblioteca Android independente baseada em Kotlin, Jetpack Compose e Material 3. O módulo fica nesta pasta (`android/`) e pode ser compilado separadamente da demonstração Web.
 
-## Instalação
+## Requisitos
 
-Adicione dependências compatíveis com o Compose BOM usado pelo aplicativo:
+- JDK 17.
+- Android SDK Platform 35.
+- Gradle 8.9 ou compatível.
+- Android Studio recente com suporte a Kotlin 2.0 e Compose.
 
-~~~kotlin
-implementation(platform("androidx.compose:compose-bom:<versao-estavel>"))
-implementation("androidx.compose.material3:material3")
-implementation("androidx.activity:activity-compose")
-implementation("androidx.compose.foundation:foundation")
+O projeto usa Android Gradle Plugin 8.7.3, Kotlin 2.0.21 e Compose BOM 2024.12.01. As versões estão centralizadas em `android/build.gradle.kts`.
+
+## Compilar e testar
+
+Na raiz do repositório:
+
+~~~bash
+gradle -p android assembleDebug
+gradle -p android lintDebug
+gradle -p android testDebugUnitTest
+gradle -p android compileDebugAndroidTestKotlin
 ~~~
 
-Copie android/src/main/java/org/minimalui para o módulo e ajuste o package se necessário.
+Para executar os testes instrumentados Compose em um emulador conectado:
 
-## Tema claro, escuro e sistema
+~~~bash
+gradle -p android connectedDebugAndroidTest
+~~~
+
+O workflow `.github/workflows/android.yml` executa build, lint, compilação dos testes e testes instrumentados em emulador no GitHub Actions.
+
+## Integrar em outro aplicativo
+
+É possível incluir a pasta `android/` como módulo Gradle no projeto consumidor. No `settings.gradle.kts` do aplicativo, configure o caminho local do módulo:
+
+~~~kotlin
+include(":minimal-ui")
+project(":minimal-ui").projectDir = file("../minimal-ui/android")
+~~~
+
+No módulo do aplicativo:
+
+~~~kotlin
+dependencies {
+    implementation(project(":minimal-ui"))
+}
+~~~
+
+Ajuste o caminho relativo conforme a localização do repositório no seu projeto. O módulo expõe o namespace `org.minimalui` e o pacote de componentes `org.minimalui.components`.
+
+## Tema claro e escuro
 
 ~~~kotlin
 @Composable
 fun App() {
-    val dark = isSystemInDarkTheme()
-    MinimalTheme(darkTheme = dark) {
-        // Conteúdo do aplicativo
+    MinimalTheme(darkTheme = isSystemInDarkTheme()) {
+        AppContent()
     }
 }
 ~~~
 
-Para escolha manual, passe o valor do estado da aplicação ao tema em vez de sempre usar a preferência do sistema.
+Para oferecer escolha manual, mantenha a preferência no estado do aplicativo e passe o valor correspondente a `darkTheme`.
 
-## Mapeamento de componentes Material 3
+## Componentes
 
-| Necessidade | Componente Compose |
-|---|---|
-| Dialog | AlertDialog ou Dialog |
-| Bottom sheet | ModalBottomSheet |
-| Menus | DropdownMenu / DropdownMenuItem |
-| Tabs | TabRow / Tab |
-| Navegação inferior | NavigationBar / NavigationBarItem |
-| Radio buttons | RadioButton |
-| Sliders | Slider |
-| Tooltips | TooltipBox / PlainTooltip |
-| Snackbars | SnackbarHost / SnackbarHostState |
-| Alertas | AlertDialog |
-| Listas | LazyColumn / LazyRow |
-| Paginação | Estado de página; Paging 3 para dados remotos |
-| Loading | CircularProgressIndicator |
-| Skeleton | Superfícies com shimmer e respeito à redução de movimento |
+- Básicos: `MinimalPrimaryButton`, `MinimalOutlinedButton`, `MinimalTextField` e `MinimalCard`.
+- Avançados: `MinimalDialog`, `MinimalBottomSheet`, `MinimalDropdownMenu`, `MinimalTabs`, `MinimalNavigationBar`, `MinimalRadioOption`, `MinimalSlider`, `MinimalTooltip`, `MinimalSnackbarHost`, `MinimalLoading`, `MinimalSkeleton`, `MinimalList` e `MinimalPagination`.
 
-MinimalComponents.kt contém botões primário e contornado, campo de texto e cartão. Use estado controlado (value + onValueChange) e mantenha estado de negócio fora dos componentes visuais.
+### Campo de texto
+
+O estado permanece controlado pelo aplicativo consumidor:
+
+~~~kotlin
+MinimalTextField(
+    value = name,
+    onValueChange = { name = it },
+    label = "Nome",
+    supportingText = if (hasError) "Confira o nome informado." else null,
+    isError = hasError,
+    enabled = !isSaving,
+    singleLine = true
+)
+~~~
+
+### Opção de rádio
+
+A linha inteira de `MinimalRadioOption` é selecionável. Mantenha a seleção no estado do chamador e use um grupo de opções com rótulos claros.
+
+### Dialog
+
+O callback `onConfirm` não fecha o diálogo automaticamente. O chamador controla a presença do composable, executa a ação e decide quando dispensá-lo.
+
+### Skeleton
+
+`MinimalSkeleton` oferece shimmer opcional. O efeito é desativado quando as animações do sistema Android estão desabilitadas ou quando `shimmer = false`:
+
+~~~kotlin
+MinimalSkeleton(lines = 3, shimmer = true)
+~~~
 
 ## Acessibilidade
 
-- Forneça contentDescription para ícones que comunicam ações.
-- Use Modifier.semantics quando a semântica padrão não for suficiente.
-- Garanta navegação por teclado e TalkBack.
-- Não comunique erro apenas por cor.
-- Teste escalas de fonte e áreas de toque.
-- Prefira componentes Material 3, que já oferecem semântica e comportamento de interação.
+- Prefira os componentes Material 3 e suas semânticas nativas.
+- Forneça rótulos descritivos para ações e ícones informativos.
+- Teste navegação por teclado, TalkBack e escalas de fonte.
+- Não comunique erro somente por cor.
+- Verifique foco, estados selecionados, alvos de toque e contraste nos temas claro e escuro.
+- Respeite a configuração do sistema que desabilita animações.
 
-## Convenções
+## Limites
 
-- Componentes públicos usam prefixo Minimal.
-- Composables em PascalCase; parâmetros em camelCase.
-- Estado controlado pelo chamador sempre que possível.
-- Não mantenha estado de negócio dentro de componentes visuais.
-
-## Limite de compilação
-
-Este repositório não contém settings.gradle, build.gradle ou wrapper Gradle. Portanto, não é possível declarar um build Android independente como validado aqui. A compilação deve ser verificada em um aplicativo consumidor com versões de dependências definidas.
+O módulo é uma biblioteca de componentes, não um aplicativo final nem um APK. Não inclui navegação de produto, backend, autenticação, persistência ou regras de negócio. Esses elementos pertencem ao aplicativo que consome o design system.
