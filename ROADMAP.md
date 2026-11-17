@@ -23,7 +23,7 @@ O roadmap distingue implementação de demonstração, biblioteca reutilizável 
 - [x] Skeleton com shimmer opcional e respeito à configuração de animações do sistema.
 - [x] Testes instrumentados Compose para rádio, campo de texto, tabs e navegação.
 - [x] Workflow de build, lint e testes instrumentados no GitHub Actions.
-- [ ] Confirmar build, lint e testes instrumentados verdes no CI antes de declarar release estável.
+- [x] Confirmar build, lint e testes instrumentados verdes no CI antes de declarar release estável (PR #4, commit 6f4705b).
 - [ ] Testar TalkBack, teclado físico, tamanhos de fonte e dispositivos reais.
 
 ## 3. Design tokens e temas
