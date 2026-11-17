@@ -39,6 +39,7 @@ O roadmap distingue implementação de demonstração, biblioteca reutilizável 
 - [ ] Auditoria manual com leitores de tela, TalkBack e tamanhos de fonte.
 - [x] Biblioteca Web de ícones vetoriais SVG com rótulos acessíveis e API de criação.
 - [x] Wrapper Android MinimalIcon para ImageVector fornecido pelo aplicativo consumidor.
+- [ ] Kit Android com 15 componentes visuais para navegador mobile (implementação adicionada; build e testes pendentes).
 - [ ] Ampliação da biblioteca Web com novos ícones de acessibilidade, arquivos, mídia, dispositivos, navegação e produtividade (implementação adicionada; testes pendentes).
 - [ ] Kit Android com 15 componentes visuais para navegador mobile (implementação adicionada; build e testes pendentes).
 - [x] Padrão Web visual de chat IA e campo de composição (sem envio ou respostas simuladas).
