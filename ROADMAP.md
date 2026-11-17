@@ -41,7 +41,6 @@ O roadmap distingue implementação de demonstração, biblioteca reutilizável 
 - [x] Wrapper Android MinimalIcon para ImageVector fornecido pelo aplicativo consumidor.
 - [ ] Kit Android com 15 componentes visuais para navegador mobile (implementação adicionada; build e testes pendentes).
 - [ ] Ampliação da biblioteca Web com novos ícones de acessibilidade, arquivos, mídia, dispositivos, navegação e produtividade (implementação adicionada; testes pendentes).
-- [ ] Kit Android com 15 componentes visuais para navegador mobile (implementação adicionada; build e testes pendentes).
 - [x] Padrão Web visual de chat IA e campo de composição (sem envio ou respostas simuladas).
 - [x] Padrão Web visual de navegador mobile com endereço, atalhos e controles ilustrativos (sem navegação ou gerenciamento de abas).
 - [x] Componentes Compose visuais MinimalAiComposer e MinimalBrowserAddressBar com callbacks controlados pelo aplicativo consumidor.
