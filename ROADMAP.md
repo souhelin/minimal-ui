@@ -49,7 +49,7 @@ O roadmap distingue implementação de demonstração, biblioteca reutilizável 
 - [x] Orçamento inicial de tamanho para CSS e JavaScript principais.
 - [x] Verificação do orçamento integrada ao workflow de qualidade.
 - [x] Configuração do Lighthouse CI com três execuções e relatórios como artefatos do workflow.
-- [ ] Coletar e revisar a linha de base real do Lighthouse no GitHub Actions.
+- [x] Coletar e revisar a linha de base inicial do Lighthouse CI (3 execuções: performance 93/100, 100/100 e 100/100; acessibilidade 100/100 nas três; FCP/LCP de 906–908 ms; TBT de 333/0/2 ms; CLS 0). O pico isolado de TBT reforça manter as metas em modo de aviso até novas medições.
 - [ ] Ajustar metas de performance após observar resultados repetidos.
 - [ ] Avaliar Rust/WebAssembly somente se um perfil apontar processamento computacional relevante.
 
