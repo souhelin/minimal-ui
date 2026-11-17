@@ -20,7 +20,9 @@ jobs:
         with:
           node-version: 22
       - name: Check JavaScript syntax
-        run: node --check web/components.js && node --check web/theme.js
+        run: npm run check:web
+      - name: Run Web integrity and contrast tests
+        run: npm run test:web
       - name: Check required Web entry files
         run: |
           test -f web/index.html
