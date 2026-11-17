@@ -112,10 +112,10 @@ O código Android é uma biblioteca Gradle independente baseada em Jetpack Compo
 ### Preparar o projeto
 
 1. Abra um projeto Android que já use Jetpack Compose.
-2. Configure as dependências compatíveis com o Compose BOM do seu aplicativo.
-3. Inclua a pasta `android/` como módulo Gradle no `settings.gradle.kts` do projeto consumidor.
-4. Adicione `implementation(project(":minimal-ui"))` ao módulo do aplicativo.
-5. Implemente o tema e os componentes que realmente serão utilizados. Se preferir copiar os fontes, mantenha as dependências Compose alinhadas ao BOM do aplicativo.
+2. Inclua a pasta `android/` como módulo Gradle no `settings.gradle.kts` do projeto consumidor.
+3. Adicione `implementation(project(":minimal-ui"))` ao bloco `dependencies` do módulo do aplicativo.
+4. Sincronize o Gradle e utilize os componentes do pacote `org.minimalui.components`.
+5. Implemente no aplicativo consumidor o estado, a navegação e as ações de negócio. Se optar por copiar os fontes em vez de incluir o módulo, alinhe as dependências Compose ao BOM do aplicativo.
 
 Dependências de referência, a serem alinhadas com as versões do seu projeto:
 
@@ -171,6 +171,8 @@ Os componentes ficam no pacote `org.minimalui.components`:
 
 Exemplo de uso:
 
+O campo também aceita `enabled`, `isError` e `singleLine` para representar estados de carregamento, validação e campos multilinha. O estado e as regras de validação continuam pertencendo ao aplicativo consumidor.
+
 ~~~kotlin
 @Composable
 fun SettingsScreen() {
@@ -182,10 +184,11 @@ fun SettingsScreen() {
             MinimalTextField(
                 value = name,
                 onValueChange = { name = it },
-                label = "Nome"
+                label = "Nome",
+                enabled = true,
+                isError = false,
+                singleLine = true
             )
-
-O campo também aceita `enabled`, `isError` e `singleLine` para representar estados de carregamento, validação e campos multilinha. O estado e as regras de validação continuam pertencendo ao aplicativo consumidor.
             MinimalPrimaryButton(
                 text = "Salvar",
                 onClick = { /* conecte à ação do seu app */ },
@@ -213,7 +216,7 @@ Para os componentes avançados, confira os parâmetros diretamente em `MinimalAd
 9. **Teste telas diferentes.** Verifique celular, tablet e desktop na Web; verifique tamanhos de tela e escalas de fonte no Android.
 10. **Não copie arquivos sem entender dependências.** Um componente pode depender de tokens, estilos, IDs, scripts ou estado.
 11. **Não trate exemplos como backend.** Listas e paginação da demonstração usam dados locais; dados remotos precisam da integração da sua aplicação.
-12. **Valide no projeto real.** A compilação Android precisa ser confirmada no app consumidor, pois este repositório não inclui configuração Gradle completa.
+12. **Valide no projeto real.** O módulo Android deste repositório possui configuração Gradle própria e é validado pelo workflow de CI. Ainda assim, teste a integração no aplicativo consumidor, pois compatibilidade de versões, tema e comportamento final dependem dele.
 
 ## 5. Onde encontrar cada informação
 
