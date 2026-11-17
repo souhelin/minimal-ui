@@ -49,18 +49,40 @@ dependencies {
 
 Ajuste o caminho relativo conforme a localização do repositório no seu projeto. O módulo expõe o namespace `org.minimalui` e o pacote de componentes `org.minimalui.components`.
 
-## Tema claro e escuro
+## Temas automáticos, dinâmicos e personalizados
 
+O MinimalTheme detecta Light/Dark do sistema por padrão e usa cores dinâmicas do papel de parede no Android 12+ quando disponíveis.
+
+Tema automático com wallpaper:
 ~~~kotlin
 @Composable
 fun App() {
-    MinimalTheme(darkTheme = isSystemInDarkTheme()) {
+    MinimalTheme {
         AppContent()
     }
 }
 ~~~
 
-Para oferecer escolha manual, mantenha a preferência no estado do aplicativo e passe o valor correspondente a `darkTheme`.
+Paleta controlada pelo desenvolvedor (exemplo azul):
+~~~kotlin
+MinimalTheme(
+    seedColor = Color(0xFF3867D6),
+    dynamicColor = false
+) {
+    AppContent()
+}
+~~~
+
+Desativar cores dinâmicas e manter a paleta neutra:
+~~~kotlin
+MinimalTheme(dynamicColor = false) {
+    AppContent()
+}
+~~~
+
+Para controle completo, passe um ColorScheme próprio em colorScheme. A precedência é colorScheme, depois seedColor, depois cores dinâmicas do Android e, por fim, os tokens neutros do Minimal. A preferência manual claro/escuro pode ser passada por darkTheme.
+
+Adicione o import androidx.compose.ui.graphics.Color para os exemplos de paleta personalizada.
 
 ## Componentes
 
