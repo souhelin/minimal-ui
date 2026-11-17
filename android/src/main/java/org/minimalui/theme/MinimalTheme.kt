@@ -58,17 +58,30 @@ private fun blend(foreground: Color, background: Color, amount: Float): Color {
     )
 }
 
+private fun bestOnColor(background: Color): Color {
+    fun contrast(foreground: Color): Float {
+        val lighter = maxOf(foreground.luminance(), background.luminance())
+        val darker = minOf(foreground.luminance(), background.luminance())
+        return (lighter + 0.05f) / (darker + 0.05f)
+    }
+    return if (contrast(Color.Black) >= contrast(Color.White)) Color.Black else Color.White
+}
+
 private fun seededColorScheme(seed: Color, dark: Boolean): ColorScheme {
     val surface = if (dark) Color(0xFF101116) else Color(0xFFFCFCFF)
     val background = if (dark) Color(0xFF090A0F) else Color(0xFFFFFFFF)
     val primary = if (dark) blend(seed, Color.White, 0.78f) else blend(seed, Color.Black, 0.88f)
-    val onPrimary = if (primary.luminance() > 0.5f) Color.Black else Color.White
+    val onPrimary = bestOnColor(primary)
     val primaryContainer = if (dark) blend(seed, Color.Black, 0.34f) else blend(seed, Color.White, 0.14f)
-    val onPrimaryContainer = if (dark) blend(seed, Color.White, 0.86f) else blend(seed, Color.Black, 0.70f)
+    val onPrimaryContainer = bestOnColor(primaryContainer)
     val secondary = if (dark) blend(seed, Color.White, 0.68f) else blend(seed, Color.Black, 0.62f)
     val secondaryContainer = if (dark) blend(seed, surface, 0.30f) else blend(seed, surface, 0.13f)
+    val onSecondary = bestOnColor(secondary)
+    val onSecondaryContainer = bestOnColor(secondaryContainer)
     val tertiary = if (dark) blend(seed, Color(0xFFFFD8EA), 0.28f) else blend(seed, Color(0xFF6E3A56), 0.38f)
     val tertiaryContainer = if (dark) blend(tertiary, surface, 0.28f) else blend(tertiary, surface, 0.12f)
+    val onTertiary = bestOnColor(tertiary)
+    val onTertiaryContainer = bestOnColor(tertiaryContainer)
 
     return if (dark) {
         darkColorScheme(
@@ -78,13 +91,13 @@ private fun seededColorScheme(seed: Color, dark: Boolean): ColorScheme {
             onPrimaryContainer = onPrimaryContainer,
             inversePrimary = blend(seed, Color.Black, 0.72f),
             secondary = secondary,
-            onSecondary = Color(0xFF17151B),
+            onSecondary = onSecondary,
             secondaryContainer = secondaryContainer,
-            onSecondaryContainer = Color(0xFFF5F1FA),
+            onSecondaryContainer = onSecondaryContainer,
             tertiary = tertiary,
-            onTertiary = Color(0xFF24151E),
+            onTertiary = onTertiary,
             tertiaryContainer = tertiaryContainer,
-            onTertiaryContainer = Color(0xFFFFEAF3),
+            onTertiaryContainer = onTertiaryContainer,
             background = background,
             onBackground = Color(0xFFF4F1F8),
             surface = surface,
@@ -109,13 +122,13 @@ private fun seededColorScheme(seed: Color, dark: Boolean): ColorScheme {
             onPrimaryContainer = onPrimaryContainer,
             inversePrimary = blend(seed, Color.White, 0.58f),
             secondary = secondary,
-            onSecondary = Color.White,
+            onSecondary = onSecondary,
             secondaryContainer = secondaryContainer,
-            onSecondaryContainer = Color(0xFF201C26),
+            onSecondaryContainer = onSecondaryContainer,
             tertiary = tertiary,
-            onTertiary = Color.White,
+            onTertiary = onTertiary,
             tertiaryContainer = tertiaryContainer,
-            onTertiaryContainer = Color(0xFF311B2B),
+            onTertiaryContainer = onTertiaryContainer,
             background = background,
             onBackground = Color(0xFF19171D),
             surface = blend(seed, surface, 0.025f),
