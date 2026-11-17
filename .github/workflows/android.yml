@@ -45,9 +45,11 @@ jobs:
       - name: Run Compose instrumentation tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 35
+          api-level: 34
           arch: x86_64
           target: google_apis
-          emulator-options: -no-window -no-audio -no-boot-anim -gpu swiftshader_indirect
+          force-avd-creation: true
+          emulator-boot-timeout: 600
+          emulator-options: -no-window -no-audio -no-boot-anim -no-snapshot -gpu swiftshader_indirect
           disable-animations: true
           script: gradle -p android connectedDebugAndroidTest
