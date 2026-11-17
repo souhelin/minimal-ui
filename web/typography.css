@@ -1,0 +1,47 @@
+/* Minimal Typography tokens and specimen styles.
+   No @font-face is declared until original, validated font files are committed. */
+:root {
+  --mui-font-family: var(--mui-font-sans);
+  --mui-font-display-family: var(--mui-font-display);
+  --mui-font-rounded-family: var(--mui-font-rounded);
+  --mui-font-mono-family: var(--mui-font-mono);
+  --mui-type-display-large: clamp(2.75rem, 7vw, 5rem);
+  --mui-type-display-medium: clamp(2.25rem, 5vw, 3.5rem);
+  --mui-type-headline-large: clamp(2rem, 4vw, 2.75rem);
+  --mui-type-headline-medium: 1.75rem;
+  --mui-type-title-large: 1.375rem;
+  --mui-type-title-medium: 1rem;
+  --mui-type-body-large: 1.125rem;
+  --mui-type-body-medium: 1rem;
+  --mui-type-body-small: .875rem;
+  --mui-type-label-large: .875rem;
+  --mui-type-label-small: .75rem;
+  --mui-leading-tight: 1.08;
+  --mui-leading-heading: 1.2;
+  --mui-leading-body: 1.55;
+  --mui-tracking-display: -.045em;
+  --mui-tracking-heading: -.025em;
+}
+.mui-type-display-large { font-family: var(--mui-font-display-family); font-size: var(--mui-type-display-large); line-height: var(--mui-leading-tight); letter-spacing: var(--mui-tracking-display); font-weight: 700; }
+.mui-type-display-medium { font-family: var(--mui-font-display-family); font-size: var(--mui-type-display-medium); line-height: var(--mui-leading-tight); letter-spacing: var(--mui-tracking-display); font-weight: 650; }
+.mui-type-headline-large { font-family: var(--mui-font-display-family); font-size: var(--mui-type-headline-large); line-height: var(--mui-leading-heading); letter-spacing: var(--mui-tracking-heading); font-weight: 650; }
+.mui-type-headline-medium { font-family: var(--mui-font-display-family); font-size: var(--mui-type-headline-medium); line-height: var(--mui-leading-heading); font-weight: 600; }
+.mui-type-title-large { font-family: var(--mui-font-sans); font-size: var(--mui-type-title-large); line-height: 1.35; font-weight: 600; }
+.mui-type-title-medium { font-family: var(--mui-font-sans); font-size: var(--mui-type-title-medium); line-height: 1.4; font-weight: 600; }
+.mui-type-body-large { font-family: var(--mui-font-sans); font-size: var(--mui-type-body-large); line-height: var(--mui-leading-body); font-weight: 400; }
+.mui-type-body-medium { font-family: var(--mui-font-sans); font-size: var(--mui-type-body-medium); line-height: var(--mui-leading-body); font-weight: 400; }
+.mui-type-body-small { font-family: var(--mui-font-sans); font-size: var(--mui-type-body-small); line-height: 1.5; font-weight: 400; }
+.mui-type-label-large { font-family: var(--mui-font-sans); font-size: var(--mui-type-label-large); line-height: 1.4; font-weight: 600; }
+.mui-type-label-small { font-family: var(--mui-font-sans); font-size: var(--mui-type-label-small); line-height: 1.4; font-weight: 600; letter-spacing: .04em; }
+.mui-type-code { font-family: var(--mui-font-mono); font-size: .9em; font-variant-ligatures: none; }
+.typography-page { width: min(100% - 40px, 960px); margin: 0 auto; padding: 56px 0 80px; }
+.typography-page section { padding: 28px 0; border-top: 1px solid var(--divider); }
+.typography-page h1, .typography-page h2, .typography-page h3, .typography-page p { margin-top: 0; }
+.typography-page .type-sample { overflow-wrap: anywhere; }
+.typography-page .type-meta { color: var(--text-secondary); font-size: .8rem; }
+.typography-page .type-card { padding: 20px; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--surface); }
+.typography-page .weight-list { display: grid; gap: 12px; }
+.typography-page .weight-row { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; border-bottom: 1px solid var(--divider); padding: 8px 0; }
+.typography-page .weight-row span:last-child { color: var(--text-secondary); font-size: .8rem; }
+.typography-page code { font-family: var(--mui-font-mono); }
+@media (max-width: 600px) { .typography-page { width: min(100% - 32px, 960px); padding-top: 32px; } .typography-page .weight-row { align-items: flex-start; flex-direction: column; gap: 2px; } }
