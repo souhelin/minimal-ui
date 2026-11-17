@@ -19,6 +19,7 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 
@@ -51,7 +52,7 @@ fun MinimalBrowserAddressField(value: String, onValueChange: (String) -> Unit, m
                 singleLine = true, textStyle = MaterialTheme.typography.bodyMedium,
                 colors = TextFieldDefaults.colors(unfocusedContainerColor = MaterialTheme.colorScheme.surface,
                     focusedContainerColor = MaterialTheme.colorScheme.surface))
-            Text("↵", modifier = Modifier.clickable { onSubmit(value) }.padding(10.dp),
+            Text("↵", modifier = Modifier.clickable(role = Role.Button) { onSubmit(value) }.padding(10.dp),
                 color = MaterialTheme.colorScheme.primary)
         }
     }
@@ -61,16 +62,14 @@ fun MinimalBrowserAddressField(value: String, onValueChange: (String) -> Unit, m
 @Composable
 fun MinimalBrowserSecurityIndicator(label: String, modifier: Modifier = Modifier) {
     Row(modifier.padding(8.dp), verticalAlignment = Alignment.CenterVertically) {
-        Text("●", color = MaterialTheme.colorScheme.primary)
-        Spacer(Modifier.width(6.dp))
-        Text(label, style = MaterialTheme.typography.labelSmall)
+        Text(label, style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.primary)
     }
 }
 
 /** 04. Search suggestion row. */
 @Composable
 fun MinimalBrowserSuggestion(title: String, supportingText: String? = null, onClick: () -> Unit, modifier: Modifier = Modifier) {
-    Row(modifier.fillMaxWidth().clickable(onClick = onClick).padding(12.dp), verticalAlignment = Alignment.CenterVertically) {
+    Row(modifier.fillMaxWidth().clickable(role = Role.Button, onClick = onClick).padding(12.dp), verticalAlignment = Alignment.CenterVertically) {
         Text("⌕", style = MaterialTheme.typography.titleLarge)
         Spacer(Modifier.width(12.dp))
         Column(Modifier.weight(1f)) {
@@ -83,7 +82,7 @@ fun MinimalBrowserSuggestion(title: String, supportingText: String? = null, onCl
 /** 05. Home shortcut tile. */
 @Composable
 fun MinimalBrowserShortcut(title: String, symbol: String, onClick: () -> Unit, modifier: Modifier = Modifier) {
-    BrowserSurface(modifier.clickable(onClick = onClick).padding(12.dp)) {
+    BrowserSurface(modifier.clickable(role = Role.Button, onClick = onClick).padding(12.dp)) {
         Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.padding(8.dp)) {
             Text(symbol, style = MaterialTheme.typography.titleLarge)
             Text(title, style = MaterialTheme.typography.labelSmall, maxLines = 1, overflow = TextOverflow.Ellipsis)
@@ -105,11 +104,11 @@ fun MinimalBrowserTabCounter(count: Int, onClick: () -> Unit, modifier: Modifier
 fun MinimalBrowserTabCard(title: String, preview: @Composable () -> Unit, onSelect: () -> Unit,
     onClose: () -> Unit, modifier: Modifier = Modifier) {
     BrowserSurface(modifier) {
-        Column(Modifier.clickable(onClick = onSelect).padding(10.dp)) {
+        Column(Modifier.clickable(role = Role.Button, onClick = onSelect).padding(10.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(title, Modifier.weight(1f), maxLines = 1, overflow = TextOverflow.Ellipsis,
                     style = MaterialTheme.typography.labelMedium)
-                Text("×", Modifier.clickable(onClick = onClose).padding(6.dp))
+                Text("×", Modifier.clickable(role = Role.Button, onClick = onClose).padding(6.dp))
             }
             Spacer(Modifier.height(8.dp))
             preview()
@@ -130,7 +129,7 @@ fun MinimalBrowserNavigationBar(onBack: () -> Unit, onForward: () -> Unit, onHom
 
 @Composable
 private fun BrowserAction(symbol: String, label: String, onClick: () -> Unit) {
-    Column(Modifier.clickable(onClick = onClick).padding(8.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+    Column(Modifier.clickable(role = Role.Button, onClick = onClick).padding(8.dp), horizontalAlignment = Alignment.CenterHorizontally) {
         Text(symbol, style = MaterialTheme.typography.titleLarge)
         Text(label, style = MaterialTheme.typography.labelSmall)
     }
