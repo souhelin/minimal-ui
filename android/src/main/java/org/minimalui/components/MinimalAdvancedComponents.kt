@@ -5,8 +5,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.verticalAlignment
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Button
@@ -29,14 +31,10 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.TooltipBox
 import androidx.compose.material3.PlainTooltip
 import androidx.compose.material3.rememberTooltipState
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
@@ -98,10 +96,11 @@ fun MinimalTabs(
     modifier: Modifier = Modifier
 ) {
     require(labels.isNotEmpty()) { "MinimalTabs requires at least one tab." }
-    TabRow(selectedTabIndex = selectedIndex.coerceIn(labels.indices), modifier = modifier) {
+    val safeSelectedIndex = selectedIndex.coerceIn(labels.indices)
+    TabRow(selectedTabIndex = safeSelectedIndex, modifier = modifier) {
         labels.forEachIndexed { index, label ->
             Tab(
-                selected = selectedIndex == index,
+                selected = safeSelectedIndex == index,
                 onClick = { onSelected(index) },
                 text = { Text(label) }
             )
@@ -117,12 +116,13 @@ fun MinimalNavigationBar(
     modifier: Modifier = Modifier
 ) {
     require(labels.isNotEmpty()) { "MinimalNavigationBar requires at least one item." }
+    val safeSelectedIndex = selectedIndex.coerceIn(labels.indices)
     NavigationBar(modifier = modifier) {
         labels.forEachIndexed { index, label ->
             NavigationBarItem(
-                selected = selectedIndex == index,
+                selected = safeSelectedIndex == index,
                 onClick = { onSelected(index) },
-                icon = { Text(label.take(1), modifier = Modifier.semantics { contentDescription = listOf(label) }) },
+                icon = { Text(label.take(1), modifier = Modifier.semantics { contentDescription = label }) },
                 label = { Text(label) }
             )
         }
@@ -134,14 +134,24 @@ fun MinimalRadioOption(
     label: String,
     selected: Boolean,
     onSelect: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true
 ) {
     Row(
-        modifier = modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
+        modifier = modifier
+            .fillMaxWidth()
+            .selectable(
+                selected = selected,
+                onClick = onSelect,
+                enabled = enabled,
+                role = Role.RadioButton
+            )
+            .padding(vertical = 4.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        verticalAlignment = Alignment.CenterVertically
     ) {
-        RadioButton(selected = selected, onClick = onSelect)
-        Text(label, modifier = Modifier.padding(top = 12.dp))
+        RadioButton(selected = selected, onClick = null, enabled = enabled)
+        Text(label)
     }
 }
 
@@ -153,6 +163,9 @@ fun MinimalSlider(
     modifier: Modifier = Modifier,
     enabled: Boolean = true
 ) {
+    require(valueRange.start < valueRange.endInclusive) {
+        "MinimalSlider requires a valueRange with start smaller than endInclusive."
+    }
     Slider(
         value = value.coerceIn(valueRange),
         onValueChange = onValueChange,
@@ -207,13 +220,14 @@ fun MinimalSkeleton(
     modifier: Modifier = Modifier,
     lines: Int = 3
 ) {
+    val lineCount = lines.coerceAtLeast(1)
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
-        repeat(lines.coerceAtLeast(1)) { index ->
+        repeat(lineCount) { index ->
             androidx.compose.material3.Surface(
-                modifier = Modifier.fillMaxWidth(if (index == lines - 1) 0.68f else 1f),
+                modifier = Modifier.fillMaxWidth(if (index == lineCount - 1) 0.68f else 1f),
                 color = MaterialTheme.colorScheme.surfaceVariant,
                 shape = MaterialTheme.shapes.small
             ) {
