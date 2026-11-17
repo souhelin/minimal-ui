@@ -119,15 +119,15 @@ function createThemeRuntime() {
 }
 
 function parseGeneratedColor(value) {
-  const hex = value.match(/^#([\\da-f]{6})$/i);
+  const hex = value.match(/^#([\da-f]{6})$/i);
   if (hex) {
     const channels = [0, 2, 4].map(i => parseInt(hex[1].slice(i, i + 2), 16) / 255);
     return channels.map(channel => channel <= 0.04045
       ? channel / 12.92
       : ((channel + 0.055) / 1.055) ** 2.4);
   }
-  const hsl = value.match(/^hsl\\(([\\d.-]+) ([\\d.-]+)% ([\\d.-]+)%\\)$/i);
-  assert.ok(hsl, `Unsupported generated color: ${value}`);
+  const hsl = value.match(/^hsl\(([\d.-]+) ([\d.-]+)% ([\d.-]+)%\)$/i);
+  assert.ok(hsl, \`Unsupported generated color: \${value}\`);
   const [h, s, l] = [Number(hsl[1]) / 360, Number(hsl[2]) / 100, Number(hsl[3]) / 100];
   const hueToRgb = (p, q, t) => {
     let x = t;
