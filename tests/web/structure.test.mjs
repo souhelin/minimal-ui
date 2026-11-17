@@ -24,7 +24,7 @@ test("HTML IDs are unique", () => {
 test("ARIA and label references point to existing elements", () => {
   const ids = new Set([...html.matchAll(/\bid="([^"]+)"/g)].map(([, id]) => id));
   const references = [
-    ...[...html.matchAll(/\b(?:aria-controls|aria-labelledby|for)="([^"]+)"/g)]
+    ...[...html.matchAll(/\b(?:aria-controls|aria-labelledby|aria-describedby|for)="([^"]+)"/g)]
       .flatMap(([, value]) => value.split(/\s+/))
   ];
   for (const reference of references) {
