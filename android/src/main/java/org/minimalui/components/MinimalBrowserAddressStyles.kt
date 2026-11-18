@@ -82,7 +82,6 @@ fun MinimalBrowserAddressLayout(
     val adaptive = style == MinimalBrowserAddressStyle.ADAPTIVE
     val contextual = style == MinimalBrowserAddressStyle.CONTEXTUAL
     val topNavigation = style == MinimalBrowserAddressStyle.BOTTOM_WITH_TOP_NAV
-    val bottomNavigation = style == MinimalBrowserAddressStyle.TOP_WITH_BOTTOM_NAV
 
     Column(modifier = modifier.fillMaxWidth()) {
         if (!bottomAddress) {
@@ -114,7 +113,7 @@ fun MinimalBrowserAddressLayout(
             BrowserAddressSurface(floating, expanded) {
                 BrowserAddressRow(
                     value, onValueChange, onSubmit, onBack, onReload, onTabs, enabled,
-                    compact, centered, sideControls, adaptive, contextual
+                    compact, centered, sideControls, adaptive, contextual, minimal
                 )
                 if (expanded) {
                     Text(
