@@ -16,10 +16,11 @@ Consulte o **[Guia de uso — Minimal UI](GUIA-DE-USO.md)** para aprender a copi
 
 - `web/`: demonstração Web em HTML, CSS e JavaScript, sem framework; inclui tokens dinâmicos, ícones vetoriais e padrões para IA/navegador.
 - `android/`: biblioteca Android Gradle com Kotlin, Jetpack Compose e Material 3, incluindo 15 padrões visuais de navegador mobile.
-- `tests/web/`: testes de integridade estrutural e contraste dos tokens.
+- `tests/web/`: testes de integridade estrutural, contraste e papéis tipográficos.
 - `ANDROID.md`: requisitos, compilação, testes e integração Android.
 - `GUIA-DE-USO.md`: instruções práticas para usuários aplicarem o Minimal em seus projetos.
 - `TOKENS.md`: tokens primitivos, semânticos, elevação, forma e movimento.
+- `MWS.md`: especificação do Minimal Writing System — regras editoriais, microcopy, perfis de escrita, tipografia, localização e acessibilidade.
 - `ICONS.md`: biblioteca vetorial Web, categorias, API, uso Android e acessibilidade.
 - `ROADMAP.md`: escopo e estado de implementação.
 - `PERFORMANCE.md`: estratégia, orçamento de arquivos e auditoria Lighthouse.

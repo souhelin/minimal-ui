@@ -59,7 +59,20 @@ O roadmap distingue implementação de demonstração, biblioteca reutilizável 
 - [ ] Adicionar publicação versionada da biblioteca Android (Maven), caso haja demanda.
 - [ ] Preparar versão 1.0 após testes em dispositivos e revisão de acessibilidade.
 
-## 6. Performance Web
+## 6. Minimal Writing System (MWS)
+- [x] Definir escopo integrado: Minimal Writing + Minimal Typography.
+- [x] Definir identidade híbrida e princípios editoriais.
+- [x] Documentar voz, tom, gramática, microcopy, erros, conversação, inclusão e localização.
+- [x] Propor escala tipográfica e papéis semânticos multiplataforma.
+- [x] Documentar arquitetura e limites de integração Web/Android.
+- [ ] Revisar a especificação com mantenedores e validar a escala contra a tipografia atual.
+- [x] Auditar estilos tipográficos existentes antes de implementar tokens.
+- [x] Mapear tokens para CSS e Compose sem duplicar tokens ou temas.
+- [ ] Criar exemplos de microcopy e glossário por idioma.
+- [x] Adicionar testes automatizados para presença dos tokens e papéis tipográficos Web e escala padrão Compose.
+- [ ] Executar e validar testes Web/Android, responsividade, zoom, fontScale e acessibilidade manual.
+
+## 7. Performance Web
 - [x] Orçamento inicial de tamanho para CSS e JavaScript principais.
 - [x] Verificação do orçamento integrada ao workflow de qualidade.
 - [x] Configuração do Lighthouse CI com três execuções e relatórios como artefatos do workflow.

@@ -96,3 +96,22 @@ Na Web, theme.js deriva os tokens com base em AccentColor quando disponível e p
 6. Alvos de toque recomendados: pelo menos 48 × 48 px.
 7. Verifique WCAG AA: 4.5:1 para texto normal e 3:1 para texto grande e elementos gráficos relevantes.
 8. Teste cores claras, escuras, predefinidas e personalizadas; confirme foregrounds, campos, bordas, ícones e estados disabled.
+
+
+## Minimal Writing System — tipografia
+
+O MWS adiciona papéis tipográficos semânticos sem criar uma segunda escala de espaçamento, cor ou tema.
+
+### Tokens Web
+
+Os tokens `--mws-type-*`, `--mws-weight-*`, `--mws-line-height-*`, `--mws-font-sans`, `--mws-font-mono` e `--mws-reading-width` são definidos em `web/tokens.css`. Os tamanhos usam `rem` para respeitar o zoom do navegador e a escala base de fonte.
+
+### Papéis disponíveis na Web
+
+As classes `.mws-display`, `.mws-headline`, `.mws-title`, `.mws-subtitle`, `.mws-body-large`, `.mws-body`, `.mws-body-small`, `.mws-label`, `.mws-prose` e `.mws-mono` são utilitários opcionais. Elas não alteram conteúdo, semântica HTML ou tom editorial automaticamente.
+
+### Android
+
+`MinimalTypography` fornece a escala padrão do Compose em `sp`, aplicada por `MinimalTheme`. O consumidor pode fornecer uma instância própria de Material 3 `Typography` pelo parâmetro `typography`, preservando a personalização da família tipográfica e dos estilos. `sp` respeita a escala de fonte do sistema.
+
+A escala é uma referência semântica; componentes podem continuar usando estilos específicos quando a hierarquia e a função do componente exigirem.

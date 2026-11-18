@@ -13,3 +13,19 @@
 .browser-kit-row span:nth-child(2){display:grid;min-width:0;flex:1}.browser-kit-row b{font-size:11px}.browser-kit-reader{justify-content:space-between}.browser-kit-permission{display:grid;gap:6px;padding:10px;border:1px solid var(--border);border-radius:12px;background:var(--bg)}.browser-kit-permission b{font-size:11px}.browser-kit-permission small{font-size:10px;color:var(--text-secondary)}.browser-kit-permission>div{display:flex;justify-content:flex-end;gap:14px;margin-top:5px;font-size:10px}.browser-kit-permission>div strong{color:var(--primary)}
 @media(max-width:800px){.browser-kit-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:560px){.browser-kit-grid{grid-template-columns:1fr}}
+
+
+/* Minimal Writing System — semantic typography roles */
+.mws-display,.mws-headline,.mws-title,.mws-subtitle,.mws-body-large,.mws-body,.mws-body-small,.mws-label{font-family:var(--mws-font-sans);margin-block:0}
+.mws-display{font-size:var(--mws-type-display);font-weight:var(--mws-weight-semibold);line-height:var(--mws-line-height-heading);letter-spacing:-.035em}
+.mws-headline{font-size:var(--mws-type-headline);font-weight:var(--mws-weight-semibold);line-height:var(--mws-line-height-heading);letter-spacing:-.025em}
+.mws-title{font-size:var(--mws-type-title);font-weight:var(--mws-weight-semibold);line-height:var(--mws-line-height-heading)}
+.mws-subtitle{font-size:var(--mws-type-subtitle);font-weight:var(--mws-weight-medium);line-height:1.35}
+.mws-body-large{font-size:var(--mws-type-body-large);font-weight:var(--mws-weight-regular);line-height:var(--mws-line-height-body)}
+.mws-body{font-size:var(--mws-type-body);font-weight:var(--mws-weight-regular);line-height:var(--mws-line-height-body)}
+.mws-body-small{font-size:var(--mws-type-body-small);font-weight:var(--mws-weight-regular);line-height:1.45}
+.mws-label{font-size:var(--mws-type-label);font-weight:var(--mws-weight-medium);line-height:var(--mws-line-height-label)}
+.mws-prose{max-width:var(--mws-reading-width);font-family:var(--mws-font-sans);font-size:var(--mws-type-body);line-height:var(--mws-line-height-body);overflow-wrap:break-word}
+.mws-prose :where(h1,h2,h3,h4){font-family:var(--mws-font-sans);font-weight:var(--mws-weight-semibold);line-height:var(--mws-line-height-heading);margin-block:1.5em .5em}
+.mws-prose :where(p,ul,ol){margin-block:.75em}
+.mws-mono{font-family:var(--mws-font-mono);font-variant-ligatures:none}

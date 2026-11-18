@@ -84,6 +84,35 @@ Para controle completo, passe um ColorScheme próprio em colorScheme. A precedê
 
 Adicione o import androidx.compose.ui.graphics.Color para os exemplos de paleta personalizada.
 
+## Tipografia — Minimal Writing System
+
+`MinimalTheme` aplica `MinimalTypography` por padrão. A escala usa unidades `sp`, portanto acompanha a preferência de tamanho de fonte do Android.
+
+~~~kotlin
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import org.minimalui.theme.MinimalTheme
+
+@Composable
+fun App() {
+    MinimalTheme {
+        Text(
+            text = "Título da seção",
+            style = MaterialTheme.typography.titleLarge
+        )
+    }
+}
+~~~
+
+Para personalizar a tipografia, passe uma instância Material 3 `Typography` pelo parâmetro `typography` de `MinimalTheme`. O padrão usa a família tipográfica do sistema; o MWS não distribui nem força uma fonte.
+
+~~~kotlin
+MinimalTheme(typography = myTypography) {
+    AppContent()
+}
+~~~
+
 ## Componentes
 
 - Básicos: `MinimalPrimaryButton`, `MinimalOutlinedButton`, `MinimalTextField` e `MinimalCard`.

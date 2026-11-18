@@ -4,6 +4,7 @@ import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Typography
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
@@ -150,9 +151,10 @@ private fun seededColorScheme(seed: Color, dark: Boolean): ColorScheme {
 
 /**
  * Minimal theme with system dark mode, Android 12+ wallpaper colors,
- * and developer-provided color customization.
+ * developer-provided color customization, and the default MWS typography.
  *
- * Precedence: [colorScheme] > [seedColor] > Android dynamic colors > Minimal neutral palette.
+ * Color precedence: [colorScheme] > [seedColor] > Android dynamic colors > Minimal neutral palette.
+ * The original function signature is preserved for source compatibility.
  */
 @Suppress("NewApi")
 @Composable
@@ -161,6 +163,31 @@ fun MinimalTheme(
     dynamicColor: Boolean = true,
     seedColor: Color? = null,
     colorScheme: ColorScheme? = null,
+    content: @Composable () -> Unit
+) {
+    MinimalTheme(
+        darkTheme = darkTheme,
+        dynamicColor = dynamicColor,
+        seedColor = seedColor,
+        colorScheme = colorScheme,
+        typography = MinimalTypography,
+        content = content
+    )
+}
+
+/**
+ * Minimal theme with optional developer-provided Material 3 typography.
+ *
+ * Precedence for colors: [colorScheme] > [seedColor] > Android dynamic colors > Minimal neutral palette.
+ */
+@Suppress("NewApi")
+@Composable
+fun MinimalTheme(
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    dynamicColor: Boolean = true,
+    seedColor: Color? = null,
+    colorScheme: ColorScheme? = null,
+    typography: Typography,
     content: @Composable () -> Unit
 ) {
     val context = LocalContext.current
@@ -175,5 +202,5 @@ fun MinimalTheme(
         }
     }
 
-    MaterialTheme(colorScheme = resolvedColors, content = content)
+    MaterialTheme(colorScheme = resolvedColors, typography = typography, content = content)
 }

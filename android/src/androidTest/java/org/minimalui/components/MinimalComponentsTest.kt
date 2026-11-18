@@ -1,5 +1,8 @@
 package org.minimalui.components
 
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Typography
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -12,6 +15,8 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.sp
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Rule
@@ -21,6 +26,42 @@ import org.minimalui.theme.MinimalTheme
 class MinimalComponentsTest {
     @get:Rule
     val composeRule = createComposeRule()
+
+
+    @Test
+    fun minimalThemeAppliesMwsTypographyByDefault() {
+        var bodyFontSize = 0f
+
+        composeRule.setContent {
+            MinimalTheme(false, false, null, null) {
+                val appliedFontSize = MaterialTheme.typography.bodyLarge.fontSize.value
+                SideEffect {
+                    bodyFontSize = appliedFontSize
+                }
+            }
+        }
+
+        composeRule.runOnIdle { assertEquals(18f, bodyFontSize) }
+    }
+
+    @Test
+    fun minimalThemeAllowsCustomTypography() {
+        var bodyFontSize = 0f
+        val customTypography = Typography(
+            bodyLarge = TextStyle(fontSize = 22.sp)
+        )
+
+        composeRule.setContent {
+            MinimalTheme(darkTheme = false, typography = customTypography) {
+                val appliedFontSize = MaterialTheme.typography.bodyLarge.fontSize.value
+                SideEffect {
+                    bodyFontSize = appliedFontSize
+                }
+            }
+        }
+
+        composeRule.runOnIdle { assertEquals(22f, bodyFontSize) }
+    }
 
     @Test
     fun radioOptionSelectsWhenLabelIsClicked() {
