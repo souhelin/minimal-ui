@@ -69,7 +69,8 @@ O roadmap distingue implementação de demonstração, biblioteca reutilizável 
 - [x] Auditar estilos tipográficos existentes antes de implementar tokens.
 - [x] Mapear tokens para CSS e Compose sem duplicar tokens ou temas.
 - [ ] Criar exemplos de microcopy e glossário por idioma.
-- [x] Adicionar testes automatizados para presença dos tokens e papéis tipográficos Web e escala padrão Compose.\n- [ ] Executar e validar testes Web/Android, responsividade, zoom, fontScale e acessibilidade manual.
+- [x] Adicionar testes automatizados para presença dos tokens e papéis tipográficos Web e escala padrão Compose.
+- [ ] Executar e validar testes Web/Android, responsividade, zoom, fontScale e acessibilidade manual.
 
 ## 7. Performance Web
 - [x] Orçamento inicial de tamanho para CSS e JavaScript principais.
