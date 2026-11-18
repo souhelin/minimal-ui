@@ -359,9 +359,9 @@ Exemplo de uso da API CSS implementada:
 
 ### 14.2 Android
 
-A implementação futura deve mapear papéis para `Typography` do Material 3/Compose, sem criar um segundo sistema de tema concorrente. Usar sp e respeitar escala de fonte do sistema.
+`MinimalTheme` aplica `MinimalTypography` do Material 3/Compose por padrão, sem criar um segundo sistema de tema. A escala usa `sp` e respeita a configuração de tamanho de fonte do sistema. O consumidor pode passar uma instância própria de `Typography` pelo parâmetro `typography`.
 
-Exemplo conceitual (não representa API já implementada):
+Exemplo de uso da API implementada:
 
 ~~~kotlin
 MinimalTheme {
