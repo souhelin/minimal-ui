@@ -87,7 +87,7 @@ fun MinimalBrowserAddressLayout(
             if (tabsIntegrated) BrowserTabsRow(onTabs, enabled)
             BrowserAddressSurface(floating, expanded) {
                 BrowserAddressRow(
-                    value, onValueChange, onSubmit, onReload, onTabs, enabled,
+                    value, onValueChange, onSubmit, onBack, onReload, onTabs, enabled,
                     compact, centered, sideControls, adaptive, contextual
                 )
                 if (doubleRow) BrowserNavigationRow(onBack, onForward, onHome, onReload, onTabs, enabled)
@@ -155,6 +155,7 @@ private fun BrowserAddressRow(
     value: String,
     onValueChange: (String) -> Unit,
     onSubmit: (String) -> Unit,
+    onBack: () -> Unit,
     onReload: () -> Unit,
     onTabs: () -> Unit,
     enabled: Boolean,
@@ -169,7 +170,7 @@ private fun BrowserAddressRow(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(4.dp)
     ) {
-        if (sideControls) BrowserAction("Voltar", "‹", enabled) { onReload() }
+        if (sideControls) BrowserAction("Voltar", "‹", enabled, onBack)
         if (!centered && !adaptive) {
             Text("●", modifier = Modifier.padding(horizontal = 5.dp),
                 color = MaterialTheme.colorScheme.primary,
