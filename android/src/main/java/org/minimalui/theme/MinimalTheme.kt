@@ -151,12 +151,10 @@ private fun seededColorScheme(seed: Color, dark: Boolean): ColorScheme {
 
 /**
  * Minimal theme with system dark mode, Android 12+ wallpaper colors,
- * and developer-provided color customization.
+ * developer-provided color customization, and the default MWS typography.
  *
- * Precedence: [colorScheme] > [seedColor] > Android dynamic colors > Minimal neutral palette.
- */
-/**
- * Backward-compatible Minimal theme entry point using the default MWS typography.
+ * Color precedence: [colorScheme] > [seedColor] > Android dynamic colors > Minimal neutral palette.
+ * The original function signature is preserved for source compatibility.
  */
 @Suppress("NewApi")
 @Composable
