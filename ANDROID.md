@@ -120,6 +120,30 @@ MinimalTheme(typography = myTypography) {
 - Padrões de produto: `MinimalAiComposer`, `MinimalBrowserAddressBar` e `MinimalIcon`.
 - Navegador Android: 15 componentes visuais em `MinimalBrowserComponents.kt`, incluindo endereço, segurança, sugestões, atalhos, abas, histórico, favoritos, downloads, leitor, busca na página, compartilhamento e permissões.
 
+### 15 estilos de barra de endereço
+
+`MinimalBrowserAddressLayout` oferece 15 composições de barra para navegadores Android. O aplicativo consumidor escolhe o estilo por `MinimalBrowserAddressStyle` e fornece estado, callbacks e conteúdo da página. Os estilos alteram apenas a composição visual; não implementam navegação, abas, histórico ou rede.
+
+Estilos disponíveis: `SINGLE_TOP`, `SINGLE_BOTTOM`, `DOUBLE_TOP`, `DOUBLE_BOTTOM`, `TOP_WITH_BOTTOM_NAV`, `BOTTOM_WITH_TOP_NAV`, `FLOATING`, `COMPACT`, `EXPANDED`, `TABS_INTEGRATED`, `CENTERED_SEARCH`, `SIDE_CONTROLS`, `MINIMAL`, `ADAPTIVE` e `CONTEXTUAL`.
+
+~~~kotlin
+MinimalBrowserAddressLayout(
+    value = address,
+    onValueChange = { address = it },
+    onSubmit = { url -> navigateTo(url) },
+    style = MinimalBrowserAddressStyle.DOUBLE_TOP,
+    onBack = { goBack() },
+    onForward = { goForward() },
+    onHome = { openHome() },
+    onReload = { reloadPage() },
+    onTabs = { openTabSwitcher() }
+) {
+    BrowserPageContent()
+}
+~~~
+
+O conteúdo e todos os callbacks são controlados pelo aplicativo consumidor. Forneça rótulos claros às ações e valide cada composição em telas estreitas e com escala de fonte ampliada.
+
 ### Campo de texto
 
 O estado permanece controlado pelo aplicativo consumidor:

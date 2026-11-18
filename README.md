@@ -15,7 +15,7 @@ Consulte o **[Guia de uso — Minimal UI](GUIA-DE-USO.md)** para aprender a copi
 ## Estrutura
 
 - `web/`: demonstração Web em HTML, CSS e JavaScript, sem framework; inclui tokens dinâmicos, ícones vetoriais e padrões para IA/navegador.
-- `android/`: biblioteca Android Gradle com Kotlin, Jetpack Compose e Material 3, incluindo 15 padrões visuais de navegador mobile.
+- `android/`: biblioteca Android Gradle com Kotlin, Jetpack Compose e Material 3, incluindo 15 padrões visuais de navegador mobile e 15 composições de barra de endereço.
 - `tests/web/`: testes de integridade estrutural, contraste e papéis tipográficos.
 - `ANDROID.md`: requisitos, compilação, testes e integração Android.
 - `GUIA-DE-USO.md`: instruções práticas para usuários aplicarem o Minimal em seus projetos.

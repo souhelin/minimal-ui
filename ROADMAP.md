@@ -46,6 +46,7 @@ O roadmap distingue implementação de demonstração, biblioteca reutilizável 
 - [x] Padrão Web visual de navegador mobile com endereço, atalhos e controles ilustrativos (sem navegação ou gerenciamento de abas).
 - [x] Componentes Compose visuais MinimalAiComposer e MinimalBrowserAddressBar com callbacks controlados pelo aplicativo consumidor.
 - [ ] Testes de interação em navegador real e viewports; validação de componentes em aplicativos consumidores.
+- [ ] Validar os 15 estilos de barra de endereço Android em emulador, diferentes larguras e escala de fonte (API e teste instrumentado adicionados na branch de desenvolvimento).
 
 ## 4. Layouts e exemplos
 - [x] Templates demonstrativos de dashboard, configurações, perfil, formulários e listas.
