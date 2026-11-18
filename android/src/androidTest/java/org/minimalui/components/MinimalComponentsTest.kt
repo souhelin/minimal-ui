@@ -33,7 +33,7 @@ class MinimalComponentsTest {
         var bodyFontSize = 0f
 
         composeRule.setContent {
-            MinimalTheme(darkTheme = false) {
+            MinimalTheme(false, false, null, null) {
                 SideEffect {
                     bodyFontSize = MaterialTheme.typography.bodyLarge.fontSize.value
                 }
