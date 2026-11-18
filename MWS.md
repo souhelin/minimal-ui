@@ -308,28 +308,19 @@ Os tokens são semânticos e devem ser mapeados para a implementação da plataf
 - `writing.locale`: definido pelo aplicativo consumidor
 - `writing.glossary`: glossário do produto
 
-### 12.2 Tokens tipográficos
+### 12.2 Tokens tipográficos implementados
 
-- `type.family.sans`
-- `type.family.serif`
-- `type.family.mono`
-- `type.size.display`
-- `type.size.headline`
-- `type.size.title`
-- `type.size.subtitle`
-- `type.size.body-large`
-- `type.size.body`
-- `type.size.body-small`
-- `type.size.label`
-- `type.weight.regular`
-- `type.weight.medium`
-- `type.weight.semibold`
-- `type.weight.bold`
-- `type.line-height.heading`
-- `type.line-height.body`
-- `type.line-length.reading`
+Na Web, os tokens públicos usam o prefixo `--mws-`:
+- `--mws-font-sans` e `--mws-font-mono`;
+- `--mws-type-display`, `--mws-type-headline`, `--mws-type-title`, `--mws-type-subtitle`;
+- `--mws-type-body-large`, `--mws-type-body`, `--mws-type-body-small`, `--mws-type-label`;
+- `--mws-weight-regular`, `--mws-weight-medium`, `--mws-weight-semibold`, `--mws-weight-bold`;
+- `--mws-line-height-heading`, `--mws-line-height-body`, `--mws-line-height-label`;
+- `--mws-reading-width`.
 
-Os valores concretos devem ser definidos por tema/plataforma e não duplicados em cada componente. Cor tipográfica deve continuar vindo dos tokens semânticos existentes, como `--text` e `--text-secondary`.
+Os valores estão em `web/tokens.css`; as classes semânticas estão em `web/components.css`. Os tamanhos usam `rem` para acompanhar o zoom e a escala base do navegador. A cor continua vindo dos tokens semânticos existentes, como `--text` e `--text-secondary`.
+
+No Android, `MinimalTypography` expõe a escala como Material 3 `Typography`, em unidades `sp`, aplicada por `MinimalTheme`. O consumidor pode substituir a escala pelo parâmetro `typography`.
 
 ## 13. Perfis de escrita
 
@@ -360,16 +351,10 @@ Mapeamento implementado:
 
 Exemplo de uso da API CSS implementada:
 
-~~~css
-:root {
-  --mws-font-sans: system-ui, sans-serif;
-  --mws-type-display: 2.5rem;
-  --mws-type-headline: 2rem;
-  --mws-type-title: 1.5rem;
-  --mws-type-body: 1rem;
-  --mws-type-label: 0.75rem;
-  --mws-line-body: 1.55;
-}
+~~~html
+<h1 class="mws-display">Título principal</h1>
+<p class="mws-body">Texto de leitura padrão.</p>
+<p class="mws-body-small">Texto auxiliar.</p>
 ~~~
 
 ### 14.2 Android
@@ -379,11 +364,14 @@ A implementação futura deve mapear papéis para `Typography` do Material 3/Com
 Exemplo conceitual (não representa API já implementada):
 
 ~~~kotlin
-val mwsTypography = Typography(
-    bodyLarge = TextStyle(fontSize = 18.sp, lineHeight = 27.sp),
-    bodyMedium = TextStyle(fontSize = 16.sp, lineHeight = 24.sp),
-    labelSmall = TextStyle(fontSize = 12.sp, lineHeight = 16.sp)
-)
+MinimalTheme {
+    Text("Título da seção", style = MaterialTheme.typography.titleLarge)
+}
+
+// Personalização opcional pelo aplicativo consumidor:
+MinimalTheme(typography = myTypography) {
+    AppContent()
+}
 ~~~
 
 ### 14.3 Componentes consumidores
