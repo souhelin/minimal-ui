@@ -89,8 +89,10 @@ Adicione o import androidx.compose.ui.graphics.Color para os exemplos de paleta 
 `MinimalTheme` aplica `MinimalTypography` por padrão. A escala usa unidades `sp`, portanto acompanha a preferência de tamanho de fonte do Android.
 
 ~~~kotlin
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
 import org.minimalui.theme.MinimalTheme
-import org.minimalui.theme.MinimalTypography
 
 @Composable
 fun App() {
