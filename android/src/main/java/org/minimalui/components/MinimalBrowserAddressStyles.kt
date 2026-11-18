@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.weight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -107,7 +106,7 @@ fun MinimalBrowserAddressLayout(
         if (floating) Spacer(Modifier.height(8.dp))
         Box(modifier = Modifier.weight(1f, fill = false).fillMaxWidth()) { content() }
 
-                if (bottomAddress) {
+        if (bottomAddress) {
             if (doubleRow) BrowserNavigationRow(onBack, onForward, onHome, onReload, onTabs, enabled)
             BrowserAddressSurface(floating, expanded) {
                 BrowserAddressRow(
