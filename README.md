@@ -19,7 +19,8 @@ Consulte o **[Guia de uso — Minimal UI](GUIA-DE-USO.md)** para aprender a copi
 - `tests/web/`: testes de integridade estrutural e contraste dos tokens.
 - `ANDROID.md`: requisitos, compilação, testes e integração Android.
 - `GUIA-DE-USO.md`: instruções práticas para usuários aplicarem o Minimal em seus projetos.
-- `TOKENS.md`: tokens primitivos, semânticos, elevação, forma e movimento.\n- `MWS.md`: especificação do Minimal Writing System — regras editoriais, microcopy, perfis de escrita, tipografia, localização e acessibilidade.
+- `TOKENS.md`: tokens primitivos, semânticos, elevação, forma e movimento.
+- `MWS.md`: especificação do Minimal Writing System — regras editoriais, microcopy, perfis de escrita, tipografia, localização e acessibilidade.
 - `ICONS.md`: biblioteca vetorial Web, categorias, API, uso Android e acessibilidade.
 - `ROADMAP.md`: escopo e estado de implementação.
 - `PERFORMANCE.md`: estratégia, orçamento de arquivos e auditoria Lighthouse.
