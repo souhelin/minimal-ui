@@ -155,6 +155,9 @@ private fun seededColorScheme(seed: Color, dark: Boolean): ColorScheme {
  *
  * Precedence: [colorScheme] > [seedColor] > Android dynamic colors > Minimal neutral palette.
  */
+/**
+ * Backward-compatible Minimal theme entry point using the default MWS typography.
+ */
 @Suppress("NewApi")
 @Composable
 fun MinimalTheme(
@@ -162,7 +165,31 @@ fun MinimalTheme(
     dynamicColor: Boolean = true,
     seedColor: Color? = null,
     colorScheme: ColorScheme? = null,
-    typography: Typography = MinimalTypography,
+    content: @Composable () -> Unit
+) {
+    MinimalTheme(
+        darkTheme = darkTheme,
+        dynamicColor = dynamicColor,
+        seedColor = seedColor,
+        colorScheme = colorScheme,
+        typography = MinimalTypography,
+        content = content
+    )
+}
+
+/**
+ * Minimal theme with optional developer-provided Material 3 typography.
+ *
+ * Precedence for colors: [colorScheme] > [seedColor] > Android dynamic colors > Minimal neutral palette.
+ */
+@Suppress("NewApi")
+@Composable
+fun MinimalTheme(
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    dynamicColor: Boolean = true,
+    seedColor: Color? = null,
+    colorScheme: ColorScheme? = null,
+    typography: Typography,
     content: @Composable () -> Unit
 ) {
     val context = LocalContext.current
