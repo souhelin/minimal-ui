@@ -349,16 +349,16 @@ O perfil Compact não pode remover avisos, consequências, instruções ou rótu
 
 ### 14.1 Web
 
-A implementação futura deve preservar a arquitetura atual sem framework e separar tokens tipográficos de componentes.
+A implementação Web preserva a arquitetura atual sem framework e separa tokens tipográficos de componentes.
 
-Mapeamento planejado:
+Mapeamento implementado:
 - CSS custom properties para tokens tipográficos;
 - classes utilitárias opcionais para papéis de texto;
 - estilos de componentes consumindo os tokens;
 - atributos/classes para perfis somente se houver necessidade comprovada;
 - strings de conteúdo permanecem sob responsabilidade da aplicação.
 
-Exemplo conceitual de CSS (não representa API já implementada):
+Exemplo de uso da API CSS implementada:
 
 ~~~css
 :root {
@@ -392,7 +392,7 @@ Componentes Minimal UI devem usar papéis tipográficos sem codificar conteúdo 
 
 ## 15. API e formato de configuração
 
-A primeira entrega deve ser documental e de tokens. Não declarar uma API pública de runtime antes de existir implementação e testes.
+A API de tipografia está implementada nos mapeamentos Web e Android. As regras editoriais permanecem uma especificação para orientar pessoas e equipes; não existe motor automático de reescrita, tradução ou validação semântica.
 
 Uma futura configuração pode seguir este formato conceitual:
 
@@ -480,9 +480,9 @@ O MWS não:
 - [ ] Revisão da especificação pelos mantenedores.
 
 ### Fase 2 — Tokens e mapeamentos
-- [ ] Auditar tipografia atual em Web e Android.
-- [ ] Consolidar tokens tipográficos sem duplicar valores existentes.
-- [ ] Mapear papéis para CSS e Compose.
+- [x] Auditar tipografia atual em Web e Android.
+- [x] Consolidar tokens tipográficos sem duplicar escalas existentes.
+- [x] Mapear papéis para CSS e Compose.
 - [ ] Validar Light, Dark, zoom e fontScale.
 
 ### Fase 3 — Padrões de conteúdo
@@ -492,10 +492,10 @@ O MWS não:
 - [ ] Revisar padrões de IA, erros, avisos e formulários.
 
 ### Fase 4 — Implementação e validação
-- [ ] Implementar somente APIs justificadas pelos consumidores.
-- [ ] Adicionar testes automatizados.
+- [x] Implementar tokens e papéis tipográficos Web e Android.
+- [x] Adicionar testes automatizados de integridade da escala Web e Compose.
 - [ ] Realizar revisão editorial e auditoria de acessibilidade.
-- [ ] Atualizar guia de uso e roadmap com resultados verificados.
+- [x] Atualizar guia de uso, tokens e roadmap para refletir a implementação.
 
 ## 21. Referências do próprio Minimal UI
 
@@ -505,3 +505,14 @@ O MWS não:
 - `ROADMAP.md`: estado real e pendências do projeto.
 
 O MWS deve respeitar esses documentos. Em caso de divergência, corrigir a documentação e a implementação em conjunto, sem afirmar capacidades que ainda não existem.
+
+
+## 22. Estado da implementação tipográfica (v0.1.0)
+
+A escala de tipografia está integrada ao código do Minimal UI:
+
+- Web: tokens CSS `--mws-*` em `web/tokens.css` e classes semânticas `.mws-*` em `web/components.css`. Os tamanhos usam `rem` e a família padrão continua herdando `--font-family`.
+- Android: `MinimalTypography` em `org.minimalui.theme` fornece os estilos Material 3 em `sp`; `MinimalTheme` aplica essa tipografia por padrão e aceita substituição pelo parâmetro `typography`.
+- Testes: `tests/web/typography.test.mjs` verifica tokens e classes; `MinimalTypographyTest` verifica tamanhos e line-heights do Compose.
+
+A implementação não modifica automaticamente textos nem aplica um tom editorial em runtime. A escala ainda precisa de execução de testes, revisão visual em zoom/fontScale e auditoria manual de acessibilidade antes de ser considerada validada.
