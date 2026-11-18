@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.weight
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -21,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 
 /** Fifteen structural styles for browser address/navigation chrome. */
@@ -72,6 +74,7 @@ fun MinimalBrowserAddressLayout(
     val floating = style == MinimalBrowserAddressStyle.FLOATING
     val compact = style == MinimalBrowserAddressStyle.COMPACT ||
         style == MinimalBrowserAddressStyle.MINIMAL
+    val minimal = style == MinimalBrowserAddressStyle.MINIMAL
     val expanded = style == MinimalBrowserAddressStyle.EXPANDED
     val tabsIntegrated = style == MinimalBrowserAddressStyle.TABS_INTEGRATED
     val centered = style == MinimalBrowserAddressStyle.CENTERED_SEARCH
@@ -88,7 +91,7 @@ fun MinimalBrowserAddressLayout(
             BrowserAddressSurface(floating, expanded) {
                 BrowserAddressRow(
                     value, onValueChange, onSubmit, onBack, onReload, onTabs, enabled,
-                    compact, centered, sideControls, adaptive, contextual
+                    compact, centered, sideControls, adaptive, contextual, minimal
                 )
                 if (doubleRow) BrowserNavigationRow(onBack, onForward, onHome, onReload, onTabs, enabled)
                 if (expanded) {
@@ -103,11 +106,10 @@ fun MinimalBrowserAddressLayout(
             }
         }
 
-        if (floating) Spacer(Modifier.padding(top = 8.dp))
+        if (floating) Spacer(Modifier.height(8.dp))
         Box(modifier = Modifier.weight(1f, fill = false).fillMaxWidth()) { content() }
 
-        if (bottomNavigation) BrowserNavigationRow(onBack, onForward, onHome, onReload, onTabs, enabled)
-        if (bottomAddress) {
+                if (bottomAddress) {
             if (doubleRow) BrowserNavigationRow(onBack, onForward, onHome, onReload, onTabs, enabled)
             BrowserAddressSurface(floating, expanded) {
                 BrowserAddressRow(
@@ -161,7 +163,8 @@ private fun BrowserAddressRow(
     centered: Boolean,
     sideControls: Boolean,
     adaptive: Boolean,
-    contextual: Boolean
+    contextual: Boolean,
+    minimal: Boolean
 ) {
     Row(
         modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp, vertical = if (compact) 2.dp else 6.dp),
@@ -180,7 +183,9 @@ private fun BrowserAddressRow(
             modifier = Modifier.weight(1f),
             enabled = enabled,
             singleLine = true,
-            textStyle = MaterialTheme.typography.bodyMedium,
+            textStyle = MaterialTheme.typography.bodyMedium.copy(
+                textAlign = if (centered) TextAlign.Center else TextAlign.Start
+            ),
             placeholder = {
                 Text(
                     if (centered) "Pesquisar ou digitar URL" else "Endereço",
@@ -194,7 +199,7 @@ private fun BrowserAddressRow(
             BrowserAction("Compartilhar", "↗", enabled) { onSubmit(value) }
         } else if (adaptive) {
             BrowserAction("Abas", "▢", enabled, onTabs)
-        } else {
+        } else if (!minimal) {
             BrowserAction("Recarregar", "↻", enabled, onReload)
         }
         if (!sideControls) BrowserAction("Ir", "Ir", enabled && value.isNotBlank()) { onSubmit(value) }
