@@ -4,6 +4,7 @@ import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Typography
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
@@ -161,6 +162,7 @@ fun MinimalTheme(
     dynamicColor: Boolean = true,
     seedColor: Color? = null,
     colorScheme: ColorScheme? = null,
+    typography: Typography = MinimalTypography,
     content: @Composable () -> Unit
 ) {
     val context = LocalContext.current
@@ -175,5 +177,5 @@ fun MinimalTheme(
         }
     }
 
-    MaterialTheme(colorScheme = resolvedColors, content = content)
+    MaterialTheme(colorScheme = resolvedColors, typography = typography, content = content)
 }
