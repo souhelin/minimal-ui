@@ -12,12 +12,11 @@ const roles = [
 
 test("MWS defines the complete semantic type scale with scalable CSS units", () => {
   for (const role of roles) {
-    assert.match(tokens, new RegExp(`--mws-type-${role.replaceAll("-", "\\\\-")}\\s*:`),
-      `Missing MWS type token: ${role}`);
+    assert.ok(tokens.includes(`--mws-type-${role}:`), `Missing MWS type token: ${role}`);
   }
-  assert.match(tokens, /--mws-type-body:\\s*1rem/);
-  assert.match(tokens, /--mws-line-height-body:\\s*1\\.55/);
-  assert.match(tokens, /--mws-font-sans:\\s*var\\(--font-family\\)/);
+  assert.match(tokens, /--mws-type-body:\s*1rem/);
+  assert.match(tokens, /--mws-line-height-body:\s*1\.55/);
+  assert.match(tokens, /--mws-font-sans:\s*var\(--font-family\)/);
 });
 
 test("MWS exposes reusable semantic text classes without changing component content", () => {
