@@ -34,8 +34,9 @@ class MinimalComponentsTest {
 
         composeRule.setContent {
             MinimalTheme(false, false, null, null) {
+                val appliedFontSize = MaterialTheme.typography.bodyLarge.fontSize.value
                 SideEffect {
-                    bodyFontSize = MaterialTheme.typography.bodyLarge.fontSize.value
+                    bodyFontSize = appliedFontSize
                 }
             }
         }
@@ -52,8 +53,9 @@ class MinimalComponentsTest {
 
         composeRule.setContent {
             MinimalTheme(darkTheme = false, typography = customTypography) {
+                val appliedFontSize = MaterialTheme.typography.bodyLarge.fontSize.value
                 SideEffect {
-                    bodyFontSize = MaterialTheme.typography.bodyLarge.fontSize.value
+                    bodyFontSize = appliedFontSize
                 }
             }
         }
