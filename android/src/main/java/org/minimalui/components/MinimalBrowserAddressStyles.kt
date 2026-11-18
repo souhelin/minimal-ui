@@ -114,7 +114,7 @@ fun MinimalBrowserAddressLayout(
             BrowserAddressSurface(floating, expanded) {
                 BrowserAddressRow(
                     value, onValueChange, onSubmit, onBack, onReload, onTabs, enabled,
-                    compact, centered, sideControls, adaptive, contextual, minimal
+                    compact, centered, sideControls, adaptive, contextual, minimal, onShare
                 )
                 if (expanded) {
                     Text(
