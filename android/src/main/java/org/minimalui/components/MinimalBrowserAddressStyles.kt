@@ -111,7 +111,7 @@ fun MinimalBrowserAddressLayout(
             if (doubleRow) BrowserNavigationRow(onBack, onForward, onHome, onReload, onTabs, enabled)
             BrowserAddressSurface(floating, expanded) {
                 BrowserAddressRow(
-                    value, onValueChange, onSubmit, onReload, onTabs, enabled,
+                    value, onValueChange, onSubmit, onBack, onReload, onTabs, enabled,
                     compact, centered, sideControls, adaptive, contextual
                 )
                 if (expanded) {
@@ -124,9 +124,7 @@ fun MinimalBrowserAddressLayout(
                 }
             }
         }
-        if (style == MinimalBrowserAddressStyle.TOP_WITH_BOTTOM_NAV ||
-            style == MinimalBrowserAddressStyle.BOTTOM_WITH_TOP_NAV
-        ) {
+        if (style == MinimalBrowserAddressStyle.TOP_WITH_BOTTOM_NAV) {
             BrowserBottomNavigation(onBack, onForward, onHome, onTabs, enabled)
         }
     }
