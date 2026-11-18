@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -62,6 +63,8 @@ fun MinimalBrowserAddressLayout(
     onHome: () -> Unit = {},
     onReload: () -> Unit = {},
     onTabs: () -> Unit = {},
+    onNewTab: () -> Unit = {},
+    onShare: () -> Unit = {},
     enabled: Boolean = true,
     content: @Composable () -> Unit
 ) {
@@ -82,13 +85,13 @@ fun MinimalBrowserAddressLayout(
     val contextual = style == MinimalBrowserAddressStyle.CONTEXTUAL
     val topNavigation = style == MinimalBrowserAddressStyle.BOTTOM_WITH_TOP_NAV
 
-    Column(modifier = modifier.fillMaxWidth()) {
+    Column(modifier = modifier.fillMaxSize()) {
         if (!bottomAddress) {
             if (topNavigation) BrowserNavigationRow(onBack, onForward, onHome, onReload, onTabs, enabled)
             BrowserAddressSurface(floating, expanded) {
                 BrowserAddressRow(
                     value, onValueChange, onSubmit, onBack, onReload, onTabs, enabled,
-                    compact, centered, sideControls, adaptive, contextual, minimal
+                    compact, centered, sideControls, adaptive, contextual, minimal, onShare
                 )
                 if (doubleRow) BrowserNavigationRow(onBack, onForward, onHome, onReload, onTabs, enabled)
                 if (expanded) {
@@ -99,12 +102,12 @@ fun MinimalBrowserAddressLayout(
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
-                if (tabsIntegrated) BrowserTabsRow(onTabs, enabled)
+                if (tabsIntegrated) BrowserTabsRow(onTabs, onNewTab, enabled)
             }
         }
 
         if (floating) Spacer(Modifier.height(8.dp))
-        Box(modifier = Modifier.weight(1f, fill = false).fillMaxWidth()) { content() }
+        Box(modifier = Modifier.weight(1f).fillMaxWidth()) { content() }
 
         if (bottomAddress) {
             if (doubleRow) BrowserNavigationRow(onBack, onForward, onHome, onReload, onTabs, enabled)
@@ -161,7 +164,8 @@ private fun BrowserAddressRow(
     sideControls: Boolean,
     adaptive: Boolean,
     contextual: Boolean,
-    minimal: Boolean
+    minimal: Boolean,
+    onShare: () -> Unit
 ) {
     Row(
         modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp, vertical = if (compact) 2.dp else 6.dp),
@@ -193,7 +197,7 @@ private fun BrowserAddressRow(
             shape = RoundedCornerShape(if (compact) 999.dp else 16.dp)
         )
         if (contextual) {
-            BrowserAction("Compartilhar", "↗", enabled) { onSubmit(value) }
+            BrowserAction("Compartilhar", "↗", enabled, onShare)
         } else if (adaptive) {
             BrowserAction("Abas", "▢", enabled, onTabs)
         } else if (!minimal) {
@@ -247,10 +251,10 @@ private fun BrowserBottomNavigation(
 }
 
 @Composable
-private fun BrowserTabsRow(onTabs: () -> Unit, enabled: Boolean) {
+private fun BrowserTabsRow(onTabs: () -> Unit, onNewTab: () -> Unit, enabled: Boolean) {
     Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 10.dp, vertical = 4.dp)) {
         TextButton(onClick = onTabs, enabled = enabled) { Text("Aba atual") }
-        TextButton(onClick = onTabs, enabled = enabled) { Text("+ Nova aba") }
+        TextButton(onClick = onNewTab, enabled = enabled) { Text("+ Nova aba") }
     }
 }
 
