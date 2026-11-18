@@ -2,6 +2,7 @@ package org.minimalui.components
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
@@ -24,10 +25,9 @@ class MinimalBrowserAddressStylesTest {
 
     @Test
     fun everyAddressStyleRendersContentAndSubmitAction() {
-        lateinit var selectedStyle: androidx.compose.runtime.MutableState<MinimalBrowserAddressStyle>
+        val selectedStyle = mutableStateOf(MinimalBrowserAddressStyle.SINGLE_TOP)
         composeRule.setContent {
             MinimalTheme(darkTheme = false) {
-                selectedStyle = remember { mutableStateOf(MinimalBrowserAddressStyle.SINGLE_TOP) }
                 val value = remember { mutableStateOf("example.com") }
                 MinimalBrowserAddressLayout(
                     value = value.value,
