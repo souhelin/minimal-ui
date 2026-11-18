@@ -86,7 +86,6 @@ fun MinimalBrowserAddressLayout(
     Column(modifier = modifier.fillMaxWidth()) {
         if (!bottomAddress) {
             if (topNavigation) BrowserNavigationRow(onBack, onForward, onHome, onReload, onTabs, enabled)
-            if (tabsIntegrated) BrowserTabsRow(onTabs, enabled)
             BrowserAddressSurface(floating, expanded) {
                 BrowserAddressRow(
                     value, onValueChange, onSubmit, onBack, onReload, onTabs, enabled,
@@ -201,7 +200,7 @@ private fun BrowserAddressRow(
         } else if (!minimal) {
             BrowserAction("Recarregar", "↻", enabled, onReload)
         }
-        if (!sideControls) BrowserAction("Ir", "Ir", enabled && value.isNotBlank()) { onSubmit(value) }
+        BrowserAction("Ir", "Ir", enabled && value.isNotBlank()) { onSubmit(value) }
     }
 }
 
