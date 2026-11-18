@@ -66,8 +66,8 @@ O roadmap distingue implementação de demonstração, biblioteca reutilizável 
 - [x] Propor escala tipográfica e papéis semânticos multiplataforma.
 - [x] Documentar arquitetura e limites de integração Web/Android.
 - [ ] Revisar a especificação com mantenedores e validar a escala contra a tipografia atual.
-- [ ] Auditar estilos tipográficos existentes antes de implementar tokens.
-- [ ] Mapear tokens para CSS e Compose sem duplicar tokens ou temas.
+- [x] Auditar estilos tipográficos existentes antes de implementar tokens.
+- [x] Mapear tokens para CSS e Compose sem duplicar tokens ou temas.
 - [ ] Criar exemplos de microcopy e glossário por idioma.
 - [x] Adicionar testes automatizados para presença dos tokens e papéis tipográficos Web e escala padrão Compose.\n- [ ] Executar e validar testes Web/Android, responsividade, zoom, fontScale e acessibilidade manual.
 
